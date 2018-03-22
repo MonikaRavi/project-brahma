@@ -19,6 +19,7 @@ import {SmartadminLayoutModule} from "./shared/layout/layout.module";
 
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HomeModule } from 'app/+home/home.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -51,6 +52,8 @@ type StoreType = {
 
     CoreModule,
     SmartadminLayoutModule,
+
+     HomeModule,
 
     routing
   ],
