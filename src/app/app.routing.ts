@@ -10,21 +10,44 @@ import {ModuleWithProviders} from "@angular/core";
 import { HomeComponent } from 'app/+home/home.component';
 
 export const routes: Routes = [
+
+
   {
     path: '',
+    component: AuthLayoutComponent,
+    data: {pageTitle: 'Login'},
+    children: [
+      {
+        path: '', redirectTo: 'auth/login', pathMatch: 'full'
+      },
+    
+    {
+    path: 'auth', 
+  
+        component: AuthLayoutComponent, 
+  
+          loadChildren: 'app/+auth/auth.module#AuthModule',
+
+          data: {pageTitle: 'login'}
+
+
+    },
+
+       ]
+
+  },
+
+  {
+    path: 'home',
     component: MainLayoutComponent,
     data: {pageTitle: 'Home'},
     children: [
-      {
-        path: '', redirectTo: 'home', pathMatch: 'full'
-      },
-      
-
+     
       {
          path: 'home', component: HomeComponent, data: {pageTitle: 'Home'}
 
       },
-
+/*
       {
         path: 'dashboard',
         loadChildren: 'app/+dashboard/dashboard.module#DashboardModule',
@@ -89,11 +112,11 @@ export const routes: Routes = [
         path: 'widgets',
         loadChildren: 'app/+widgets/widgets-showcase.module#WidgetsShowcaseModule',
         data: {pageTitle: 'Widgets'}
-      },
+      }, */
     ]
   },
 
-  {path: 'auth', component: AuthLayoutComponent, loadChildren: 'app/+auth/auth.module#AuthModule'},
+
 
   {path: '**', redirectTo: 'miscellaneous/error404'}
 
