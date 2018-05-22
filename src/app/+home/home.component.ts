@@ -24,8 +24,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor( private homeService: HomeService, private authService: AuthService ) { }
 
   ngOnInit() {
+
+    this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+
+    this.subsGetUsers.unsubscribe();
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+  onLogin() {
+    this.authService.login();
+  }
 
 }
