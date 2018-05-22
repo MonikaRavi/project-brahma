@@ -1,5 +1,13 @@
 export const config: any = {
 
+  // Microsoft Connect Starts
+
+
+  appId: '477da3f7-1457-4e4b-a18e-990595c31e27',
+  scope: 'User.Read Mail.Send',
+
+  // Microsoft Connect Ends
+
   defaultLocale: "us",
 
   API_URL: "assets/api",
