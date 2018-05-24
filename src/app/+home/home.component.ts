@@ -19,18 +19,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   subsGetUsers: Subscription;
   subsGetMe: Subscription;
   subsSendMail: Subscription;
+  subsGetPhoto: Subscription;
+  user: microsoftgraph.User;
 
 
-  constructor( private homeService: HomeService, private authService: AuthService ) { }
+
+  
+
+  constructor( private homeService: HomeService, private authService: AuthService ) { 
+    
+
+  
+  }
 
   ngOnInit() {
 
-    this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
-  }
+    this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me );
+    this.subsGetPhoto = this.homeService.getPhoto().subscribe(user => this.user = user );
+    
+      }
 
   ngOnDestroy() {
 
-    this.subsGetUsers.unsubscribe();
+    this.subsGetMe.unsubscribe();
+    this.subsGetPhoto.unsubscribe();
   }
 
   onLogout() {
@@ -39,6 +51,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onLogin() {
     this.authService.login();
+  }
+
+  getUserName(){
+
+    return this.me.displayName ; 
+
+  }
+
+  getPhoto(){
+
+    //console.log(this.user.photo);
+    
+    console.log(this.user.photo);
+
+    return this.user.photo;
+
+    
   }
 
 }

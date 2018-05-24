@@ -53,6 +53,7 @@ export const routes: Routes = [
         loadChildren: 'app/+dashboard/dashboard.module#DashboardModule',
         data: {pageTitle: 'Dashboard'}
       },
+      
       {
         path: 'smartadmin',
         loadChildren: 'app/+smartadmin-intel/smartadmin-intel.module#SmartadminIntelModule',

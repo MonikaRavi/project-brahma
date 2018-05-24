@@ -35,19 +35,38 @@ export class HomeService {
     return client;
   }
 
+ 
   getMe(): Observable<MicrosoftGraph.User>
   {
     var client = this.getClient();
-    return Observable.fromPromise(client
+     return Observable.fromPromise(client
     .api('me')
-    .select("displayName, mail, userPrincipalName")
+    .select("displayName, userPrincipalName, id")
     .get()
     .then ((res => {
+
+      console.log(res);
       return res;
     } ) )
     );
   }
+ 
+/*
+ getMe(): Observable<MicrosoftGraph.User>
+ {
+   var client = this.getClient();
+    return Observable.fromPromise(client
+   .api('users/d63280d3-c88c-41d0-82ca-a0f36f19eeda/profilePhoto/$value')
+   //.select("displayName, userPrincipalName, id, photo")
+   .get()
+   .then ((res => {
 
+     console.log(res);
+     return res;
+   } ) )
+   );
+ }
+*/
   sendMail(mail: MicrosoftGraph.Message) {
     var client = this.getClient();
     return Observable.fromPromise(client
@@ -55,6 +74,22 @@ export class HomeService {
     .post({message: mail})
   );
   } 
+
+  getPhoto(): Observable<MicrosoftGraph.User>
+  {
+    var client = this.getClient();
+    console.log(client);
+    return Observable.fromPromise(client
+    .api('me/photo')
+    .select('*')
+    .get()
+    .then ((res => {
+
+      console.log(res);
+      return res;
+    } ) )
+    );
+  }
 
 
 }
