@@ -6,6 +6,11 @@ import { HomeService } from './home.service';
 import { AuthService } from '../+auth/auth.service';
 
 
+import { DataRetrievalService } from '../shared/data-retrieval.service';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms'
+import { map } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,11 +27,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   subsGetPhoto: Subscription;
   user: microsoftgraph.User;
 
+ // Form and Data Retrieval variables
 
+ getDataForm: FormGroup;
+
+ dataReturned: any[];
+
+ queryType: string ;
+
+ inputTypes = [
+   'Email',
+   'Rfid'
+ ];
+
+ queryTypes = [
+   'Summary',
+   'Details'
+ ];
+
+ errorMessage: string;
 
   
 
-  constructor( private homeService: HomeService, private authService: AuthService ) { 
+  constructor( private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService ) { 
     
 
   
@@ -37,6 +60,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me );
     this.subsGetPhoto = this.homeService.getPhoto().subscribe(user => this.user = user );
     
+    this.getDataForm = new FormGroup({
+      'queryValue': new FormControl(null, Validators.required),
+      'ipType': new FormControl('Email'),
+      'queryType': new FormControl('Summary')
+    });
+
+    this.errorMessage = '';
+
       }
 
   ngOnDestroy() {
@@ -59,6 +90,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
+  getEmail() {
+
+    return this.me.mail;
+
+  }
+
   getPhoto(){
 
     //console.log(this.user.photo);
@@ -69,5 +106,46 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     
   }
+
+  getdata() {
+
+    this.dataReturned = null ;
+
+    const querySelected = this.getDataForm.controls.queryValue.value;
+
+    const inputSelected = this.getDataForm.controls.ipType.value;
+
+    this.queryType = this.getDataForm.controls.queryType.value;
+
+
+    let query;
+
+
+      query = this.queryType.concat('/').concat(inputSelected).concat('/').concat(querySelected);
+
+          
+
+    this.dataService.getData(query)
+      .subscribe(
+        (data: any[]) => {
+
+          
+          this.dataReturned = data;
+
+          console.log ('data returned', this.dataReturned);
+
+        },
+        (error) => {
+
+          this.errorMessage = 'No Data Found for : ' + querySelected;
+
+        }
+      )
+      ;
+
+    this.errorMessage = '';
+
+  }
+
 
 }

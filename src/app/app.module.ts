@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -15,8 +15,8 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 
 // Core providers
-import {CoreModule} from "./core/core.module";
-import {SmartadminLayoutModule} from "./shared/layout/layout.module";
+import { CoreModule } from "./core/core.module";
+import { SmartadminLayoutModule } from "./shared/layout/layout.module";
 
 
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -24,6 +24,7 @@ import { HomeModule } from 'app/+home/home.module';
 import { AuthService } from './+auth/auth.service';
 import { HttpService } from './shared/smartadmin.http.service';
 import { HomeService } from './+home/home.service';
+import { DataRetrievalService } from './shared/data-retrieval.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -44,7 +45,7 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
 
@@ -54,14 +55,14 @@ type StoreType = {
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-
+    ReactiveFormsModule,
     ModalModule.forRoot(),
 
 
     CoreModule,
     SmartadminLayoutModule,
 
-     HomeModule,
+    HomeModule,
 
     routing
   ],
@@ -69,11 +70,12 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    DataRetrievalService
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) {}
+  constructor(public appRef: ApplicationRef, public appState: AppState) { }
 
 
 }

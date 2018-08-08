@@ -41,7 +41,7 @@ export class HomeService {
     var client = this.getClient();
      return Observable.fromPromise(client
     .api('me')
-    .select("displayName, userPrincipalName, id")
+    .select("displayName, userPrincipalName, id, mail")
     .get()
     .then ((res => {
 
