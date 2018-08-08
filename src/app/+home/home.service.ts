@@ -45,7 +45,7 @@ export class HomeService {
     .get()
     .then ((res => {
 
-      console.log(res);
+      //console.log(res);
       return res;
     } ) )
     );
@@ -78,14 +78,14 @@ export class HomeService {
   getPhoto(): Observable<MicrosoftGraph.User>
   {
     var client = this.getClient();
-    console.log(client);
+    //console.log(client);
     return Observable.fromPromise(client
     .api('me/photo')
     .select('*')
     .get()
     .then ((res => {
 
-      console.log(res);
+      //console.log(res);
       return res;
     } ) )
     );
