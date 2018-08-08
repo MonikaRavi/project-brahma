@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   login(event){
     event.preventDefault();
-    this.router.navigate(['/home/home'])
+    this.router.navigate(['/'])
   }
 
 }
