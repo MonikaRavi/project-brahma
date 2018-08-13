@@ -9,7 +9,7 @@
         <h1 *ngIf="me">Hi, {{ getUserName() }} !</h1>
 
 
-        <form (ngSubmit)="getdata()" [formGroup]="getDataForm">
+        <form (ngSubmit)="setInputData()" [formGroup]="getDataForm">
 
           <div class="form-group">
 
@@ -49,6 +49,8 @@
 
             <ul class="list-group" *ngIf="queryType == 'Details'">
 
+              <p> Details For {{ querySelected }}</p>
+
               <li class="list-group-item">
 
                 Flow : {{ data.flow }}
@@ -61,6 +63,9 @@
             </ul>
 
             <ul *ngIf="queryType == 'Summary'" class="list-group">
+
+              <h5> Summary for {{ querySelected }} </h5>
+
               <li class="list-group-item">
                 Total Logs : {{ data.totalLogs }}
                 <br> Consumption : {{ data.totalConsumption }}

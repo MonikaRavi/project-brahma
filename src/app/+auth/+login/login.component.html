@@ -50,11 +50,11 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
         <div class="well no-padding">
-          <form class="smart-form client-form">
+          <!-- <form class="smart-form client-form">
             <header>
               Sign In
             </header>
-            <fieldset>
+             <fieldset>
               <section>
                 <label class="label">E-mail</label>
                 <label class="input"> <i class="icon-append fa fa-user"></i>
@@ -78,15 +78,23 @@
                   <input type="checkbox" name="remember" checked>
                   <i></i>Stay signed in</label>
               </section>
-            </fieldset>
+            </fieldset> 
             <footer>
-              <button (click)="login($event)" class="btn btn-primary">
+            <button (click)="login($event)" class="btn btn-primary">
                 Sign in
-              </button>
+              </button> 
+
+              
             </footer>
-          </form>
+          </form> -->
+
+          <a class="btn btn-block btn-social btn-microsoft" style="color: white" (click)="onLogin()">
+              <span class="fa fa-windows"></span> Sign in with Microsoft
+            </a> 
+
+
         </div>
-        <h5 class="text-center"> - Or sign in using -</h5>
+        <!-- <h5 class="text-center"> - Or sign in using -</h5>
         <ul class="list-inline text-center">
           <li>
             <a (click)="(null)" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
@@ -100,7 +108,9 @@
           <li>
             <a (click)="onLogin()" class="btn btn-success btn-circle">M</a>
           </li>
-        </ul>
+        </ul> -->
+
+     
       </div>
 
     </div>

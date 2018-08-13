@@ -6,6 +6,7 @@ import * as hello from 'hellojs/dist/hello.all.js';
 import { Router } from '@angular/router';
 
 import { config } from '../shared/smartadmin.config';
+import { HomeService } from '../+home/home.service';
 
 
 @Injectable()
@@ -16,8 +17,9 @@ export class AuthService {
   redirectUrl: string;
   
   constructor(
-    private zone: NgZone,
-    private router: Router
+    // private zone: NgZone,
+    // private router: Router,
+    private homeService : HomeService
   ) { }
 
   initAuth() {
@@ -39,9 +41,14 @@ export class AuthService {
   login() {
     hello('msft').login({ scope: config.scope }).then(
       () => {
-        this.zone.run(() => {
-          this.router.navigate(['/home/home']);
-        });
+        //Checking Domain
+        console.log('Domain Check ',this.homeService.checkDomain());
+
+        
+        // this.zone.run(() => {
+         
+        //   this.router.navigate(['/home/home']);
+        // });
       },
       e => console.error(e.error.message)
     );
@@ -53,7 +60,6 @@ export class AuthService {
       e => console.error(e.error.message)
     );
   }
-
 
 
 

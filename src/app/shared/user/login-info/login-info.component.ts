@@ -50,6 +50,8 @@ export class LoginInfoComponent implements OnInit , OnDestroy {
   }
 
   toggleShortcut() {
+
+
     this.layoutService.onShortcutToggle()
   }
 

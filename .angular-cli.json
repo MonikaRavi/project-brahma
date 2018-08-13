@@ -18,10 +18,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+       
         "styles.css"
       ],
-      "scripts": [
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -34,7 +34,7 @@
       "config": "./protractor.conf.js"
     }
   },
- "lint": [
+  "lint": [
     {
       "project": "src/tsconfig.app.json"
     },
@@ -44,7 +44,7 @@
     {
       "project": "e2e/tsconfig.e2e.json"
     }
-  ], 
+  ],
   "test": {
     "karma": {
       "config": "./karma.conf.js"

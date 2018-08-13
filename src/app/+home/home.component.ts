@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import * as MicrosoftGraph from "@microsoft/microsoft-graph-types"
@@ -17,6 +17,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+
   events: MicrosoftGraph.Event[];
   me: MicrosoftGraph.User;
   message: MicrosoftGraph.Message;
@@ -27,49 +29,68 @@ export class HomeComponent implements OnInit, OnDestroy {
   subsGetPhoto: Subscription;
   user: microsoftgraph.User;
 
- // Form and Data Retrieval variables
+  // Form and Data Retrieval variables
 
- getDataForm: FormGroup;
+  getDataForm: FormGroup;
 
- dataReturned: any[];
+  dataReturned: any[];
 
- queryType: string ;
+  queryType: string;
 
- inputTypes = [
-   'Email',
-   'Rfid'
- ];
+  inputTypes = [
+    'Email',
+    'Rfid'
+  ];
 
- queryTypes = [
-   'Summary',
-   'Details'
- ];
+  queryTypes = [
+    'Summary',
+    'Details'
+  ];
 
- errorMessage: string;
+  errorMessage: string;
 
-  
 
-  constructor( private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService ) { 
-    
 
-  
+  constructor(private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService) {
+
+
+
   }
+
+
+  inputSelected;
+  querySelected;
 
   ngOnInit() {
 
-    this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me );
-    this.subsGetPhoto = this.homeService.getPhoto().subscribe(user => this.user = user );
-    
+    this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
+    this.subsGetPhoto = this.homeService.getPhoto().subscribe(user => this.user = user);
+
     this.getDataForm = new FormGroup({
       'queryValue': new FormControl(null, Validators.required),
       'ipType': new FormControl('Email'),
       'queryType': new FormControl('Summary')
     });
 
+
+    
     this.errorMessage = '';
 
-      }
+    setTimeout(() => {
+      
+      this.querySelected = this.me.mail;
 
+      // console.log(this.me);
+
+      this.getdata();
+
+    }, 1000);
+
+  
+
+  }
+
+  
   ngOnDestroy() {
 
     this.subsGetMe.unsubscribe();
@@ -84,9 +105,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authService.login();
   }
 
-  getUserName(){
+  getUserName() {
 
-    return this.me.displayName ; 
+    return this.me.displayName;
 
   }
 
@@ -96,48 +117,56 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
-  getPhoto(){
+  getPhoto() {
 
     //console.log(this.user.photo);
-    
+
     console.log(this.user.photo);
 
     return this.user.photo;
 
-    
+
   }
+
+
+  setInputData() {
+
+    this.querySelected = this.getDataForm.controls.queryValue.value;
+
+    this.getdata();
+
+  }
+
 
   getdata() {
 
-    this.dataReturned = null ;
-
-    const querySelected = this.getDataForm.controls.queryValue.value;
-
-    const inputSelected = this.getDataForm.controls.ipType.value;
+    this.dataReturned = null;
 
     this.queryType = this.getDataForm.controls.queryType.value;
+
+    this.inputSelected = this.getDataForm.controls.ipType.value;
 
 
     let query;
 
 
-      query = this.queryType.concat('/').concat(inputSelected).concat('/').concat(querySelected);
+    query = this.queryType.concat('/').concat(this.inputSelected).concat('/').concat(this.querySelected);
 
-          
+
 
     this.dataService.getData(query)
       .subscribe(
         (data: any[]) => {
 
-          
+
           this.dataReturned = data;
 
-          console.log ('data returned', this.dataReturned);
+          console.log('data returned', this.dataReturned);
 
         },
         (error) => {
 
-          this.errorMessage = 'No Data Found for : ' + querySelected;
+          this.errorMessage = 'No Data Found for : ' + this.querySelected;
 
         }
       )

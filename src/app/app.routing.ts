@@ -8,6 +8,10 @@ import {MainLayoutComponent} from "./shared/layout/app-layouts/main-layout.compo
 import {AuthLayoutComponent} from "./shared/layout/app-layouts/auth-layout.component";
 import {ModuleWithProviders} from "@angular/core";
 import { HomeComponent } from 'app/+home/home.component';
+import { MiscellaneousModule } from './+miscellaneous/miscellaneous.module';
+import { LoadedRouterConfig } from '@angular/router/src/config';
+import { Error404Module } from './+miscellaneous/+error404/error404.module';
+import { Error404Component } from './+miscellaneous/+error404/error404.component';
 
 export const routes: Routes = [
 
@@ -47,6 +51,12 @@ export const routes: Routes = [
          path: 'home', component: HomeComponent, data: {pageTitle: 'Home'}
 
       },
+      {
+        path: 'miscellaneous',
+        loadChildren: 'app/+miscellaneous/miscellaneous.module#MiscellaneousModule',
+        data: {pageTitle: 'Miscellaneous'}
+      },
+     
 /*
       {
         path: 'dashboard',
@@ -116,6 +126,7 @@ export const routes: Routes = [
       }, */
     ]
   },
+
 
 
 

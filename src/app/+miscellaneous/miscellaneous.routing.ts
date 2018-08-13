@@ -40,6 +40,10 @@ export const routes: Routes = [
     path: 'search',
     loadChildren: './+search/search.module#SearchModule'
   },
+  {
+    path: 'domain',
+    loadChildren: './+domain/domain.module#DomainModule'
+  },
 ];
 
 export const routing = RouterModule.forChild(routes);
