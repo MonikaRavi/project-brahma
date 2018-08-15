@@ -26,8 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   subsGetUsers: Subscription;
   subsGetMe: Subscription;
   subsSendMail: Subscription;
-  subsGetPhoto: Subscription;
-  user: microsoftgraph.User;
+   user: microsoftgraph.User;
 
   // Form and Data Retrieval variables
 
@@ -64,8 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
-    this.subsGetPhoto = this.homeService.getPhoto().subscribe(user => this.user = user);
-
+   
     this.getDataForm = new FormGroup({
       'queryValue': new FormControl(null, Validators.required),
       'ipType': new FormControl('Email'),
@@ -94,7 +92,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 
     this.subsGetMe.unsubscribe();
-    this.subsGetPhoto.unsubscribe();
+   // this.subsGetPhoto.unsubscribe();
   }
 
   onLogout() {
@@ -121,9 +119,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     //console.log(this.user.photo);
 
-    console.log(this.user.photo);
-
-    return this.user.photo;
+   return  this.homeService.getImageFromService();
 
 
   }

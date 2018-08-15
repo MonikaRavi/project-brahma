@@ -67,7 +67,7 @@ export class LoginInfoComponent implements OnInit , OnDestroy {
   getUserPic(){
 
     //console.log(this.user.photo);
-    return this.user.photo;
+    return this.homeService.getImageFromService()
 
   }
 

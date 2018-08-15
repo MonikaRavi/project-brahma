@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpService } from '../shared/smartadmin.http.service';
 import { Router } from '@angular/router';
+import { ImageService } from './image.service';
 
 @Injectable()
 export class HomeService {
@@ -21,14 +22,19 @@ export class HomeService {
   file = 'demo.xlsx';
   table = 'Table1';
 
- 
+  imageToShow: any;
+  isImageLoading = false;
+
+   private graphUri = "https://graph.microsoft.com/v1.0/me/photo/$value";
+
 
   constructor(
-    private http: Http,
+    
     private httpService: HttpService, private zone: NgZone,
-    private router: Router) {
+    private router: Router , private imageService : ImageService) {
   }
 
+ 
   getClient(): MicrosoftGraphClient.Client {
     var client = MicrosoftGraphClient.Client.init({
       authProvider: (done) => {
@@ -101,45 +107,40 @@ export class HomeService {
   }
 
 
+  // Microsoft graph API returns a blob data which is converted into image
 
-  /*
-   getMe(): Observable<MicrosoftGraph.User>
-   {
-     var client = this.getClient();
-      return Observable.fromPromise(client
-     .api('users/d63280d3-c88c-41d0-82ca-a0f36f19eeda/profilePhoto/$value')
-     //.select("displayName, userPrincipalName, id, photo")
-     .get()
-     .then ((res => {
-  
-       console.log(res);
-       return res;
-     } ) )
-     );
-   }
-  */
-  sendMail(mail: MicrosoftGraph.Message) {
-    var client = this.getClient();
-    return Observable.fromPromise(client
-      .api('me/sendmail')
-      .post({ message: mail })
-    );
-  }
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
 
-  getPhoto(): Observable<MicrosoftGraph.User> {
-    var client = this.getClient();
-    //console.log(client);
-    return Observable.fromPromise(client
-      .api('me/photo')
-      .select('*')
-      .get()
-      .then((res => {
+     //console.log(reader.result);
+       this.imageToShow = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
 
-        //console.log(res);
-        return res;
-      }))
-    );
-  }
+ getImageFromService() {
+   this.isImageLoading = true;
+   this.imageService.getImage(this.graphUri).subscribe(data => {
+     //console.log(data);
+     this.createImageFromBlob(data);
+     this.isImageLoading = false;
+     
+   }, error => {
+     this.isImageLoading = false;
+     console.log(error);
+   });
+
+   return this.imageToShow ;
+}
+
+
+
+
+
 
 
 }

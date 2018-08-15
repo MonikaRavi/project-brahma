@@ -25,6 +25,8 @@ import { AuthService } from './+auth/auth.service';
 import { HttpService } from './shared/smartadmin.http.service';
 import { HomeService } from './+home/home.service';
 import { DataRetrievalService } from './shared/data-retrieval.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ImageService } from './+home/image.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -55,6 +57,7 @@ type StoreType = {
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
 
@@ -71,7 +74,8 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ENV_PROVIDERS,
     APP_PROVIDERS,
-    DataRetrievalService
+    DataRetrievalService,
+    ImageService
   ]
 })
 export class AppModule {
