@@ -55,8 +55,15 @@ export class AuthService {
   }
 
   logout() {
+
+    this.homeService.setLogIn(false);
+
     hello('msft').logout().then(
-      () => window.location.href = '/',
+            () => {            
+
+              window.location.href = '/' ;
+              
+            },
       e => console.error(e.error.message)
     );
   }

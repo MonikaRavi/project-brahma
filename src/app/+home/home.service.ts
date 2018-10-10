@@ -28,6 +28,8 @@ export class HomeService {
    private graphUri = "https://graph.microsoft.com/v1.0/me/photo/$value";
 
 
+   loggedIn = false;
+
   constructor(
     
     private httpService: HttpService, private zone: NgZone,
@@ -98,6 +100,8 @@ export class HomeService {
 
           this.zone.run(() => {
 
+            this.setLogIn(true);
+
             this.router.navigate(['/home/home']);
           });
 
@@ -106,6 +110,20 @@ export class HomeService {
     )
   }
 
+
+  isLoggedIn() {
+
+    return this.loggedIn;
+
+  }
+
+  setLogIn(log : boolean){
+
+    this.loggedIn = log;
+
+    console.log(this.loggedIn);
+
+  }
 
   // Microsoft graph API returns a blob data which is converted into image
 

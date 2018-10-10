@@ -8,6 +8,7 @@ import { MainLayoutComponent } from "./shared/layout/app-layouts/main-layout.com
 import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
 import { ModuleWithProviders } from "@angular/core";
 import { HomeComponent } from 'app/+home/home.component';
+import { AuthGuard } from './auth-guard.service';
 
 
 export const routes: Routes = [
@@ -41,6 +42,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     data: { pageTitle: 'Home' },
     children: [
 
@@ -56,6 +58,7 @@ export const routes: Routes = [
 
       {
         path: 'salesforce',
+        canActivate: [AuthGuard],
         loadChildren: 'app/salesforce/salesforce.module#SalesforceModule',
         data: { pageTitle: 'Salesforce' }
       },

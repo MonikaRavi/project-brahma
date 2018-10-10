@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './+home/image.service';
 
 import { DataSalesforceService } from './shared/data/data-salesforce.service';
+import { AuthGuard } from './auth-guard.service';
 
 
 
@@ -41,7 +42,8 @@ const APP_PROVIDERS = [
   AppState,
   AuthService,
   HttpService,
-  HomeService
+  HomeService,
+  AuthGuard
 ];
 
 type StoreType = {
@@ -82,6 +84,7 @@ type StoreType = {
     APP_PROVIDERS,
     DataRetrievalService, DataSalesforceService,
     ImageService
+    
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
