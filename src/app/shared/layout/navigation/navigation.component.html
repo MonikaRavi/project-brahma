@@ -12,25 +12,37 @@
 
     <ul saSmartMenu>
 
-        <li routerLinkActive="active">
-            <a routerLink="/home" title="Home">
-                <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Home' | i18n}}</span></a>
-        </li>
+      <li routerLinkActive="active">
+        <a routerLink="/home/home" title="Home">
+          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{'Home' | i18n}}</span></a>
+      </li>
+      <li>
+        <a title="Salesforce"><i class="fa fa-lg fa-fw fa-cloud"></i> <span class="menu-item-parent">{{'Salesforce' |
+            i18n}}</span></a>
+        <ul>
+          <li routerLinkActive="active">
+            <a routerLink="/home/salesforce/distributor">{{'Distributor' | i18n}}</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/home/salesforce/opportunity">{{'Opportunity' | i18n}}</a>
+          </li>
+        </ul>
+      </li>
 
-        <!--
+      <!--
       <li>
         <a title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span
           class="menu-item-parent">{{'Dashboard' | i18n}}</span></a>
         <ul>
           <li routerLinkActive="active">
-            <a routerLink="/dashboard/analytics">{{'Analytics Dashboard' | i18n}}</a>
+            <a routerLink="/home/dashboard/analytics">{{'Analytics Dashboard' | i18n}}</a>
           </li>
           <li routerLinkActive="active">
-            <a routerLink="/dashboard/social">{{'Social Wall' | i18n}}</a>
+            <a routerLink="/home/dashboard/social">{{'Social Wall' | i18n}}</a>
           </li>
         </ul>
       </li>
-      
+     
       <li class="top-menu-invisible">
         <a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">{{'SmartAdmin Intel' | i18n}}</span></a>
         <ul>
@@ -79,20 +91,20 @@
           </li>
         </ul>
       </li>
-
+  
       <li>
         <a href="#"><i class="fa fa-lg fa-fw fa-table"></i> <span
           class="menu-item-parent">{{'Tables' | i18n}}</span></a>
         <ul>
           <li routerLinkActive="active">
-            <a routerLink="/tables/normal">{{'Normal Tables' | i18n}}</a>
+            <a routerLink="/home/tables/normal">{{'Normal Tables' | i18n}}</a>
           </li>
           <li routerLinkActive="active">
-            <a routerLink="/tables/datatables">{{'Data Tables' | i18n}} <span
+            <a routerLink="/home/tables/datatables">{{'Data Tables' | i18n}} <span
               class="badge inbox-badge bg-color-greenLight">v1.10</span></a>
           </li>
           <li routerLinkActive="active">
-            <a routerLink="/tables/ngx-datatable">{{'Ngx Datatable' | i18n}} <span
+            <a routerLink="/home/tables/ngx-datatable">{{'Ngx Datatable' | i18n}} <span
               class="badge inbox-badge bg-color-redLight">new</span></a>
           </li>
         </ul>
@@ -357,7 +369,7 @@
   
       <li aside-chat></li> -->
     </ul>
-      
+
   </nav>
 
   <sa-minify-menu></sa-minify-menu>

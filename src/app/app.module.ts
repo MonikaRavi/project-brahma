@@ -1,9 +1,11 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -24,9 +26,14 @@ import { HomeModule } from 'app/+home/home.module';
 import { AuthService } from './+auth/auth.service';
 import { HttpService } from './shared/smartadmin.http.service';
 import { HomeService } from './+home/home.service';
-import { DataRetrievalService } from './shared/data-retrieval.service';
+import { DataRetrievalService } from './shared/data/data-retrieval.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './+home/image.service';
+
+import { DataSalesforceService } from './shared/data/data-salesforce.service';
+
+
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -51,6 +58,7 @@ type StoreType = {
   declarations: [
     AppComponent,
 
+
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -61,21 +69,22 @@ type StoreType = {
     ReactiveFormsModule,
     ModalModule.forRoot(),
 
-
     CoreModule,
     SmartadminLayoutModule,
-
     HomeModule,
+    routing,
 
-    routing
   ],
   exports: [
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ENV_PROVIDERS,
     APP_PROVIDERS,
-    DataRetrievalService,
+    DataRetrievalService, DataSalesforceService,
     ImageService
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class AppModule {

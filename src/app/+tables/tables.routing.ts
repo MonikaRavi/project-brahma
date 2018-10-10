@@ -5,6 +5,7 @@ import {RouterModule, Routes} from "@angular/router";
 
 export const routes:Routes = [
 
+  
   {
     path: 'normal',
     loadChildren: 'app/+tables/+normal-tables/normal-tables.module#NormalTablesModule',
