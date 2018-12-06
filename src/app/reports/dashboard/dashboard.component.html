@@ -1,0 +1,141 @@
+<header id="header" class="animated fadeInDown"></header>
+
+<div id="main" role="main" class="animated fadeInDown move-left">
+
+    <form (ngSubmit)="getOpportunity()" [formGroup]="getDataForm">
+
+      <div class="form-group" style="width: 300px">
+
+        <label for="queryValue">Enter AX Customer ID to search</label>
+        <input type="text" id="queryValue" formControlName="queryValue" class="form-control">
+
+      </div>
+
+      <span *ngIf="!getDataForm.valid && getDataForm.touched" class="help-block text-warning">Please enter valid data!</span>
+      <br>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">Get Data</button> &nbsp;
+
+      <br>
+      <br>
+
+      <div style="color: red">
+
+        {{ errorMessage }}
+
+      </div>
+      <div *ngIf="dataReturned">
+
+        <div class="container">
+
+            <div class="fixed">
+
+                <sa-big-breadcrumbs [items]="['Salesforce - Opportunity List']" icon="table" ></sa-big-breadcrumbs>
+    
+                <sa-widgets-grid>
+        
+                  <div class="row">
+                    <article class="col-sm-12">
+        
+                      <div sa-widget [editbutton]="false" color="darken">
+                        <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                          <h2>Customer : {{ queryData }}</h2>
+                          <h2> , {{ customerName }} </h2>
+                        </header>
+                        <div>
+                          <div class="widget-body">
+                            <!-- Distributor Table-->
+                            <table id="opportunity" class="display table-striped table-bordered" width="100%"></table>
+        
+                          </div>
+                        </div>
+                      </div>
+        
+                    </article>
+                    
+                  </div>
+        
+                </sa-widgets-grid>         
+              
+            </div> &nbsp; &nbsp;
+    
+            <div class="flex-item">
+    
+                <sa-big-breadcrumbs [items]="['Avlis - AX 365']" icon="table"></sa-big-breadcrumbs>
+        
+                <sa-widgets-grid>
+        
+                  <div class="row">
+                    <article class="col-sm-12">
+        
+                      <div sa-widget [editbutton]="false" color="darken">
+                        <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                          <h2>Customer : {{ queryData }}</h2>
+                          <h2> , {{ customerName }} </h2>
+                        </header>
+                        <div>
+                          <div class="widget-body">
+                            <!-- Distributor Table-->
+                            <table id="ax365" class="display table-striped table-bordered" width="100%"></table>
+        
+                          </div>
+                        </div>
+                      </div>
+        
+                    </article>
+                    
+                  </div>
+        
+                </sa-widgets-grid>
+        
+    
+            </div>  &nbsp; &nbsp;
+        
+            <div class="flex-item2">
+    
+              <sa-big-breadcrumbs [items]="['Sparks - AX 2009']" icon="table"></sa-big-breadcrumbs>
+      
+              <sa-widgets-grid>
+      
+                <div class="row">
+                  <article class="col-sm-12">
+      
+                    <div sa-widget [editbutton]="false" color="darken">
+                      <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>Customer : {{ queryData }}</h2>
+                        <h2> , {{ customerName }} </h2>
+                      </header>
+                      <div>
+                        <div class="widget-body">
+                          <!-- Distributor Table-->
+                          <table id="ax2009" class="display table-striped table-bordered" width="100%"></table>
+      
+                        </div>
+                      </div>
+                    </div>
+      
+                  </article>
+                  
+                </div>
+      
+              </sa-widgets-grid>
+      
+  
+          </div>
+
+        </div>
+
+        
+
+      </div>
+
+    </form>
+
+
+  </div>
+
+<!-- <div class="container align-content-start">
+
+  
+
+</div> -->

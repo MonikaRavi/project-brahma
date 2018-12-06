@@ -10,11 +10,11 @@ import 'datatables.net';
 var $ = require('jquery');
 
 @Component({
-  selector: 'app-opportunity',
-  templateUrl: './opportunity.component.html',
-  styleUrls: ['./opportunity.component.css']
+  selector: 'app-report-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class OpportunityComponent implements OnInit {
+export class reportDashboard implements OnInit {
 
   constructor(private salesforce: DataSalesforceService) { }
 
@@ -22,6 +22,8 @@ export class OpportunityComponent implements OnInit {
   // Form and Data Retrieval variables
 
   getDataForm: FormGroup;
+
+  customerName = 'Croft & Smith';
 
   dataReturned = false;
 
@@ -50,14 +52,18 @@ export class OpportunityComponent implements OnInit {
 
         this.dataReturned = true;
 
-        var dataSet = [];
+        var salesforceData = [];
+
+        var data365 = [];
+
+        var data2009 = [];
 
         /**** SALESFORCE ****/
 
         data[0].salesforce.forEach(element => {
 
           //DataTable require data as Array of Arrays
-          dataSet.push([
+          salesforceData.push([
 
             element.name,
             element.probability,
@@ -67,6 +73,37 @@ export class OpportunityComponent implements OnInit {
 
         });
 
+          /**** AX 365 ****/
+
+          data[0].AX365.forEach(element=>{
+
+            data365.push([
+
+              element.salesID,
+              element.createdDate,
+              element.Amount
+
+            ]);
+
+          });
+
+          /**** AX 2009 ****/
+
+          data[0].AX2009.forEach(element=>{
+
+            data2009.push([
+
+              element.salesID,
+              element.createdDate,
+              element.Amount
+
+            ]);
+
+          });
+
+
+        
+
         //defining table headers and data for the table id #Opportunity
 
         $(document).ready(function () {
@@ -75,7 +112,7 @@ export class OpportunityComponent implements OnInit {
 
             destroy: true,  //re-initiates the data table
 
-            data: dataSet,
+            data: salesforceData,
 
             columns: [
 
@@ -86,7 +123,49 @@ export class OpportunityComponent implements OnInit {
 
           });
 
+             
         });
+
+
+
+        $(document).ready(function () {
+
+           $('#ax365').DataTable({
+
+          destroy: true,  //re-initiates the data table
+
+          data: data365,
+
+          columns: [
+
+            { title: "Sales Order" },
+            { title: "Order Data" },
+            { title: "Amount" }
+          ]
+
+        });
+
+             
+        });
+
+        $(document).ready(function () {
+
+          $('#ax2009').DataTable({
+
+            destroy: true,  //re-initiates the data table
+  
+            data: data2009,
+  
+            columns: [
+  
+              { title: "Sales Order" },
+              { title: "Order Data" },
+              { title: "Amount" }
+            ]
+  
+          });
+            
+       });
 
 
       },

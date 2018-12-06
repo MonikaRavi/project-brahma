@@ -70,7 +70,7 @@ export class DistributorComponent implements OnInit {
         this.dataReturned = true;
  
         var dataSet = [];
-        data.forEach(element => {
+        data[0].salesforce.forEach(element => {
           //DataTable require data as Array of Arrays
           dataSet.push([
 

@@ -63,6 +63,12 @@ export const routes: Routes = [
         data: { pageTitle: 'Salesforce' }
       },
 
+      {
+        path: 'reports',
+        canActivate: [AuthGuard],
+        loadChildren: 'app/reports/reports.module#ReportsModule',
+        data: { pageTitle: 'Reports Dashboard' }
+      },
 
 
       // {

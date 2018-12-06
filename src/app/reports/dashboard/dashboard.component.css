@@ -1,0 +1,36 @@
+@import url('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js');
+
+table {
+
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+    font-size:13px
+}
+
+.container{
+    display: flex;
+    left: 0;
+    width: 110%;
+    margin-left: 0%;
+}
+.fixed{
+    width: 33.33%;
+    left : 0%;
+    margin-left: 0%;
+}
+.flex-item{
+    flex-grow: 1;
+    width: 33.33%;
+        
+}
+.flex-item2{
+    flex-grow: 1;
+    width: 33.33%;
+    right: 0%;
+    
+}
+
+.move-left{
+
+left: -10%
+
+}
