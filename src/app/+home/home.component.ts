@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
           this.dataReturned = data;
 
-          console.log('data returned', this.dataReturned);
+         // console.log('data returned', this.dataReturned);
 
         },
         (error) => {

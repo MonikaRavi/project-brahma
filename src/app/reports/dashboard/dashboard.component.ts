@@ -23,7 +23,11 @@ export class reportDashboard implements OnInit {
 
   getDataForm: FormGroup;
 
-  customerName = 'Croft & Smith';
+  customerName: string;
+
+  customerAvlis: string;
+
+  customerAccAvlis: string;
 
   dataReturned = false;
 
@@ -46,9 +50,11 @@ export class reportDashboard implements OnInit {
 
     this.queryData = this.getDataForm.controls.queryValue.value;
 
-    this.salesforce.getData('opportunity', this.queryData).subscribe(
+    this.salesforce.getData('dashboard', this.queryData).subscribe(
 
-      (data: any[]) => {
+      (data: any) => {
+
+        //console.log(data);
 
         this.dataReturned = true;
 
@@ -58,9 +64,25 @@ export class reportDashboard implements OnInit {
 
         var data2009 = [];
 
+        /*********** CUSTOMER INFO ****************/
+
+        //SF and AX 2009
+
+        this.customerName = data.AX2009.customer.Customer;
+
+        //AX365
+
+        this.customerAvlis = data.AX365.customer.Customer;
+
+        this.customerAccAvlis = data.AX365.customer.CustAccount;
+
+
+
+        /**************** TABLE DATA *********************/
+
         /**** SALESFORCE ****/
 
-        data[0].salesforce.forEach(element => {
+        data.salesforce.forEach(element => {
 
           //DataTable require data as Array of Arrays
           salesforceData.push([
@@ -73,36 +95,36 @@ export class reportDashboard implements OnInit {
 
         });
 
-          /**** AX 365 ****/
+        /**** AX 365 ****/
 
-          data[0].AX365.forEach(element=>{
+        data.AX365.data.forEach(element => {
 
-            data365.push([
+          data365.push([
 
-              element.salesID,
-              element.createdDate,
-              element.Amount
+            element.SalesID,
+            element.createdDate,
+            element.Amount
 
-            ]);
+          ]);
 
-          });
+        });
 
-          /**** AX 2009 ****/
+        /**** AX 2009 ****/
 
-          data[0].AX2009.forEach(element=>{
+        data.AX2009.data.forEach(element => {
 
-            data2009.push([
+          data2009.push([
 
-              element.salesID,
-              element.createdDate,
-              element.Amount
+            element.SalesID,
+            element.createdDate,
+            element.Amount
 
-            ]);
+          ]);
 
-          });
+        });
 
 
-        
+
 
         //defining table headers and data for the table id #Opportunity
 
@@ -123,29 +145,29 @@ export class reportDashboard implements OnInit {
 
           });
 
-             
+
         });
 
 
 
         $(document).ready(function () {
 
-           $('#ax365').DataTable({
+          $('#ax365').DataTable({
 
-          destroy: true,  //re-initiates the data table
+            destroy: true,  //re-initiates the data table
 
-          data: data365,
+            data: data365,
 
-          columns: [
+            columns: [
 
-            { title: "Sales Order" },
-            { title: "Order Data" },
-            { title: "Amount" }
-          ]
+              { title: "Sales Order" },
+              { title: "Order Data" },
+              { title: "Amount" }
+            ]
 
-        });
+          });
 
-             
+
         });
 
         $(document).ready(function () {
@@ -153,19 +175,19 @@ export class reportDashboard implements OnInit {
           $('#ax2009').DataTable({
 
             destroy: true,  //re-initiates the data table
-  
+
             data: data2009,
-  
+
             columns: [
-  
+
               { title: "Sales Order" },
               { title: "Order Data" },
               { title: "Amount" }
             ]
-  
+
           });
-            
-       });
+
+        });
 
 
       },

@@ -1,0 +1,22 @@
+.move-left {
+    left: -10%
+}
+
+.container{
+    display: flex;
+    left: 0;
+    width: 100%;
+    margin-left: 0%;
+}
+
+.fixed {
+    width: 50%;
+    left: 0%;
+    margin-left: 0%;
+}
+
+.flex-item {
+    flex-grow: 1;
+    right: 10%;
+    width: 50%;
+}

@@ -46,7 +46,7 @@ export class OpportunityComponent implements OnInit {
 
     this.salesforce.getData('opportunity', this.queryData).subscribe(
 
-      (data: any[]) => {
+      (data: any) => {
 
         this.dataReturned = true;
 
@@ -54,7 +54,8 @@ export class OpportunityComponent implements OnInit {
 
         /**** SALESFORCE ****/
 
-        data[0].salesforce.forEach(element => {
+      
+        data.forEach(element => {
 
           //DataTable require data as Array of Arrays
           dataSet.push([

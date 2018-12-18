@@ -32,6 +32,7 @@ import { ImageService } from './+home/image.service';
 
 import { DataSalesforceService } from './shared/data/data-salesforce.service';
 import { AuthGuard } from './auth-guard.service';
+import { DataSosummaryService } from './shared/data/data-sosummary.service';
 
 
 
@@ -82,7 +83,7 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ENV_PROVIDERS,
     APP_PROVIDERS,
-    DataRetrievalService, DataSalesforceService,
+    DataRetrievalService, DataSalesforceService,DataSosummaryService,
     ImageService
     
   ],

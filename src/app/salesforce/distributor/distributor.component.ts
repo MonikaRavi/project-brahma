@@ -65,12 +65,12 @@ export class DistributorComponent implements OnInit {
 
     this.salesforce.getData('data',this.inputSelected).subscribe(
 
-      (data: any[]) => {
+      (data: any) => {
 
         this.dataReturned = true;
  
         var dataSet = [];
-        data[0].salesforce.forEach(element => {
+        data.forEach(element => {
           //DataTable require data as Array of Arrays
           dataSet.push([
 
