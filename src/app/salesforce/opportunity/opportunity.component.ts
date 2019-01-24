@@ -44,7 +44,7 @@ export class OpportunityComponent implements OnInit {
 
     this.queryData = this.getDataForm.controls.queryValue.value;
 
-    this.salesforce.getData('opportunity', this.queryData).subscribe(
+    this.salesforce.getData('opportunities', this.queryData).subscribe(
 
       (data: any) => {
 

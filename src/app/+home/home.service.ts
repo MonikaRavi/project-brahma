@@ -16,6 +16,7 @@ import { HttpService } from '../shared/smartadmin.http.service';
 import { Router } from '@angular/router';
 import { ImageService } from './image.service';
 
+
 @Injectable()
 export class HomeService {
   url = 'https://graph.microsoft.com/v1.0';
@@ -101,7 +102,6 @@ export class HomeService {
           this.zone.run(() => {
 
             this.setLogIn(true);
-
             this.router.navigate(['/home/home']);
           });
 

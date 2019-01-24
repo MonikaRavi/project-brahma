@@ -1,8 +1,10 @@
 import {ModuleWithProviders} from "@angular/core"
 import {Routes, RouterModule} from '@angular/router';
 import { reportDashboard } from "app/reports/dashboard/dashboard.component";
-import { LeadsComponent } from "./leads/leads.component";
-import { LeadDetailComponent } from "./lead-detail/lead-detail.component";
+import { LeadsComponent } from "./AX2009/leads/leads.component";
+import { LeadDetailComponent } from "./AX2009/lead-detail/lead-detail.component";
+
+
 
 
 export const routes: Routes = [

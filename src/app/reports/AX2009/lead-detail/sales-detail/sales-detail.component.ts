@@ -27,11 +27,16 @@ export class SalesDetailComponent implements OnInit {
 
         this.salesData = data;
         
-        this.salesName = data[0].salesName;
+        for (let i = 0; i < 1; i++) {
+          
+          this.salesName = data[i].SALESNAME;
 
-        this.bookedDate = data[0].date;
+        this.bookedDate = data[i].CREATEDDATETIME;
 
-        this.status = data[0].status;
+        this.status = data[i].SalesStatus;
+        }
+
+        
       
       },
 

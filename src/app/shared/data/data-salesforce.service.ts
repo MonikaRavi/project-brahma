@@ -15,7 +15,7 @@ export class DataSalesforceService {
   getData(type, queryValue) {
 
 
-    return this.http.get<any>(`http://localhost:3000/${type}/${queryValue}`)
+    return this.http.get<any>(`http://localhost:3000/v1/salesforce/${type}/${queryValue}`)
 
       .pipe(
         map(

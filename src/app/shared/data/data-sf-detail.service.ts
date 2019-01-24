@@ -1,57 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
 import { map } from 'rxjs/operators';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class DataSfDetailService {
 
   result;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  SO1 = JSON.parse(`[
-    {
-      "name": "CWW - South Columbus Chemical Improvements Project-GA",
-      "qAmount": 9453.22,
-      "so":"SO-1787116",
-      "erpAmount": 9453,
-      "accountID": "0010L00001pHz56QAC",
-      "closeDate":"2018-01-31",
-      "deliveryState":"GA"
-    }    
-  ]`);
+  getData(SalesID){
 
-  SO2 = JSON.parse(`[{
-    "name": "Arconic - Verdi, NV",
-    "qAmount": 7760,
-    "so":"SO-1890001",
-    "erpAmount": 7760,
-    "accountID": "0010L00001quVCNQA2",
-    "closeDate":"2018-01-19",
-    "deliveryState":"NV"
-  }]`);
-
-  getData(SalesID):Observable<any[]>{
-
-    if(SalesID === "SO-1787116") {
-
-      this.result = this.SO1[0];
-
-    } else {
-
-      this.result = this.SO2[0];
-
-    }
+      
     
     
-    return of(this.result).pipe(
+    return this.http.get<any>(`http://localhost:3000/v1/salesforce/salesOrderDetailsFromSalesId/${SalesID}`)
+
+    .pipe(
       map(
         (response) => {
 
-          const data = response;
 
-         // console.log(data);
+          let data: any;
+
+         // console.log(response);
+
+          for (let index = 0; index < 1; index++) {
+            
+            data = response[index];
+          }
+
+         
+          //console.log(data);
 
           return data;
         }

@@ -33,6 +33,8 @@ import { ImageService } from './+home/image.service';
 import { DataSalesforceService } from './shared/data/data-salesforce.service';
 import { AuthGuard } from './auth-guard.service';
 import { DataSosummaryService } from './shared/data/data-sosummary.service';
+import { I18nModule } from './shared/i18n/i18n.module';
+
 
 
 
@@ -76,9 +78,11 @@ type StoreType = {
     SmartadminLayoutModule,
     HomeModule,
     routing,
+    I18nModule
 
   ],
   exports: [
+    
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ENV_PROVIDERS,

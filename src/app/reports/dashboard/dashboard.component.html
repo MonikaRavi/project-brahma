@@ -1,5 +1,5 @@
-<header id="header" class="animated fadeInDown"></header>
-
+<!-- <header id="header" class="animated fadeInDown" style="z-index:inherit"></header> -->
+<br>
 <div id="main" role="main" class="animated fadeInDown move-left">
 
   <form (ngSubmit)="getOpportunity()" [formGroup]="getDataForm">
@@ -8,7 +8,7 @@
 
       <!-- Get Customer ID -->
 
-      <label for="queryValue">Enter AX Customer ID to search</label>
+      <label for="queryValue">{{'Recent projects' | i18n}}</label>
       <input type="text" id="queryValue" formControlName="queryValue" class="form-control">
 
     </div>
@@ -29,7 +29,7 @@
 
     <!-- Data Tables -->
 
-    <div *ngIf="dataReturned">
+    <div *ngIf="dataReturned" class="margin:0 auto;">
 
       <div class="container">
 

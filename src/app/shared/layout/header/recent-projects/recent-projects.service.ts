@@ -7,16 +7,16 @@ export class RecentProjectsService {
   constructor() {
     this.projects = [
       {
-        "href": "/",
-        "title": "Online e-merchant management system - attaching integration with the iOS"
+        "href": "/#/home/home",
+        "title": "Haws IoT"
       },
       {
-        "href": "/",
-        "title": "Notes on pipeline upgradee"
+        "href": "/#/home/salesforce/opportunity",
+        "title": "Opportunity"
       },
       {
-        "href": "/",
-        "title": "Assesment Report for merchant account"
+        "href": "/#/home/reports/leads",
+        "title": "Leads"
       }
     ]
 

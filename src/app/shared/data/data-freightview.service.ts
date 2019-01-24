@@ -1,9 +1,10 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class DataSalesService {
+export class DataFreightviewService {
 
   result;
 
@@ -12,7 +13,7 @@ export class DataSalesService {
 
   getData(SalesID){
 
-    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesOrderDetailsFromSalesId/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/freightview/${SalesID}`)
 
     .pipe(
       map(

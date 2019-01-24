@@ -1,0 +1,82 @@
+<div *ngIf="isDataAvailable; else none " >
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div>
+                    <span><i class="fa fa-paper-plane fa-lg fa-fw"></i><strong>Opportunity Name : </strong>{{
+                        salesforceData.name }}</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div>
+                    <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>Close Date : </strong>{{
+                        salesforceData.closeDate | date:'MM/dd/yyyy' }}</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div>
+                    <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>Quoted Amount : </strong>{{
+                        salesforceData.qAmount | currency }}</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div>
+                    <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>Opportunity State : </strong>{{
+                        salesforceData.deliveryState }}</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<ng-template #none>
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div>
+                    <span><i class="fa fa-paper-plane fa-lg fa-fw"></i><strong>No Opportunity in SalesForce!</strong></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</ng-template>

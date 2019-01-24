@@ -69,6 +69,7 @@ export const routes: Routes = [
         loadChildren: 'app/reports/reports.module#ReportsModule',
         data: { pageTitle: 'Reports Dashboard' }
       },
+      
 
 
       // {
@@ -129,7 +130,7 @@ export const routes: Routes = [
          path: 'outlook',
          loadChildren: 'app/+outlook/outlook.module#OutlookModule',
          data: {pageTitle: 'Outlook'}
-       }, 
+       },
        {
          path: 'tables',
          loadChildren: 'app/+tables/tables.module#TablesModule',
@@ -155,4 +156,4 @@ export const routes: Routes = [
 
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes,{useHash: true});

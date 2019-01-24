@@ -1,10 +1,11 @@
-<span id="activity" class="activity-dropdown" (click)="onToggle()">
+ <!-- <span id="activity" class="activity-dropdown" (click)="onToggle()"> -->
+    <span id="activity" class="activity-dropdown">
   <i class="fa fa-user"></i>
-  <b class="badge bg-color-red">{{count}}</b>
-</span>
+  <!-- <b class="badge bg-color-red">{{count}}</b> -->
+</span> 
 
 <div class="ajax-dropdown" #dropdown>
-  <div class="btn-group btn-group-justified" data-toggle="buttons">
+  <!-- <div class="btn-group btn-group-justified" data-toggle="buttons">
     <label [ngClass]="{
       'btn btn-default': true,
       active: activity==currentActivity
@@ -15,10 +16,10 @@
       {{activity.title}} ({{activity.data.length}})
     </label>
 
-  </div>
+  </div>  -->
 
   <!-- notification content -->
-   <div class="ajax-notifications custom-scroll">
+   <!-- <div class="ajax-notifications custom-scroll">
       <ul class="notification-body" *ngIf="currentActivity" >
         <ng-template ngFor let-item [ngForOf]="currentActivity.data">
 
@@ -29,7 +30,7 @@
         </ng-template>
 
       </ul>
-    </div>
+    </div> -->
   <!-- end notification content -->
 
   <!-- footer: refresh area -->

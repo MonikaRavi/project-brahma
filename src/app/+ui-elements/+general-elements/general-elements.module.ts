@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { generalElementsRouting } from './general-elements.routing';
-import {GeneralElementsComponent} from "./general-elements.component";
 import {SmartadminModule} from "../../shared/smartadmin.module";
-import {AccordionModule, CarouselModule} from "ngx-bootstrap";
+import {AccordionModule} from "ngx-bootstrap";
+import { generalElementsRouting } from './general-elements.routing';
+import { GeneralElementsComponent } from './general-elements.component';
 
 @NgModule({
   imports: [
     CommonModule,
     generalElementsRouting,
     SmartadminModule,
-    AccordionModule.forRoot(),
-
-    CarouselModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   declarations: [GeneralElementsComponent]
 })

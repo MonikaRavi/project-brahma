@@ -11,7 +11,14 @@ export class SalesforceDetailComponent implements OnInit {
 
   salesforceData ;
 
+  isDataAvailable: boolean = false;
+
   constructor(private sfData : DataSfDetailService, private salesID : SaveSalesService) {
+
+    
+   }
+
+  ngOnInit() {
 
     let salesOrder = this.salesID.getSalesID();
 
@@ -21,13 +28,14 @@ export class SalesforceDetailComponent implements OnInit {
 
         this.salesforceData = data;
 
+       // console.log(data);
+
+        this.isDataAvailable = true;
+
       }, (err)=> console.log(err)
 
     );
 
-   }
-
-  ngOnInit() {
   }
 
 }

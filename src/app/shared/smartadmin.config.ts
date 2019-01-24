@@ -30,7 +30,7 @@ export const config: any = {
 
     {
       name: "smart-style-1",
-      logo: "assets/img/logo-white.png",
+      logo: "assets/img/logo.png",
       skinBtnClass: "btn btn-block btn-xs txt-color-white",
       style: {
         background: '#3A4558'
@@ -40,7 +40,7 @@ export const config: any = {
 
     {
       name: "smart-style-2",
-      logo: "assets/img/logo-blue.png",
+      logo: "assets/img/logo.png",
       skinBtnClass: "btn btn-xs btn-block txt-color-darken margin-top-5",
       style: {
         background: '#fff'
@@ -50,7 +50,7 @@ export const config: any = {
 
     {
       name: "smart-style-3",
-      logo: "assets/img/logo-pale.png",
+      logo: "assets/img/logo.png",
       skinBtnClass: "btn btn-xs btn-block txt-color-white margin-top-5",
       style: {
         background: '#f78c40'
@@ -60,7 +60,7 @@ export const config: any = {
 
     {
       name: "smart-style-4",
-      logo: "assets/img/logo-pale.png",
+      logo: "assets/img/logo.png",
       skinBtnClass: "btn btn-xs btn-block txt-color-white margin-top-5",
       style: {
         background: '#bbc0cf',
@@ -72,7 +72,7 @@ export const config: any = {
 
     {
       name: "smart-style-5",
-      logo: "assets/img/logo-pale.png",
+      logo: "assets/img/logo.png",
       skinBtnClass: "btn btn-xs btn-block txt-color-white margin-top-5",
       style: {
         background: 'rgba(153, 179, 204, 0.2)',

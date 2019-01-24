@@ -1,0 +1,145 @@
+<div *ngIf="isDataAvailable; else none ">
+
+  <div class="row">
+
+    <div class="row" *ngIf="!isCanceled">
+      <h1 class="text-center text-success">
+        <strong><i class="fa fa-check fa-lg" *ngIf="status == 'delivered' else ontheway"></i>
+          <ng-template #ontheway><i class="fa fa-arrow-circle-o-right fa-lg"></i></ng-template>
+          Shipment {{ status }}
+        </strong></h1>
+
+      <h1 class="text-center">{{ latestSummary }}</h1>
+
+      <h1 class="text-center"> {{ latestDate | date:'EEEE, MMMM d, y, h:mm a'}} </h1>
+
+    </div>
+
+    <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i>Shipment {{ status }}</strong></h1>
+
+
+  </div>
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#facts">Shipment Facts</a></li>
+      <li><a data-toggle="tab" href="#history">Travel History</a></li>
+
+    </ul>
+
+    <div class="tab-content">
+      <div id="history" class="tab-pane fade">
+        <br>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+
+            <table class="table table-hover" *ngIf="!isCanceled">
+              <thead>
+                <tr>
+                  <th>Summary</th>
+                  <th>Date</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of history">
+                  <td>{{ item.summary }}</td>
+                  <td> {{ item.eventDate | date:'MM/dd/yyyy' }} </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+      <div id="facts" class="tab-pane fade in active">
+
+        <br>
+
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div>
+                <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>Carrier : </strong>{{
+                  freight.carrier }}</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div>
+                <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>PickUp Date : </strong>{{
+                  pickupDate | date:'MM/dd/yyyy' }}</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div>
+                <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>Destination : </strong>{{
+                  freight.destination }}</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div>
+                <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>Total Amount : </strong>{{
+                  freight.total | currency }}</span>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<ng-template #none>
+  <div class="row">
+
+    <div class="col-sm-12">
+      <div class="form-group">
+        <div>
+          <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>No Shipment Detail Available</strong></span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</ng-template>
