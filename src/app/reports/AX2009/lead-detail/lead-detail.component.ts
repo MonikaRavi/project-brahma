@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataCustomerSoService } from 'app/shared/data/data-customer-so.service';
+import { DataCustomerSoService } from 'app/shared/data/AX2009/Sales/data-customer-so.service';
+
 import {FadeInTop} from "../../../shared/animations/fade-in-top.decorator";
 
 import { trigger,
@@ -8,6 +9,7 @@ import { trigger,
   style,
   transition,
   animate} from '@angular/animations'
+
 
 FadeInTop()
 

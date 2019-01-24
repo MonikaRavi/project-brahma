@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSalesService } from 'app/shared/data/data-sales.service';
-import { SaveSalesService } from 'app/shared/data/save-sales.service';
+import { DataSalesService } from 'app/shared/data/AX2009/Sales/data-sales.service';
+import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.service';
 
 @Component({
   selector: 'app-sales-detail',

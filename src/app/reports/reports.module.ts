@@ -5,11 +5,12 @@ import { SmartadminDatatableModule } from 'app/shared/ui/datatable/smartadmin-da
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap';
 
-import { DataFreightviewService } from 'app/shared/data/data-freightview.service';
-import { DataCustomerSoService } from 'app/shared/data/data-customer-so.service';
-import { DataSalesService } from 'app/shared/data/data-sales.service';
-import { DataSfDetailService } from 'app/shared/data/data-sf-detail.service';
-import { SaveSalesService } from 'app/shared/data/save-sales.service';
+import { DataCustomerSoService } from 'app/shared/data/AX2009/Sales/data-customer-so.service';
+import { DataSalesService } from 'app/shared/data/AX2009/Sales/data-sales.service';
+import { DataSfDetailService } from 'app/shared/data/AX2009/Sales/data-sf-detail.service';
+import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.service';
+import { DataFreightviewService } from 'app/shared/data/FreightView/data-freightview.service';
+
 
 import { LeadsComponent } from './AX2009/leads/leads.component';
 import { LeadDetailComponent } from './AX2009/lead-detail/lead-detail.component';

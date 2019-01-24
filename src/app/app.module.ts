@@ -26,14 +26,14 @@ import { HomeModule } from 'app/+home/home.module';
 import { AuthService } from './+auth/auth.service';
 import { HttpService } from './shared/smartadmin.http.service';
 import { HomeService } from './+home/home.service';
-import { DataRetrievalService } from './shared/data/data-retrieval.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './+home/image.service';
 
-import { DataSalesforceService } from './shared/data/data-salesforce.service';
 import { AuthGuard } from './auth-guard.service';
-import { DataSosummaryService } from './shared/data/data-sosummary.service';
 import { I18nModule } from './shared/i18n/i18n.module';
+import { DataRetrievalService } from './shared/data/IoT/data-retrieval.service';
+import { DataSalesforceService } from './shared/data/Salesforce/data-salesforce.service';
+import { DataSosummaryService } from './shared/data/AX2009/Sales/data-sosummary.service';
 
 
 

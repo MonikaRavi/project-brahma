@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSosummaryService } from 'app/shared/data/data-sosummary.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SaveSalesService } from 'app/shared/data/save-sales.service';
+import { DataSosummaryService } from 'app/shared/data/AX2009/Sales/data-sosummary.service';
+import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.service';
+
 
 
 @Component({

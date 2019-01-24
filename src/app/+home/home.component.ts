@@ -6,11 +6,12 @@ import { HomeService } from './home.service';
 import { AuthService } from '../+auth/auth.service';
 
 
-import { DataRetrievalService } from '../shared/data/data-retrieval.service';
+
 
 
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms'
 import { map } from 'rxjs/operators';
+import { DataRetrievalService } from 'app/shared/data/IoT/data-retrieval.service';
 
 
 @Component({

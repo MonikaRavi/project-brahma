@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataFreightviewService } from 'app/shared/data/data-freightview.service';
-import { SaveSalesService } from 'app/shared/data/save-sales.service';
+import { DataFreightviewService } from 'app/shared/data/FreightView/data-freightview.service';
+import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.service';
+
 
 @Component({
   selector: 'app-freight-detail',

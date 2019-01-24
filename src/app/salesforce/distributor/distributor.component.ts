@@ -8,7 +8,11 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms'
 import 'datatables.net-bs4';
 import 'datatables.net-dt';
 import 'datatables.net';
-import { DataSalesforceService } from 'app/shared/data/data-salesforce.service';
+
+import { DataSalesforceService } from 'app/shared/data/Salesforce/data-salesforce.service';
+
+
+
 var $ = require('jquery');
 
 
