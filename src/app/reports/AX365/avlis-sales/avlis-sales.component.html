@@ -1,0 +1,26 @@
+<br>
+<div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left" style="margin-left: 2%">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Sales ID</th>
+        <th>Customer</th>
+        <th>Date</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales">
+        <td><a (click)="getDetail(sale.SalesID)">{{ sale.SalesID }}</a></td>
+        <td> {{ sale.Customer }} </td>
+        <td>{{ sale.createdDate | date:'MM/dd/yyyy' }}</td>
+        <td>{{ sale.Amount | currency: 'R$ '}}</td>
+        <td>{{ sale.SalesStatus }} <i *ngIf="sale.SF===1" class="fa fa-lg fa-fw fa-cloud" style="color: rgb(0, 162, 255)"></i></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

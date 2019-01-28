@@ -1,0 +1,160 @@
+<!-- <header id="header" class="animated fadeInDown" style="z-index:inherit"></header> -->
+<br>
+<div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left" >
+
+  <!--  Customer Detail  -->
+
+  <!--  Sales Order Detail from AX 09 and Salesforce  -->
+
+  <div sa-widget [editbutton]="false" [deletebutton]="false" color="darken" style="margin-left: -10%" class="col-sm-12">
+
+    <header>
+      <span class="widget-icon"> <i class="fa fa-check"></i> </span>
+
+      <h2> Sales Order Details - {{ salesID }} </h2>
+
+    </header>
+
+    <!-- widget div-->
+    <div >
+
+      <!-- widget content -->
+      <div class="widget-body">
+
+        <div class="row">
+          <form novalidate="novalidate">
+            <div class="col-sm-12">
+              <div class="form-bootstrapWizard clearfix" style="align-content: center" >
+                <ul class="bootstrapWizard">
+                  <li *ngFor="let pane of steps; let i = index" [class.active]="activeStep == pane">
+                    <a (click)="setActiveStep(pane)"> <span class="step">
+                        <span *ngIf="!pane.checked">{{i + 1}}</span>
+                        <i class="fa fa-check" *ngIf="pane.checked"></i>
+                      </span> <span class="title">{{pane.title}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane" [class.active]="activeStep.key == 'step1'">
+                  <br>
+
+                  <h3><strong>Customer </strong> - Basic Information</h3>
+
+                  <div style="margin-left: 2%">
+                    <div class="row">
+                      <div class="col-sm-6" *ngIf="customerData.CUSTOMER != ''">
+                        <div class="form-group">
+                          <div>
+                            <span><i class="fa fa-user fa-lg fa-fw"></i><strong>Name : </strong> {{customerData.CUSTOMER}}</span>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-sm-6" *ngIf="customerData.CUSTACCOUNT!=''">
+                        <div class="form-group">
+                          <div>
+                            <span><i class="fa fa-id-card fa-lg fa-fw"></i><strong>Account Number : </strong>
+                              {{customerData.CUSTACCOUNT}} </span>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div class="row" *ngIf="customerData.FULLPRIMARYADDRESS!=''">
+
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <div>
+                            <span><i class="fa fa-address-book fa-lg fa-fw"></i><strong>Address : </strong>
+                              {{customerData.FULLPRIMARYADDRESS}}</span>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+
+                      <div class="col-sm-6" *ngIf="customerData.email != ''">
+                        <div class="form-group">
+                          <div>
+                            <span><i class="fa fa-envelope fa-lg fa-fw"></i><strong>Email : </strong>
+                              {{customerData.PRIMARYCONTACTEMAIL}} </span>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <div class="col-sm-6" *ngIf="customerData.PRIMARYCONTACTPHONE!=''">
+                        <div class="form-group">
+                          <div>
+                            <span><i class="fa fa-phone fa-lg fa-fw"></i><strong>Phone : </strong>
+                              {{customerData.PRIMARYCONTACTPHONE}}</span>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+
+                <div class="tab-pane" [class.active]="activeStep.key == 'step2'">
+                  <br>
+
+                  <h3><strong>AX 365</strong> - Sales Order Detail</h3>
+
+                  <div class="form-group" style="margin-left: 2%">
+
+                    <app-avlis-sales-lines></app-avlis-sales-lines>
+
+                  </div>
+                </div>
+       
+                <div class="form-actions">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <ul class="pager wizard no-margin">
+                        <li class="previous">
+                          <a (click)="prevStep()" [class.disabled]="steps.indexOf(activeStep) == 0" class="btn btn-lg btn-default">
+                            Previous
+                          </a>
+                        </li>
+                        <li class="next">
+                          <a (click)="nextStep()" [class.disabled]="steps.indexOf(activeStep) == 1" class="btn btn-lg txt-color-darken">
+                            Next
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <!-- end widget content -->
+
+    </div>
+    <!-- end widget div -->
+
+  </div>
+
+</div>

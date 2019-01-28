@@ -20,6 +20,13 @@ import { FreightDetailComponent } from './AX2009/lead-detail/freight-detail/frei
 
 import { routing } from './reports.routing';
 import { reportDashboard } from './dashboard/dashboard.component';
+import { AvlisSalesComponent } from './AX365/avlis-sales/avlis-sales.component';
+import { AvlisSalesDetailComponent } from './AX365/avlis-sales-detail/avlis-sales-detail.component';
+import { AvlisSalesListService } from 'app/shared/data/AX365/avlis-sales-list.service';
+import { AvlisSalesDetailService } from 'app/shared/data/AX365/avlis-sales-detail.service';
+import { AvlisSalesLinesComponent } from './AX365/avlis-sales-detail/sales-detail/avlis-sales-lines.component';
+import { AvlisCustomerSoService } from 'app/shared/data/AX365/avlis-customer-so.service';
+
 
 
 
@@ -42,14 +49,20 @@ import { reportDashboard } from './dashboard/dashboard.component';
     LeadDetailComponent,
     SalesDetailComponent,
     SalesforceDetailComponent,
-    FreightDetailComponent
+    FreightDetailComponent,
+    AvlisSalesComponent,
+    AvlisSalesDetailComponent,
+    AvlisSalesLinesComponent
   ],
   providers: [
     DataCustomerSoService,
     DataSalesService,
     DataSfDetailService,
     SaveSalesService,
-    DataFreightviewService
+    DataFreightviewService,
+    AvlisSalesListService,
+    AvlisSalesDetailService,
+    AvlisCustomerSoService
   ]
 })
 export class ReportsModule { }
