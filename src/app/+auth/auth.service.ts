@@ -1,9 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-
-
+import * as firebase from 'firebase';
 import * as hello from 'hellojs/dist/hello.all.js';
-import { Router } from '@angular/router';
+
 
 import { config } from '../shared/smartadmin.config';
 import { HomeService } from '../+home/home.service';
@@ -42,7 +40,8 @@ export class AuthService {
     hello('msft').login({ scope: config.scope }).then(
       () => {
         //Checking Domain
-        console.log('Domain Check ',this.homeService.checkDomain());
+       // console.log('Domain Check ');
+        this.homeService.checkDomain();
 
         
         // this.zone.run(() => {
@@ -56,7 +55,9 @@ export class AuthService {
 
   logout() {
 
-    this.homeService.setLogIn(false);
+    if(this.homeService.isMicrosoftLogin()){
+
+      this.homeService.setLogIn(false);
 
     hello('msft').logout().then(
             () => {            
@@ -66,8 +67,97 @@ export class AuthService {
             },
       e => console.error(e.error.message)
     );
+
+    }else {
+
+      this.fbSignOut();
+
+    }
+
+    
   }
 
+
+ /*********** Firebase Login  ***********/
+
+ fbInitAuth(){
+
+  firebase.initializeApp(config.fbConfig);
+
+ }
+
+ signInEmailPassword(email: string , password:string){
+
+  this.fbInitAuth();
+
+  this.homeService.setMicrosoftLogged(false);
+
+  firebase.auth().signInWithEmailAndPassword(email,password)
+  
+  .then(
+
+    response => {
+
+     // console.log('Logged In');
+
+      this.checkFirebase();
+
+    }
+
+  )
+
+  .catch(
+
+    (err)=>{
+
+      console.log(`Code : ${err.code}  ;  'Message : ${err.message}`);
+
+      window.location.href = '/' ;
+
+    }
+
+  );
+
+  
+ }
+
+ checkFirebase() {
+
+  var user = firebase.auth().currentUser;
+
+    if (user) {
+
+     // var user = firebase.auth().currentUser;
+
+     //console.log(user);
+
+     // console.log('Firebase Login..');
+
+      this.homeService.fbLoginCheck(user) ;
+
+    } else {
+
+      this.fbSignOut();
+
+    }
+
+
+ }
+
+
+ fbSignOut(){
+
+  firebase.auth().signOut().then(function() {
+   
+    window.location.href = '/' ;
+
+  }).catch(function(error) {
+    
+    console.log(error);
+    
+  });
+
+ }
 
 
 /*

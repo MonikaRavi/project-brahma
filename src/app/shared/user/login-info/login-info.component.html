@@ -1,8 +1,15 @@
-<div class="login-info">
+<div class="login-info" *ngIf="isLoggedIn && user">
   <span *ngIf="user"><a (click)="toggleShortcut()">
-	    <!-- <img [src]="getUserPic()" alt="me"
-          class="online"/>  -->
-          <span>{{ getUserName() }}</span> <i class="fa fa-angle-down"></i>
+      <img [src]="getUserPic()" alt="me" class="online" />
+      <span>{{ getUserName() }}</span> <i class="fa fa-angle-down"></i>
     </a>
-   </span>
+  </span>
+</div>
+
+<div class="login-info" *ngIf="isLoggedIn && isUserEmailLogIn">
+  <span *ngIf="isUserEmailLogIn"><a (click)="toggleShortcut()">
+      <img [src]="getUserPic()" class="online" />
+      <span>{{ getUserName() }}</span> <i class="fa fa-angle-down"></i>
+    </a>
+  </span>
 </div>

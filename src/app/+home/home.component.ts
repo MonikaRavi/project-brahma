@@ -51,6 +51,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   errorMessage: string;
 
+  fbUserName : string;
+
+  fbUserEmail : string;
+
+  fbUserPhoto : string ;
 
 
   constructor(private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService) {
@@ -59,13 +64,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
+  isUserEmailLogin: boolean = false;
 
   inputSelected;
   querySelected;
 
   ngOnInit() {
 
-    this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
+    
+      if(this.homeService.isMicrosoftLogin()){
+
+        this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
+
+      } else {
+
+        this.fbUserName = this.homeService.getFbName();
+
+        this.fbUserEmail = this.homeService.getFbEmail();
+
+        this.fbUserPhoto = this.homeService.getFbPhoto();
+
+        this.isUserEmailLogin = true;
+
+      }
    
     this.getDataForm = new FormGroup({
       'queryValue': new FormControl(null, Validators.required),
@@ -78,14 +99,29 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.errorMessage = '';
 
     setTimeout(() => {
+
+      if(this.homeService.isMicrosoftLogin()){
+
+        this.querySelected = this.me.mail;
+
+      } else {
+
+
+        this.querySelected = this.homeService.getFbEmail();
+
+      }
       
-      this.querySelected = this.me.mail;
+     // console.log(this.querySelected);
 
       // console.log(this.me);
 
       this.getdata();
 
     }, 1000);
+
+     
+
+    
 
   
 
@@ -94,7 +130,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
 
-    this.subsGetMe.unsubscribe();
+    if(this.homeService.isMicrosoftLogin()){
+
+      this.subsGetMe.unsubscribe();
+
+    }
+    
    // this.subsGetPhoto.unsubscribe();
   }
 
@@ -108,13 +149,38 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getUserName() {
 
-    return this.me.displayName;
+    let userName ;
+
+    if(this.homeService.isMicrosoftLogin()) {
+
+      userName = this.me.displayName;
+    }else {
+
+      userName =  this.fbUserName;
+
+    }
+
+    //console.log(userName);
+
+    return userName;
 
   }
 
   getEmail() {
 
-    return this.me.mail;
+    let userEmail ;
+
+    if(this.homeService.isMicrosoftLogin()) {
+
+      userEmail =  this.me.mail;
+    }else {
+
+      userEmail =  this.fbUserEmail;
+
+    }
+
+    return userEmail;
+    
 
   }
 
@@ -122,8 +188,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     //console.log(this.user.photo);
 
-   return  this.homeService.getImageFromService();
+    let userPhoto ; 
+    
+    if(this.homeService.isMicrosoftLogin()) {
 
+      userPhoto =   this.homeService.getImageFromService();
+    }else {
+
+      userPhoto =  this.fbUserPhoto;
+
+    }
+
+    console.log(userPhoto);
+ 
+    return userPhoto;
 
   }
 

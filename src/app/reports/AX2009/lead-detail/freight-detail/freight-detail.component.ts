@@ -37,29 +37,27 @@ export class FreightDetailComponent implements OnInit {
 
       (data)=>{
 
-        this.freight = data;
+        if(data!==[]){
+
+          this.freight = data;
 
         //console.log(data);
 
         this.isDataAvailable = true;
 
-        if(!data.tracking){
+        this.status = data.status;
 
-          this.status = data.status;
+        //console.log(this.status);
 
-          this.pickupDate = data.pickupDate;
+        this.pickupDate = data.pickupDate;
 
-        }else{
+        if(data.tracking){
 
-          this.status = data.tracking.status;
-
-          this.pickupDate = data.tracking.pickupDateActual;
-
-          this.history = data.tracking.history;
+          this.history = data.tracking;
 
           for (let index = 0; index < 1; index++) {
             
-            this.latestDate = this.history[index].eventDate;
+            this.latestDate = this.history[index].createdDate;
 
             this.latestSummary = this.history[index].summary;
             
@@ -68,6 +66,14 @@ export class FreightDetailComponent implements OnInit {
          this.isCanceled = false;
 
         }
+
+        } else {
+
+          this.isDataAvailable = false;
+
+        }
+
+        
 
       
        // console.log(data);

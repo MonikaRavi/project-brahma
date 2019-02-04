@@ -26,18 +26,20 @@ export class HomeService {
   imageToShow: any;
   isImageLoading = false;
 
-   private graphUri = "https://graph.microsoft.com/v1.0/me/photo/$value";
+  isMicrosoft = false;
+
+  private graphUri = "https://graph.microsoft.com/v1.0/me/photo/$value";
 
 
-   loggedIn = false;
+  loggedIn = false;
 
   constructor(
-    
+
     private httpService: HttpService, private zone: NgZone,
-    private router: Router , private imageService : ImageService) {
+    private router: Router, private imageService: ImageService) {
   }
 
- 
+
   getClient(): MicrosoftGraphClient.Client {
     var client = MicrosoftGraphClient.Client.init({
       authProvider: (done) => {
@@ -102,6 +104,7 @@ export class HomeService {
           this.zone.run(() => {
 
             this.setLogIn(true);
+            this.setMicrosoftLogged(true);
             this.router.navigate(['/home/home']);
           });
 
@@ -117,11 +120,26 @@ export class HomeService {
 
   }
 
-  setLogIn(log : boolean){
+
+  setLogIn(log: boolean) {
 
     this.loggedIn = log;
 
-    console.log(this.loggedIn);
+    //console.log(this.loggedIn);
+
+  }
+
+  isMicrosoftLogin() {
+
+    // console.log(this.isMicrosoft);
+
+    return this.isMicrosoft;
+
+  }
+
+  setMicrosoftLogged(status: boolean) {
+
+    this.isMicrosoft = status;
 
   }
 
@@ -131,34 +149,118 @@ export class HomeService {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
 
-     //console.log(reader.result);
-       this.imageToShow = reader.result;
+      //console.log(reader.result);
+      this.imageToShow = reader.result;
     }, false);
- 
+
     if (image) {
-       reader.readAsDataURL(image);
+      reader.readAsDataURL(image);
     }
- }
+  }
 
- getImageFromService() {
-   this.isImageLoading = true;
-   this.imageService.getImage(this.graphUri).subscribe(data => {
-     //console.log(data);
-     this.createImageFromBlob(data);
-     this.isImageLoading = false;
-     
-   }, error => {
-     this.isImageLoading = false;
-     console.log(error);
-   });
+  getImageFromService() {
+    this.isImageLoading = true;
+    this.imageService.getImage(this.graphUri).subscribe(data => {
+      //console.log(data);
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
 
-   return this.imageToShow ;
-}
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
 
 
+    // return this.imageToShow ;
+  }
+
+  getUserImage() {
+
+    if (this.isMicrosoftLogin()) {
+
+      return this.imageToShow;
+
+    } else {
+
+      return this.getFbPhoto();
+
+    }
+
+   
+
+  }
+
+  /*** Firebase Login ***/
+
+  fbName: string;
+  fbEmail: string;
+  fbPhotoUrl: string;
+
+  fbLoginCheck(user: any) {
+
+    let email: string;
+
+    let domain = '@hawsco.com';
+
+    email = user.email;
+
+    // console.log(user);
+
+    if (email.search(domain) == -1) {
+
+      console.log('Not Haws Login');
+
+      this.router.navigate(['/home/miscellaneous/domain']);
+
+    } else {
+
+      //console.log('Haws Login');
+
+      this.zone.run(() => {
+
+        this.fbEmail = user.email;
+        this.fbName = this.fbEmail.match(/^([^@]*)@/)[1];
+        if (!user.photoURL) {
+
+          this.fbPhotoUrl = 'https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png'
+
+        } else {
+
+          this.fbPhotoUrl = user.photoURL;
+
+        }
+
+
+        //console.log(this.fbName,this.fbEmail,this.fbPhotoUrl );
+        this.setLogIn(true);
+        this.setMicrosoftLogged(false);
+        this.router.navigate(['/home/home']);
+      });
+
+    }
 
 
 
+
+  }
+
+  getFbName() {
+
+    return this.fbName;
+
+  }
+
+  getFbEmail() {
+
+    return this.fbEmail;
+
+  }
+
+  getFbPhoto() {
+
+    return this.fbPhotoUrl;
+
+  }
 
 
 }

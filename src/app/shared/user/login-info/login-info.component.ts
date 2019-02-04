@@ -1,6 +1,6 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {UserService} from "../user.service";
-import {LayoutService} from "../../layout/layout.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserService } from "../user.service";
+import { LayoutService } from "../../layout/layout.service";
 import { HomeService } from '../../../+home/home.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,7 +12,7 @@ import { AuthService } from '../+auth/auth.service';
   selector: 'sa-login-info',
   templateUrl: './login-info.component.html',
 })
-export class LoginInfoComponent implements OnInit , OnDestroy {
+export class LoginInfoComponent implements OnInit, OnDestroy {
 
   events: MicrosoftGraph.Event[];
   user: MicrosoftGraph.User;
@@ -22,12 +22,38 @@ export class LoginInfoComponent implements OnInit , OnDestroy {
   subsGetMe: Subscription;
   subsSendMail: Subscription;
 
- 
+  userPic;
+
+  isLoggedIn = false;
+
+  isUserEmailLogIn : boolean = false;
 
   constructor(
-    private userService: UserService,
-              private layoutService: LayoutService,
-            private homeService: HomeService) {
+
+    private layoutService: LayoutService,
+    private homeService: HomeService) {
+
+
+      if(this.homeService.isMicrosoftLogin()){
+
+        this.homeService.getImageFromService();
+
+        this.subsGetMe = this.homeService.getMe().subscribe(user => {
+    
+          this.user = user;
+    
+          this.isLoggedIn = this.homeService.isLoggedIn();
+    
+        });
+      }else {
+
+        this.isLoggedIn = this.homeService.isLoggedIn();
+
+        this.isUserEmailLogIn = true;
+
+      }
+
+    
   }
 
   /*
@@ -40,13 +66,15 @@ export class LoginInfoComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
 
-    this.subsGetMe = this.homeService.getMe().subscribe(user => this.user = user );
-    
-      }
+
+  }
 
   ngOnDestroy() {
 
     this.subsGetMe.unsubscribe();
+
+    this.isLoggedIn = this.homeService.isLoggedIn();
+
   }
 
   toggleShortcut() {
@@ -56,18 +84,31 @@ export class LoginInfoComponent implements OnInit , OnDestroy {
   }
 
 
-  getUserName(){
+  getUserName() {
 
-    return this.user.displayName ; 
 
-    
+    if(this.homeService.isMicrosoftLogin()){
+
+    return this.user.displayName;
+
+    } else {
+
+
+      return this.homeService.getFbName();
+
+    }
+
 
   }
 
-  getUserPic(){
+  getUserPic() {
 
     //console.log(this.user.photo);
-    return this.homeService.getImageFromService()
+    //return this.homeService.getImageFromService();
+
+    return this.homeService.getUserImage();
+
+
 
   }
 

@@ -8,6 +8,19 @@ export const config: any = {
 
   // Microsoft Connect Ends
 
+  //Firebase Config Starts
+
+  fbConfig : {
+    apiKey: "AIzaSyCDjcT3j0h7TzZ9_o0KGLyEa80OLrxE1Dc",
+    authDomain: "hawsappauth.firebaseapp.com",
+    databaseURL: "https://hawsappauth.firebaseio.com",
+    projectId: "hawsappauth",
+    storageBucket: "hawsappauth.appspot.com",
+    messagingSenderId: "167862960059"
+  },
+
+  //Firebase Config Ends
+
   defaultLocale: "us",
 
   API_URL: "assets/api",

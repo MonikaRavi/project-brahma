@@ -27,11 +27,23 @@ export class SalesforceDetailComponent implements OnInit {
 
       (data)=>{
 
+        console.log(data);
+
+        if(data!==[]){
+
+          
         this.salesforceData = data;
 
-       // console.log(data);
+        // console.log(data);
+ 
+         this.isDataAvailable = true;
+ 
 
-        this.isDataAvailable = true;
+        } else {
+
+          this.isDataAvailable = false;
+
+        }
 
       }, (err)=> console.log(err)
 

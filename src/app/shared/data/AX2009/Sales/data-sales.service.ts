@@ -12,7 +12,7 @@ export class DataSalesService {
 
   getData(SalesID){
 
-    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesOrderDetailsFromSalesId/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesDetails/${SalesID}`)
 
     .pipe(
       map(

@@ -8,7 +8,8 @@
       <div id="main" role="main" >
         <h1 *ngIf="me">Hi, {{ getUserName() }} !</h1>
 
-
+        <h1 *ngIf="isUserEmailLogin">Hi, {{ getUserName() | titlecase }} !</h1>
+        
         <form (ngSubmit)="setInputData()" [formGroup]="getDataForm">
 
           <div class="form-group">

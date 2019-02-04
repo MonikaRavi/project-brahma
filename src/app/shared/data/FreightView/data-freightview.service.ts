@@ -13,7 +13,7 @@ export class DataFreightviewService {
 
   getData(SalesID){
 
-    return this.http.get<any>(`http://localhost:3000/v1/freightview/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/Freightview/shipmentDetailsFromSales/${SalesID}`)
 
     .pipe(
       map(

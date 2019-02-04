@@ -67,7 +67,7 @@ export class DistributorComponent implements OnInit {
     //console.log(this.inputSelected);
 
 
-    this.salesforce.getData('distributor',this.inputSelected).subscribe(
+    this.salesforce.getData('Distributor',this.inputSelected).subscribe(
 
       (data: any) => {
 

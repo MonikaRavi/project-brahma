@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
+import { database } from 'firebase';
 
 @Injectable()
 export class DataSfDetailService {
@@ -14,24 +15,33 @@ export class DataSfDetailService {
       
     
     
-    return this.http.get<any>(`http://localhost:3000/v1/salesforce/salesOrderDetailsFromSalesId/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/salesforce/salesDetails/${SalesID}`)
 
     .pipe(
       map(
         (response) => {
 
-
           let data: any;
 
-         // console.log(response);
+          console.log(response);
+        
 
-          for (let index = 0; index < 1; index++) {
+          if(response !== []){        
+
+          // console.log(response);
+ 
+           for (let index = 0; index < 1; index++) {
+             
+             data = response[index];
+           }
+
+          } else {
+
+            data = [];
             
-            data = response[index];
           }
-
-         
-          //console.log(data);
+      
+          console.log(data);
 
           return data;
         }

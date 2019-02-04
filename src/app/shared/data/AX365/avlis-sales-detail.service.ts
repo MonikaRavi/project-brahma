@@ -9,7 +9,7 @@ export class AvlisSalesDetailService {
 
   getData(SalesID) {
 
-    return this.http.get<any>(`http://localhost:3000/v1/AX365/salesOrderDetailsFromSalesId/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/AX365/salesDetails/${SalesID}`)
 
       .pipe(
         map(
