@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataCustomerSoService } from 'app/shared/data/AX2009/Sales/data-customer-so.service';
 
-import {FadeInTop} from "../../../shared/animations/fade-in-top.decorator";
+import {FadeInTop} from "../../../../shared/animations/fade-in-top.decorator";
 
 import { trigger,
   state,
