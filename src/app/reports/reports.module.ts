@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SmartadminModule } from 'app/shared/smartadmin.module';
 import { SmartadminDatatableModule } from 'app/shared/ui/datatable/smartadmin-datatable.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule } from 'ngx-bootstrap';
+import { AccordionModule, CarouselModule } from 'ngx-bootstrap';
 
 import { DataCustomerSoService } from 'app/shared/data/AX2009/Sales/data-customer-so.service';
 import { DataSalesService } from 'app/shared/data/AX2009/Sales/data-sales.service';
@@ -26,6 +26,8 @@ import { FreightDetailComponent } from './AX2009/Sales/lead-detail/freight-detai
 import { AvlisSalesComponent } from './AX365/avlis-sales/avlis-sales.component';
 import { AvlisSalesDetailComponent } from './AX365/avlis-sales-detail/avlis-sales-detail.component';
 import { AvlisSalesLinesComponent } from './AX365/avlis-sales-detail/sales-detail/avlis-sales-lines.component';
+import { OnHandComponent } from './AX2009/Inventory/on-hand/on-hand.component';
+import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.service';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { AvlisSalesLinesComponent } from './AX365/avlis-sales-detail/sales-detai
     SmartadminDatatableModule,
     ReactiveFormsModule,
     routing,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    CarouselModule
   ],
   declarations: [
     reportDashboard,
@@ -46,7 +49,8 @@ import { AvlisSalesLinesComponent } from './AX365/avlis-sales-detail/sales-detai
     FreightDetailComponent,
     AvlisSalesComponent,
     AvlisSalesDetailComponent,
-    AvlisSalesLinesComponent
+    AvlisSalesLinesComponent,
+    OnHandComponent
   ],
   providers: [
     DataCustomerSoService,
@@ -56,7 +60,8 @@ import { AvlisSalesLinesComponent } from './AX365/avlis-sales-detail/sales-detai
     DataFreightviewService,
     AvlisSalesListService,
     AvlisSalesDetailService,
-    AvlisCustomerSoService
+    AvlisCustomerSoService,
+    DataOnhandService
   ]
 })
 export class ReportsModule { }

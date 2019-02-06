@@ -1,4 +1,4 @@
-# Smartadmin
+# Project Brahma
 
 [live](https://smartadmin-angular.firebaseapp.com) demo
 
