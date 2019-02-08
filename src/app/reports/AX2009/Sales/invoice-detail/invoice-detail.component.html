@@ -1,0 +1,44 @@
+<br>
+<div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left">
+
+
+  <div sa-widget [editbutton]="false" [deletebutton]="false" color="darken">
+
+    <header>
+      <span class="widget-icon"> <i class="fa fa-check"></i> </span>
+
+      <h2> Invoice Details - {{ salesId }} </h2>
+
+    </header>
+
+    <!-- widget div-->
+    <div>
+
+      <!-- widget content -->
+      <div class="widget-body">
+
+        <!-- Invoice Header -->
+
+        <div class="row">
+
+          <app-invoice-header></app-invoice-header>
+       
+        </div>
+
+        <!-- Invoice Detail -->
+
+        <div class="row">
+
+          <app-detail-invoice></app-detail-invoice>
+
+        </div>
+
+      </div>
+      <!-- end widget content -->
+
+    </div>
+    <!-- end widget div -->
+
+  </div>
+
+</div>

@@ -48,6 +48,21 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div>
+                    <button class="btn btn-success" (click)="getInvoice()" [class.disabled]="status !== 'Invoiced'" >Invoice Detail</button>
+                        
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div>
                     <span><i class="fa fa-list-ul fa-lg fa-fw"></i><strong>Items Ordered : </strong></span>
     
                 </div>

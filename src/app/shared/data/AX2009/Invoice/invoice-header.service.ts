@@ -1,35 +1,33 @@
 import { Injectable } from '@angular/core';
-import { map } from "rxjs/operators";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { config } from 'app/shared/smartadmin.config';
+import { map } from 'rxjs/operators';
 
 @Injectable()
-export class DataOnhandService {
+export class InvoiceHeaderService {
 
   constructor(private http: HttpClient) { }
 
+  
+  getData(salesID){
+    
 
-  getData(productID) {
-
-
-    return this.http.get<any>(`http://localhost:3000/v1/AX2009/Inventory/onHand/${productID}`,{
+    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesHeaders/${salesID}`,{
       headers: new HttpHeaders().set('x-auth',config.hawsToken)
     })
+
       .pipe(
         map(
           (response) => {
 
-            let data: any;
+            const data = response;
 
-              data = response;
-       
             //console.log(data);
 
             return data;
           }
         )
       )
-
 
   }
 

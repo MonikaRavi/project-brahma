@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { config } from 'app/shared/smartadmin.config';
 
 @Injectable()
 export class DataCustomerSoService {
@@ -12,24 +13,16 @@ export class DataCustomerSoService {
   getData(SalesID){
 
     
-    return this.http.get<any>(`http://localhost:3000/v1/AX2009/customerFromSales/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/AX2009/customerFromSales/${SalesID}`,{
+      headers: new HttpHeaders().set('x-auth',config.hawsToken)
+    })
 
     .pipe(
       map(
         (response) => {
 
 
-          let data: any;
-
-          for (let index = 0; index < 1; index++) {
-            
-            data = response[index];
-          }
-
-         
-          //console.log(data);
-
-          return data;
+          return response;
         }
       )
     )

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FadeInTop} from "../../../../shared/animations/fade-in-top.decorator";
 import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.service';
+import { InventoryListService } from 'app/shared/data/AX2009/Inventory/inventory-list.service';
+import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.service';
 
 FadeInTop()
+
+declare var $: any;
 
 @Component({
   selector: 'app-on-hand',
@@ -11,31 +15,75 @@ FadeInTop()
 })
 export class OnHandComponent implements OnInit {
 
+
+
+  ngOnInit(){
+    
+
+  }
+
+
   productImage = {
     slides: [
-      {
-        src: 'assets/img/products/7501/7501.jpg',
-      },
-      {
-        src: 'assets/img/products/7501/7501-Back.jpg'
-      },
-      {
-        src: 'assets/img/products/7501/7501-Left.jpg'
-      },
-      {
-        src : 'assets/img/products/7501/7501-Right.jpg'
-      }
+      
     ]
   }
 
+
   products : any;
+
+  inventList ;
  
   isDataAvailable : boolean = false;
 
-  constructor(private onHandData : DataOnhandService) {
+  isListAvailable : boolean = false;
+
+  constructor(private onHandData : DataOnhandService, private inventListService : InventoryListService ,
+              private cloudImageService : ProductImageService) {
+
+    this.inventListService.getData().subscribe(
+
+      (data)=>{
+
+        this.inventList = data;
+
+        this.isListAvailable = true;
+
+      },
+
+      (err)=>{
+
+        this.isListAvailable = false;
+      }
+
+    );
+
+  
+      
+
+   }
 
 
-    this.onHandData.getData('7501').subscribe(
+  getOnHand(product){
+
+    this.cloudImageService.getImage('7501').subscribe(
+
+      (data)=>{
+
+            this.productImage.slides.push(
+          {src : `${data}`}
+        );
+
+      //  console.log(this.productImage);
+      },
+      (err)=>{
+
+        console.log(err);
+      }
+    )
+    
+
+    this.onHandData.getData(product).subscribe(
 
       (data)=>{
 
@@ -67,11 +115,23 @@ export class OnHandComponent implements OnInit {
 
     )
 
-   }
-
-  ngOnInit() {
   }
 
- 
+//   onChange() {
+//     console.log("clicked");
+// }
+
+getProductInfo(){
+
+let data = $("#symbolId").val();
+
+this.getOnHand(data);
+
+}
+
+public onChange(event): void {  // event will give you full breif of action
+  const newVal = event.target.value;
+  console.log(newVal);
+}
 
 }

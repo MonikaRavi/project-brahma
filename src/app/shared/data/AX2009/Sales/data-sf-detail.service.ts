@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { database } from 'firebase';
+import { config } from 'app/shared/smartadmin.config';
 
 @Injectable()
 export class DataSfDetailService {
@@ -15,35 +16,21 @@ export class DataSfDetailService {
       
     
     
-    return this.http.get<any>(`http://localhost:3000/v1/salesforce/salesDetails/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/salesforce/salesDetails/${SalesID}`,{
+      headers: new HttpHeaders().set('x-auth',config.hawsToken)
+    })
 
     .pipe(
       map(
         (response) => {
 
-          let data: any;
+         // let data: any;
 
-          console.log(response);
-        
-
-          if(response !== []){        
-
-          // console.log(response);
- 
-           for (let index = 0; index < 1; index++) {
+         //console.log(response);
              
-             data = response[index];
-           }
+        //  console.log(data);
 
-          } else {
-
-            data = [];
-            
-          }
-      
-          console.log(data);
-
-          return data;
+          return response;
         }
       )
     )

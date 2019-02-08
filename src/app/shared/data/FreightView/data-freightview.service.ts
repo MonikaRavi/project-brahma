@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from 'rxjs/operators';
+import { config } from 'app/shared/smartadmin.config';
 
 @Injectable()
 export class DataFreightviewService {
@@ -13,7 +14,9 @@ export class DataFreightviewService {
 
   getData(SalesID){
 
-    return this.http.get<any>(`http://localhost:3000/v1/Freightview/shipmentDetailsFromSales/${SalesID}`)
+    return this.http.get<any>(`http://localhost:3000/v1/Freightview/shipmentDetailsFromSales/${SalesID}`,{
+      headers: new HttpHeaders().set('x-auth',config.hawsToken)
+    })
 
     .pipe(
       map(

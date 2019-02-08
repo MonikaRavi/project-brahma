@@ -51,11 +51,19 @@ export class LeadDetailComponent implements OnInit {
     this.customer.getData(this.salesID).subscribe(
 
       (data)=>{
-        
-        this.customerData = data;
-        //console.log(data);
-        this.isDataAvailable = true
 
+        if(data.length !==0) {
+
+          this.customerData = data[0];
+          //console.log(data);
+          this.isDataAvailable = true
+  
+        } else {
+
+          this.isDataAvailable = false;
+        }
+        
+      
       }, 
 
       (err)=> {

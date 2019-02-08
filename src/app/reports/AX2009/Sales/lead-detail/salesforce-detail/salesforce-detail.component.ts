@@ -27,12 +27,12 @@ export class SalesforceDetailComponent implements OnInit {
 
       (data)=>{
 
-        console.log(data);
+       // console.log(data);
 
-        if(data!==[]){
+        if(data.length !== 0){
 
           
-        this.salesforceData = data;
+        this.salesforceData = data[0];
 
         // console.log(data);
  

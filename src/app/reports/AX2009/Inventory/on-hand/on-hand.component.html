@@ -1,12 +1,59 @@
-<div id="content" data-sparkline-container="" data-easy-pie-chart-container="" class="animated fadeInDown" *ngIf="isDataAvailable">
+<div id="content" data-sparkline-container="" data-easy-pie-chart-container="" class="animated fadeInDown" *ngIf="isListAvailable">
   <div class="row">
     <!-- <sa-big-breadcrumbs [items]="['E-Commerce', 'Product Details']" icon="shopping-cart" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs> -->
 
-    <sa-big-breadcrumbs [items]="['Inventory On Hand']" icon="fa fa-thumbs-up" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-big-breadcrumbs [items]="['Inventory On Hand']" icon="fa fa-thumbs-up"
+      class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
 
   </div>
+  
+
+  <div class="row col-xs-8 col-sm-7 col-md-7 col-lg-8">
+
+    <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+      <div>
+
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <form class="">
+
+            <fieldset>
+              <legend>
+                Select Product
+              </legend>
+
+              <div class="form-group">
+                <select select2 style="width:100%" class="select2" id="symbolId" (click)="onChange($event)">
+                  <optgroup label="Products">
+                    <option *ngFor="let item of inventList" [value]="item.ITEMID">{{ item.ITEMID}} -
+                      {{item.ITEMNAME}}</option>
+                  </optgroup>
+
+                </select>
+
+              </div>
+
+            </fieldset>
+
+          </form>
+
+          &nbsp;
+
+          <button class="btn btn-primary" (click)="getProductInfo()">Get On Hand</button>
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+
   <!-- row -->
-  <sa-widgets-grid>
+  <sa-widgets-grid *ngIf="isDataAvailable">
 
     <!-- row -->
 

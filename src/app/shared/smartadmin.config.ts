@@ -19,6 +19,10 @@ export const config: any = {
     messagingSenderId: "167862960059"
   },
 
+  //Haws API Token
+
+  hawsToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5ndWxhckJyYWhtYSIsImFjY2VzcyI6ImF1dGgiLCJpYXQiOjE1NDk0MDY3MzF9.WtnYDIE-0Kwtl9v4GGUKrVGZZXOV8m1asLrC6gk0ThU',
+
   //Firebase Config Ends
 
   defaultLocale: "us",

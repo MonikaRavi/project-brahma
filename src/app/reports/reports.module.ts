@@ -28,6 +28,16 @@ import { AvlisSalesDetailComponent } from './AX365/avlis-sales-detail/avlis-sale
 import { AvlisSalesLinesComponent } from './AX365/avlis-sales-detail/sales-detail/avlis-sales-lines.component';
 import { OnHandComponent } from './AX2009/Inventory/on-hand/on-hand.component';
 import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.service';
+import { InvoiceDetailComponent } from './AX2009/Sales/invoice-detail/invoice-detail.component';
+import { InvoiceHeaderComponent } from './AX2009/Sales/invoice-detail/invoice-header/invoice-header.component';
+import { DetailInvoiceComponent } from './AX2009/Sales/invoice-detail/detail-invoice/detail-invoice.component';
+import { InvoiceDetailService } from 'app/shared/data/AX2009/Invoice/invoice-detail.service';
+import { InvoiceHeaderService } from 'app/shared/data/AX2009/Invoice/invoice-header.service';
+import { InventoryListService } from 'app/shared/data/AX2009/Inventory/inventory-list.service';
+import { SmartadminInputModule } from 'app/shared/forms/input/smartadmin-input.module';
+import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.service';
+
+
 
 
 @NgModule({
@@ -35,6 +45,7 @@ import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.
     CommonModule,
     SmartadminModule,
     SmartadminDatatableModule,
+    SmartadminInputModule,
     ReactiveFormsModule,
     routing,
     AccordionModule.forRoot(),
@@ -50,7 +61,10 @@ import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.
     AvlisSalesComponent,
     AvlisSalesDetailComponent,
     AvlisSalesLinesComponent,
-    OnHandComponent
+    OnHandComponent,
+    InvoiceDetailComponent,
+    InvoiceHeaderComponent,
+    DetailInvoiceComponent
   ],
   providers: [
     DataCustomerSoService,
@@ -61,7 +75,11 @@ import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.
     AvlisSalesListService,
     AvlisSalesDetailService,
     AvlisCustomerSoService,
-    DataOnhandService
+    DataOnhandService,
+    InvoiceDetailService,
+    InvoiceHeaderService,
+    InventoryListService,
+    ProductImageService
   ]
 })
 export class ReportsModule { }

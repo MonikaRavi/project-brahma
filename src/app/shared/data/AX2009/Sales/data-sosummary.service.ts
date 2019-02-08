@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { config } from "app/shared/smartadmin.config";
 
 @Injectable()
 export class DataSosummaryService {
@@ -11,7 +12,9 @@ export class DataSosummaryService {
   getData(){
     
 
-    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesOrderList`)
+    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesOrderList`,{
+      headers: new HttpHeaders().set('x-auth',config.hawsToken)
+    })
 
       .pipe(
         map(

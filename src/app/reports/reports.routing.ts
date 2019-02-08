@@ -6,6 +6,7 @@ import { LeadDetailComponent } from "./AX2009/Sales/lead-detail/lead-detail.comp
 import { AvlisSalesComponent } from "./AX365/avlis-sales/avlis-sales.component";
 import { AvlisSalesDetailComponent } from "./AX365/avlis-sales-detail/avlis-sales-detail.component";
 import { OnHandComponent } from "./AX2009/Inventory/on-hand/on-hand.component";
+import { InvoiceDetailComponent } from "./AX2009/Sales/invoice-detail/invoice-detail.component";
 
 
 
@@ -45,6 +46,13 @@ export const routes: Routes = [
   {
     path: 'OnHand',
     component: OnHandComponent
+  },
+
+  {
+
+    path: 'invoiceDetail',
+    component: InvoiceDetailComponent
+
   }
 ];
 
