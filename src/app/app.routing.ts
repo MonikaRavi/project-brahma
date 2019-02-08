@@ -42,7 +42,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainLayoutComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     data: { pageTitle: 'Home' },
     children: [
 
@@ -65,7 +65,7 @@ export const routes: Routes = [
 
       {
         path: 'reports',
-        canActivate: [AuthGuard],
+        //canActivate: [AuthGuard],
         loadChildren: 'app/reports/reports.module#ReportsModule',
         data: { pageTitle: 'Reports Dashboard' }
       },
