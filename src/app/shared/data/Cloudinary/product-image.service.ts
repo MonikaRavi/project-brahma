@@ -19,7 +19,7 @@ export class ProductImageService {
 
             let data: any;
 
-              data = response.url;
+              data = response;
 
              // console.log(data);
               
