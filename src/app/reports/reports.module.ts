@@ -36,6 +36,7 @@ import { InvoiceHeaderService } from 'app/shared/data/AX2009/Invoice/invoice-hea
 import { InventoryListService } from 'app/shared/data/AX2009/Inventory/inventory-list.service';
 import { SmartadminInputModule } from 'app/shared/forms/input/smartadmin-input.module';
 import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.service';
+import { CheckCloudinaryService } from 'app/shared/data/AX2009/Inventory/check-cloudinary.service';
 
 
 
@@ -79,7 +80,8 @@ import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.se
     InvoiceDetailService,
     InvoiceHeaderService,
     InventoryListService,
-    ProductImageService
+    ProductImageService,
+    CheckCloudinaryService
   ]
 })
 export class ReportsModule { }

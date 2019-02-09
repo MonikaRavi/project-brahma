@@ -54,7 +54,7 @@
   </div>
 
   <!-- row -->
-  <sa-widgets-grid *ngIf="isDataAvailable">
+  <sa-widgets-grid *ngIf="isDataAvailable ; else noData">
 
     <!-- row -->
 
@@ -253,4 +253,47 @@
 
   </sa-widgets-grid>
   <!-- end row -->
+
+  <ng-template #noData >
+
+      <sa-widgets-grid *ngIf="isInitial">
+  
+        <!-- row -->
+  
+  
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <!-- product -->
+          <div class="product-content product-wrap clearfix product-deatil">
+            <div class="row">
+              <div class="col-md-5 col-sm-12 col-xs-12 ">
+                <div class="product-image">
+  
+  
+                  <carousel [interval]="3000">
+                    <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
+                      <img class="img-responsive" [src]="slide.src" style="margin:auto;">
+                    </slide>
+                  </carousel>
+  
+  
+                </div>
+              </div>
+              <div class="col-md-7 col-sm-12 col-xs-12">
+                  <h2 class="name">
+                      <strong>{{productID}}</strong>
+                      <small>{{ productName }}</small>
+                </h2>
+              </div>
+              <div class="col-md-7 col-sm-12 col-xs-12">
+                  <h2>
+                    No Data Available in AX for <strong>STD</strong> configuartion
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sa-widgets-grid>
+  
+    </ng-template>
+
 </div>

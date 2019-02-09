@@ -3,6 +3,7 @@ import { FadeInTop } from "../../../../shared/animations/fade-in-top.decorator";
 import { DataOnhandService } from 'app/shared/data/AX2009/Inventory/data-onhand.service';
 import { InventoryListService } from 'app/shared/data/AX2009/Inventory/inventory-list.service';
 import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.service';
+import { CheckCloudinaryService } from 'app/shared/data/AX2009/Inventory/check-cloudinary.service';
 
 FadeInTop()
 
@@ -15,68 +16,13 @@ declare var $: any;
 })
 export class OnHandComponent implements OnInit {
 
-  imageList = [
-    '1001',
-    '1001HPSMS',
-    '1001MS',
-    '1011',
-    '1011HPS',
-    '1025',
-    '1026G',
-    '1047',
-    '1105',
-    '1107L',
-    '119FR',
-    '1900',
-    '1920',
-    '1920HPS',
-    '1920W',
-    '2000S',
-    '2000SMS',
-    '3600',
-    '5010.6427SS',
-    '7260B_7270B',
-    '7360BTWC',
-    '7361-7461',
-    '7433FP',
-    '7500',
-    '7500EB',
-    '7501',
-    '7501TH',
-    '7610',
-    '7612',
-    '7612LH',
-    '7620',
-    '7655WCC',
-    '7656WCC',
-    '8100',
-    '8111FP',
-    '8123',
-    '8122',
-    '8130',
-    '8133H',
-    '8163',
-    '8300.158',
-    '8300FP',
-    '8317CTFP',
-    '8355WCC',
-    '8710',
-    '8720',
-    '8730',
-    '8760',
-    '8770',
-    '8785',
-    '8780',
-    'H1001.8',
-    'H1107.8'
-
-  ];
-
   ngOnInit() {
 
 
   }
 
+  productID;
+  productName;
 
   productImage = {
     slides: [
@@ -93,10 +39,12 @@ export class OnHandComponent implements OnInit {
 
   isListAvailable: boolean = false;
 
+  isInitial: boolean = false;
+
   constructor(private onHandData: DataOnhandService, private inventListService: InventoryListService,
-    private cloudImageService: ProductImageService) {
+    private cloudImageService: ProductImageService, private checkCloudService: CheckCloudinaryService) {
 
-
+    /*** Get Product List ***/
 
     this.inventListService.getData().subscribe(
 
@@ -120,6 +68,25 @@ export class OnHandComponent implements OnInit {
 
   }
 
+  /** Get value selected And call OnHand **/
+
+  getProductInfo() {
+
+    this.isInitial = true;
+
+    let data = $("#symbolId").val();
+
+    let name = $("#symbolId").find(":selected").text();;
+
+    this.productID = data;
+
+    this.productName = name;
+
+    this.getOnHand(data);
+
+  }
+
+  /* On Hand */
 
   getOnHand(product) {
 
@@ -127,17 +94,27 @@ export class OnHandComponent implements OnInit {
 
       (data) => {
 
-        if (data.length !==0) {
+        //if On Hand Data is present for STD config
+
+        if (data.length !== 0) {
+
+          this.isDataAvailable = true;
 
           this.products = data;
 
-          if(data[0].ImageFlag === 1){
+          if (data[0].ImageFlag === 1) {
 
-              this.getImage(product);
+            //Get Image from cloud if flag is 1
+
+            this.getImage(product);
 
           } else {
 
+            // Get no image found if flag is 0
+
             this.productImage.slides = [];
+
+            this.isDataAvailable = false;
 
             this.productImage.slides.push(
 
@@ -148,11 +125,53 @@ export class OnHandComponent implements OnInit {
 
           // console.log(data);
 
-          this.isDataAvailable = true;
-
         } else {
 
+          //if no std config data present
+
+          this.isInitial = true;
+
           this.isDataAvailable = false;
+
+          this.productImage.slides = [];
+
+          //check if cloud image available
+
+          this.checkCloudService.getData(product).subscribe(
+
+            (data) => {
+
+              //if present
+
+              if (data.length !== 0) {
+
+                this.getImage(product);
+
+              } else {
+
+                //if absent
+
+                this.productImage.slides.push(
+
+                  { src: 'assets/img/products/Image-not-found.jpg' }
+                );
+
+              }
+
+            }, (err) => {
+
+              //no image if error
+
+              this.productImage.slides.push(
+
+                { src: 'assets/img/products/Image-not-found.jpg' }
+              );
+
+
+              console.log(err);
+
+
+            });
 
 
         }
@@ -160,9 +179,16 @@ export class OnHandComponent implements OnInit {
 
       },
 
+      //if error while pulling data from sql
+
       (err) => {
 
         this.isDataAvailable = false;
+
+        this.productImage.slides.push(
+
+          { src: 'assets/img/products/Image-not-found.jpg' }
+        );
 
         console.log(err);
 
@@ -176,42 +202,36 @@ export class OnHandComponent implements OnInit {
   //     console.log("clicked");
   // }
 
-  getProductInfo() {
 
-    let data = $("#symbolId").val();
 
-    this.getOnHand(data);
-
-  }
-
-  getImage(product){
+  getImage(product) {
     this.cloudImageService.getImage(product).subscribe(
 
       (data) => {
 
         this.productImage.slides = [];
 
-          if (typeof (data) !== 'undefined') {
-          
-            this.productImage.slides.push(
+        if (typeof (data) !== 'undefined') {
 
-              { src: `${data[0].url}` }
+          this.productImage.slides.push(
 
-            );
+            { src: `${data[0].url}` }
 
-          } else {
+          );
 
-            this.productImage.slides.push(
+        } else {
 
-              { src: 'assets/img/products/Image-not-found.jpg' }
-            )
+          this.productImage.slides.push(
 
-          }
+            { src: 'assets/img/products/Image-not-found.jpg' }
+          )
 
-                //  console.log(this.productImage);
+        }
+
+        //  console.log(this.productImage);
       },
       (err) => {
-        
+
         console.log(err);
       }
     )
