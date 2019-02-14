@@ -2,7 +2,11 @@
 
   <div class="row">
 
-    <div class="row" *ngIf="!isCanceled">
+    <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i> Shipment {{ status }}</strong></h1>
+
+    <h1 class="text-center text-warning" *ngIf="isScheduled"><strong><i class="fa fa-calendar fa-lg"></i> Shipment {{ status }}</strong></h1>
+
+    <div class="row" *ngIf="isOtherStatus">
       <h1 class="text-center text-success">
         <strong><i class="fa fa-check fa-lg" *ngIf="status == 'Delivered' else ontheway"></i>
           <ng-template #ontheway><i class="fa fa-arrow-circle-o-right fa-lg"></i></ng-template>
@@ -15,26 +19,26 @@
 
     </div>
 
-    <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i>Shipment {{ status }}</strong></h1>
-
-
   </div>
 
   <div class="row">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#facts">Shipment Facts</a></li>
+      <li *ngIf="isCharge"><a data-toggle="tab" href="#charge">Charges</a></li>
       <li><a data-toggle="tab" href="#history">Travel History</a></li>
+    
 
     </ul>
 
     <div class="tab-content">
+      <!-- HISTORY -->
       <div id="history" class="tab-pane fade">
         <br>
 
-        <div class="col-sm-12">
+        <div class="col-sm-12" *ngIf="history else noHistory">
           <div class="form-group">
 
-            <table class="table table-hover" *ngIf="!isCanceled">
+            <table class="table table-hover" *ngIf="isOtherStatus">
               <thead>
                 <tr>
                   <th>Summary</th>
@@ -44,8 +48,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of history">
-                  <td>{{ item.summary }}</td>
-                  <td> {{ item.createdDate | date:'MM/dd/yyyy' }} </td>
+                  <td>{{ item.summary | titlecase }}</td>
+                  <td> {{ item.eventDate | date:'MM/dd/yyyy' }} </td>
 
                 </tr>
 
@@ -55,7 +59,21 @@
           </div>
 
         </div>
+        <ng-template #noHistory >
+          <div class="col-sm-12">
+              <div class="form-group">
+                  <div>
+                    <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>No Shipment History Available</strong></span>
+          
+                  </div>
+          
+                </div>
+          </div>
+        </ng-template>
       </div>
+
+      <!-- FACTS -->
+
       <div id="facts" class="tab-pane fade in active">
 
         <br>
@@ -121,8 +139,40 @@
 
         </div>
 
-
       </div>
+
+      <!-- CHARGES -->
+
+      <div id="charge" class="tab-pane fade">
+          <br>
+  
+          <div class="col-sm-12">
+            <div class="form-group">
+  
+              <table class="table table-hover" *ngIf="isCharge">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of charges">
+                    <td>{{ item.name | titlecase }}</td>
+                    <td> {{ item.amount | currency }} </td>
+  
+                  </tr>
+  
+                </tbody>
+              </table>
+  
+            </div>
+  
+          </div>
+        </div>
+  
+
     </div>
   </div>
 

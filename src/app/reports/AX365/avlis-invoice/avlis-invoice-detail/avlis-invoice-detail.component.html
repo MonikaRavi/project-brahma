@@ -1,0 +1,77 @@
+<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 sortable-grid" *ngIf="isDataAvaiable">
+  <!-- Widget ID (each widget will need unique ID)-->
+  <div sa-widget [colorbutton]="false" [editbutton]="false" [deletebutton]="false" [fullscreenbutton]="false"
+    color="default">
+    <!-- widget options:
+          usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+      -->
+    <header>
+      <span class="widget-icon"> <i class="fa fa-arrows-v"></i></span>
+      <h2 class="font-md"><strong>Invoice Details</strong></h2>
+    </header>
+    <!-- widget div-->
+    <div>
+      <!-- widget content -->
+      <div class="widget-body">
+
+        <div class="row" *ngFor="let invoice of invoices">
+
+
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <!-- product -->
+            <div class="product-content product-wrap clearfix product-deatil">
+              <div class="row">
+                <div class="col-md-5 col-sm-12 col-xs-12 ">
+
+                  <h6> <strong> Invoice : </strong> {{ invoice.INVOICENUMBER }} </h6>
+
+                  <h6> <strong> Invoice Date : </strong> {{ invoice.INVOICEDATE | date:'MM/dd/yyyy' }}</h6>
+
+                </div>
+
+              </div>
+              <div class="row fixed">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Item ID</th>
+                      <th>Item Name</th>
+                      <th>Qty</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of invoice.INVOICEDETAILS">
+                      <td>{{ item.PRODUCTNUMBER }}</td>
+                      <td> {{ item.PRODUCTDESCRIPTION }} </td>
+                      <td>{{ item.INVOICEDQUANTITY }}</td>
+                      <td>{{ item.SALESPRICE | currency}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- end product -->
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <!-- end widget content -->
+      </div>
+      <!-- end widget div -->
+    </div>
+
+  </div>
+
+</article>

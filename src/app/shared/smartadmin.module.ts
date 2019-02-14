@@ -30,6 +30,7 @@ import {SmartadminFormsLiteModule} from "./forms/smartadmin-forms-lite.module";
 import {SmartProgressbarModule} from "./ui/smart-progressbar/smart-progressbar.module";
 
 
+
 @NgModule({
   imports: [
     CommonModule, FormsModule, RouterModule,
@@ -37,9 +38,7 @@ import {SmartProgressbarModule} from "./ui/smart-progressbar/smart-progressbar.m
 
 
   ],
-  declarations: [
-
-  ],
+  declarations: [],
   exports: [
     CommonModule, FormsModule, RouterModule,
 

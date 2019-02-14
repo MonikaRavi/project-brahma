@@ -72,8 +72,6 @@ export class OnHandComponent implements OnInit {
 
   getProductInfo() {
 
-    this.isInitial = true;
-
     let data = $("#symbolId").val();
 
     let name = $("#symbolId").find(":selected").text();;
@@ -90,7 +88,9 @@ export class OnHandComponent implements OnInit {
 
   getOnHand(product) {
 
-    this.onHandData.getData(product).subscribe(
+    this.checkImage(product); //Get Image
+
+    this.onHandData.getData(product).subscribe( // Get On Hand
 
       (data) => {
 
@@ -98,32 +98,11 @@ export class OnHandComponent implements OnInit {
 
         if (data.length !== 0) {
 
-          this.isDataAvailable = true;
 
           this.products = data;
 
-          if (data[0].ImageFlag === 1) {
+          this.isDataAvailable = true;
 
-            //Get Image from cloud if flag is 1
-
-            this.getImage(product);
-
-          } else {
-
-            // Get no image found if flag is 0
-
-            this.productImage.slides = [];
-
-            this.isDataAvailable = false;
-
-            this.productImage.slides.push(
-
-              { src: 'assets/img/products/Image-not-found.jpg' }
-            );
-
-          }
-
-          // console.log(data);
 
         } else {
 
@@ -132,46 +111,6 @@ export class OnHandComponent implements OnInit {
           this.isInitial = true;
 
           this.isDataAvailable = false;
-
-          this.productImage.slides = [];
-
-          //check if cloud image available
-
-          this.checkCloudService.getData(product).subscribe(
-
-            (data) => {
-
-              //if present
-
-              if (data.length !== 0) {
-
-                this.getImage(product);
-
-              } else {
-
-                //if absent
-
-                this.productImage.slides.push(
-
-                  { src: 'assets/img/products/Image-not-found.jpg' }
-                );
-
-              }
-
-            }, (err) => {
-
-              //no image if error
-
-              this.productImage.slides.push(
-
-                { src: 'assets/img/products/Image-not-found.jpg' }
-              );
-
-
-              console.log(err);
-
-
-            });
 
 
         }
@@ -205,6 +144,7 @@ export class OnHandComponent implements OnInit {
 
 
   getImage(product) {
+
     this.cloudImageService.getImage(product).subscribe(
 
       (data) => {
@@ -213,11 +153,7 @@ export class OnHandComponent implements OnInit {
 
         if (typeof (data) !== 'undefined') {
 
-          this.productImage.slides.push(
-
-            { src: `${data[0].url}` }
-
-          );
+          this.productImage.slides = data;
 
         } else {
 
@@ -235,6 +171,48 @@ export class OnHandComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  checkImage(product) {
+
+    this.productImage.slides = [];
+
+    this.checkCloudService.getData(product).subscribe(  
+
+      (data) => {
+
+        //if present
+
+        if (data.length !== 0) {
+
+          this.getImage(product);
+
+        } else {
+
+          //if absent
+
+          this.productImage.slides.push(
+
+            { src: 'assets/img/products/Image-not-found.jpg' }
+          );
+
+        }
+
+      }, (err) => {
+
+        //no image if error
+
+        this.productImage.slides.push(
+
+          { src: 'assets/img/products/Image-not-found.jpg' }
+        );
+
+
+        console.log(err);
+
+
+      });
+
   }
 
   public onChange(event): void {  // event will give you full breif of action

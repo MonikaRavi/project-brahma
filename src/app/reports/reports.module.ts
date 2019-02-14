@@ -37,6 +37,12 @@ import { InventoryListService } from 'app/shared/data/AX2009/Inventory/inventory
 import { SmartadminInputModule } from 'app/shared/forms/input/smartadmin-input.module';
 import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.service';
 import { CheckCloudinaryService } from 'app/shared/data/AX2009/Inventory/check-cloudinary.service';
+import { AvlisInvoiceComponent } from './AX365/avlis-invoice/avlis-invoice.component';
+import { AvlisInvoiceHeaderComponent } from './AX365/avlis-invoice/avlis-invoice-header/avlis-invoice-header.component';
+import { AvlisInvoiceDetailComponent } from './AX365/avlis-invoice/avlis-invoice-detail/avlis-invoice-detail.component';
+import { AvlisInvoiceHeaderService } from 'app/shared/data/AX365/Invoice/avlis-invoice-header.service';
+import { AvlisInvoiceDetailService } from 'app/shared/data/AX365/Invoice/avlis-invoice-detail.service';
+
 
 
 
@@ -65,7 +71,10 @@ import { CheckCloudinaryService } from 'app/shared/data/AX2009/Inventory/check-c
     OnHandComponent,
     InvoiceDetailComponent,
     InvoiceHeaderComponent,
-    DetailInvoiceComponent
+    DetailInvoiceComponent,
+    AvlisInvoiceComponent,
+    AvlisInvoiceHeaderComponent,
+    AvlisInvoiceDetailComponent
   ],
   providers: [
     DataCustomerSoService,
@@ -81,7 +90,9 @@ import { CheckCloudinaryService } from 'app/shared/data/AX2009/Inventory/check-c
     InvoiceHeaderService,
     InventoryListService,
     ProductImageService,
-    CheckCloudinaryService
+    CheckCloudinaryService,
+    AvlisInvoiceHeaderService,
+    AvlisInvoiceDetailService
   ]
 })
 export class ReportsModule { }

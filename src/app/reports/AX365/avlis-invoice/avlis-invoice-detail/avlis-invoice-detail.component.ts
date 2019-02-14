@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { InvoiceDetailService } from 'app/shared/data/AX2009/Invoice/invoice-detail.service';
+import { AvlisInvoiceDetailService } from 'app/shared/data/AX365/Invoice/avlis-invoice-detail.service';
 import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.service';
 
 @Component({
-  selector: 'app-detail-invoice',
-  templateUrl: './detail-invoice.component.html',
-  styleUrls: ['./detail-invoice.component.css']
+  selector: 'app-avlis-invoice-detail',
+  templateUrl: './avlis-invoice-detail.component.html',
+  styleUrls: ['./avlis-invoice-detail.component.css']
 })
-export class DetailInvoiceComponent implements OnInit {
+export class AvlisInvoiceDetailComponent implements OnInit {
 
   invoicedetail ;
 
@@ -17,7 +17,7 @@ export class DetailInvoiceComponent implements OnInit {
 
   isDataAvaiable : boolean = false;
 
-  constructor(private invoiceDetailService : InvoiceDetailService, private salesService : SaveSalesService) {
+  constructor(private invoiceDetailService : AvlisInvoiceDetailService, private salesService : SaveSalesService) {
 
     this.salesID = this.salesService.getSalesID();
 
@@ -52,6 +52,7 @@ export class DetailInvoiceComponent implements OnInit {
    
 
    }
+
 
   ngOnInit() {
   }

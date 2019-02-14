@@ -22,7 +22,7 @@ export class CheckCloudinaryService {
 
               data = response;
        
-            //console.log(data);
+           // console.log(data);
 
             return data;
           }

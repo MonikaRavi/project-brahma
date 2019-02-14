@@ -12,7 +12,7 @@ export class InvoiceHeaderService {
   getData(salesID){
     
 
-    return this.http.get<any>(`http://localhost:3000/v1/AX2009/salesHeaders/${salesID}`,{
+    return this.http.get<any>(`http://localhost:3000/v1/AX2009/Invoice/Header/${salesID}`,{
       headers: new HttpHeaders().set('x-auth',config.hawsToken)
     })
 

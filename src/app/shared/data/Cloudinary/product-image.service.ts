@@ -21,7 +21,7 @@ export class ProductImageService {
 
               data = response;
 
-             // console.log(data);
+         //    console.log(data);
               
        return data;
             

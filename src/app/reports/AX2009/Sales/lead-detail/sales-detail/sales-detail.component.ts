@@ -18,7 +18,7 @@ export class SalesDetailComponent implements OnInit {
 
   status ;
 
-  constructor(private salesDetail : DataSalesService, private salesID : SaveSalesService,private router: Router, private route:ActivatedRoute,) { 
+  constructor(private salesDetail : DataSalesService, private salesID : SaveSalesService,private router: Router, private route:ActivatedRoute) { 
 
     let salesOrder = this.salesID.getSalesID();
 

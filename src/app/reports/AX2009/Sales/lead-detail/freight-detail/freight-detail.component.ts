@@ -10,7 +10,7 @@ import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.servic
 })
 export class FreightDetailComponent implements OnInit {
 
-  isDataAvailable:boolean = false;
+  isDataAvailable: boolean = false;
 
   freight;
 
@@ -24,48 +24,99 @@ export class FreightDetailComponent implements OnInit {
 
   latestSummary;
 
-  isCanceled : boolean = true;
+  charges;
 
-  constructor(private freightData : DataFreightviewService, private salesID : SaveSalesService) { }
+  isCharge: boolean;
+
+  isCanceled: boolean = false;
+
+  isScheduled: boolean = false;
+
+  isOtherStatus: boolean = false;
+
+  constructor(private freightData: DataFreightviewService, private salesID: SaveSalesService) { }
 
   ngOnInit() {
 
-    
+
     let salesOrder = this.salesID.getSalesID();
 
     this.freightData.getData(salesOrder).subscribe(
 
-      (data)=>{
+      (data) => {
 
-        if(data!==[]){
+        if (data.length !== 0) {
 
           this.freight = data;
 
-        //console.log(data);
+          this.isDataAvailable = true;
 
-        this.isDataAvailable = true;
+          this.status = data.status;
 
-        this.status = data.status;
+          this.pickupDate = data.pickupDate;
 
-        //console.log(this.status);
+          /*** Tracking  ***/
 
-        this.pickupDate = data.pickupDate;
+          if ( data.tracking) {
 
-        if(data.tracking){
+            if(data.tracking.length !== 0){
 
-          this.history = data.tracking;
+              this.history = data.tracking;
 
-          for (let index = 0; index < 1; index++) {
-            
-            this.latestDate = this.history[index].createdDate;
+              for (let index = 0; index < 1; index++) {
+  
+                this.latestDate = this.history[index].createdDate;
+  
+                this.latestSummary = this.history[index].summary;
+  
+              }
 
-            this.latestSummary = this.history[index].summary;
-            
+            }
+           
           }
 
-         this.isCanceled = false;
+          /** Status **/
 
-        }
+          if (this.status.search("cancel") === -1) {
+
+            //Not canceled
+
+            if (this.status.search("schedule") === -1) {
+
+              //Not scheduled
+
+              this.isOtherStatus = true;
+            } else {
+
+              //scheduled
+
+              this.isScheduled = true;
+
+            }
+
+
+          } else {
+
+            //canceled
+
+            this.isCanceled = true;
+
+          }
+
+          /** Charges  **/
+
+          
+          if (data.charges && data.charges.length !== 0) {
+
+            this.charges = data.charges;
+
+            this.isCharge = true;
+
+          } else {
+
+            this.isCharge = false;
+          }
+
 
         } else {
 
@@ -73,21 +124,10 @@ export class FreightDetailComponent implements OnInit {
 
         }
 
-        
 
-      
-       // console.log(data);
-
-     
-
-      }, (err)=> console.log(err)
+      }, (err) => console.log(err)
     )
 
   }
-
-  
-
-
-  
 
 }

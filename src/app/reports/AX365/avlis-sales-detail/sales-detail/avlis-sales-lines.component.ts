@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AvlisSalesDetailService } from 'app/shared/data/AX365/avlis-sales-detail.service';
 import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-avlis-sales-lines',
@@ -18,7 +19,7 @@ export class AvlisSalesLinesComponent implements OnInit {
 
   status;
 
-  constructor(private salesDetail: AvlisSalesDetailService, private salesID: SaveSalesService) {
+  constructor(private salesDetail: AvlisSalesDetailService, private salesID: SaveSalesService, private router: Router, private route:ActivatedRoute) {
 
     let salesOrder = this.salesID.getSalesID();
 
@@ -44,6 +45,12 @@ export class AvlisSalesLinesComponent implements OnInit {
       (err) => console.log(err)
 
     );
+  }
+
+  getInvoice(){
+
+    this.router.navigate(['../../avlisInvoiceDetail'], {relativeTo: this.route});
+
   }
 
   ngOnInit() {

@@ -1,0 +1,57 @@
+<div style="margin-left: 2%" *ngIf="isDataAvailable">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="form-group">
+          <div>
+            <h3><span><i class="fa fa-address-book fa-lg fa-fw"></i><strong>Delivery Address </strong></span></h3>
+            <span><i class="fa fa-address-card fa-lg fa-fw"></i> {{ invoiceHeader.DeliveryName}}</span> <br><br>
+            <span><i class="fa fa-map-marker fa-lg fa-fw"></i> {{ invoiceHeader.DeliveryAddress}}</span>
+        
+          </div>
+
+        </div>
+      </div>
+     
+      <div class="row">
+        <div class="form-group">
+          <div>
+             <h3><span><i class="fa fa-address-book fa-lg fa-fw"></i><strong>Invoice Address </strong></span></h3>
+              <span><i class="fa fa-address-card fa-lg fa-fw"></i> {{ invoiceHeader.InvoiceName}}</span> <br><br>
+              <span><i class="fa fa-map-marker fa-lg fa-fw"></i> {{ invoiceHeader.InvoiceAddress}}</span>
+           
+          </div>
+
+        </div>
+      </div>
+    
+    </div>
+
+    <div class="col-sm-6">
+      <br>
+      <div class="row">
+
+        <div class="form-group">
+          <div>
+            <span><i class="fa fa-first-order fa-lg fa-fw"></i><strong>Sales Order : </strong> {{invoiceHeader.SALESORDERNUMBER}}</span>
+          </div>
+
+        </div>
+
+      </div>
+     
+      <div class="row">
+
+        <div class="form-group">
+          <div>
+            <span><i class="fa fa-shopping-cart fa-lg fa-fw"></i><strong>Customer Reference # : </strong> {{invoiceHeader.CUSTOMERSORDERREFERENCE}}</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
