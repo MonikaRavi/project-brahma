@@ -3,8 +3,9 @@
   <div class="row">
     <!-- <sa-big-breadcrumbs [items]="['E-Commerce', 'Product Details']" icon="shopping-cart" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs> -->
 
-    <sa-big-breadcrumbs [items]="['Inventory On Hand']" icon="fa fa-thumbs-up"
-      class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <h1> <span><i><img src="assets/img/icons/ax2009.png" alt="" style="max-width:3%"></i></span>
+      <strong>Inventory On Hand</strong>
+    </h1>
 
   </div>
 
@@ -64,6 +65,7 @@
         <!-- product -->
         <div class="product-content product-wrap clearfix product-deatil">
           <div class="row">
+            <!-- Image -->
             <div class="col-md-5 col-sm-12 col-xs-12 ">
               <div class="product-image">
 
@@ -77,37 +79,26 @@
 
               </div>
             </div>
+            <!-- Product Summary -->
             <div class="col-md-7 col-sm-12 col-xs-12">
 
               <h2 class="name">
                 {{product.ITEMID}}
                 <small>{{ product.ITEMNAME }}</small>
-                <!-- <i class="fa fa-star fa-2x text-primary"></i>
-                <i class="fa fa-star fa-2x text-primary"></i>
-                <i class="fa fa-star fa-2x text-primary"></i>
-                <i class="fa fa-star fa-2x text-primary"></i>
-                <i class="fa fa-star fa-2x text-muted"></i>
-                <span class="fa fa-2x"><h5>(109) Votes</h5></span>
 
-                <a (click)="(null)">109 customer reviews</a> -->
 
               </h2>
               <hr>
               <h3 class="price-container">
-                Cost : {{product.CostPrice | currency }}
-                <small>*includes markup</small>
+                Recent Selling Price : {{product.RecentSellingPrice | currency }}
+
               </h3>
 
-              <!-- <div class="certified">
-                <ul>
-                  <li><a (click)="(null)">Delivery time<span>7 Working Days</span></a></li>
-                  <li><a (click)="(null)">Certified<span>Quality Assured</span></a></li>
-                </ul>
-              </div> -->
               <hr>
+            </div>
+            <!-- Tabs -->
+            <div class="col-md-7 col-sm-12 col-xs-12">
               <div class="description description-tabs">
-
-
                 <ul id="myTab" class="nav nav-pills">
                   <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product
                       Description </a></li>
@@ -161,84 +152,11 @@
                     </dl>
 
                   </div>
-                  <!--
-                    <div class="chat-body no-padding profile-message">
-                      <ul>
-                        <li class="message">
-                          <img src="assets/img/avatars/1.png" class="online">
-                          <span class="message-text">
-																	<a (click)="(null)" class="username">
-                                                                        Alisha Molly
-                                                                        <span class="badge">Purchase Verified</span>
-																		<span class="pull-right">
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-muted"></i>
-																		</span>
-                                                                    </a>
 
-
-																	Can't divide were divide fish forth fish to. Was can't form the, living life grass darkness very image let unto fowl isn't in blessed fill life yielding above all moved
-																</span>
-                          <ul class="list-inline font-xs">
-                            <li>
-                              <a (click)="(null)" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-                            </li>
-                            <li class="pull-right">
-                              <small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="message">
-                          <img src="assets/img/avatars/2.png" class="online">
-                          <span class="message-text">
-																	<a (click)="(null)" class="username">
-                                                                        Aragon Zarko
-                                                                        <span class="badge">Purchase Verified</span>
-																		<span class="pull-right">
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																			<i class="fa fa-star fa-2x text-primary"></i>
-																		</span>
-                                                                    </a>
-
-
-																	Excellent product, love it!
-																</span>
-                          <ul class="list-inline font-xs">
-                            <li>
-                              <a (click)="(null)" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-                            </li>
-                            <li class="pull-right">
-                              <small class="text-muted pull-right ultra-light"> Posted 1 year ago </small>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                  </div> -->
                 </div>
-
 
               </div>
               <hr>
-              <!-- <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-6">
-
-                  <a (click)="(null)" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
-
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                  <div class="btn-group pull-right">
-                    <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist </button>
-                    <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
-                  </div>
-                </div>
-              </div> -->
 
             </div>
           </div>
@@ -254,46 +172,46 @@
   </sa-widgets-grid>
   <!-- end row -->
 
-  <ng-template #noData >
+  <ng-template #noData>
 
-      <sa-widgets-grid *ngIf="isInitial">
-  
-        <!-- row -->
-  
-  
-        <div class="col-sm-12 col-md-12 col-lg-12">
-          <!-- product -->
-          <div class="product-content product-wrap clearfix product-deatil">
-            <div class="row">
-              <div class="col-md-5 col-sm-12 col-xs-12 ">
-                <div class="product-image">
-  
-  
-                  <carousel [interval]="3000">
-                    <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
-                      <img class="img-responsive" [src]="slide.src" style="margin:auto;">
-                    </slide>
-                  </carousel>
-  
-  
-                </div>
+    <sa-widgets-grid *ngIf="isInitial">
+
+      <!-- row -->
+
+
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <!-- product -->
+        <div class="product-content product-wrap clearfix product-deatil">
+          <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12 ">
+              <div class="product-image">
+
+
+                <carousel [interval]="3000">
+                  <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
+                    <img class="img-responsive" [src]="slide.src" style="margin:auto;">
+                  </slide>
+                </carousel>
+
+
               </div>
-              <div class="col-md-7 col-sm-12 col-xs-12">
-                  <h2 class="name">
-                      <strong>{{productID}}</strong>
-                      <small>{{ productName }}</small>
-                </h2>
-              </div>
-              <div class="col-md-7 col-sm-12 col-xs-12">
-                  <h2>
-                    No On Hand Data Available in AX for <strong>STD</strong> configuration
-                </h2>
-              </div>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+              <h2 class="name">
+                <strong>{{productID}}</strong>
+                <small>{{ productName }}</small>
+              </h2>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+              <h2>
+                No On Hand Data Available in AX for <strong>STD</strong> configuration
+              </h2>
             </div>
           </div>
         </div>
-      </sa-widgets-grid>
-  
-    </ng-template>
+      </div>
+    </sa-widgets-grid>
+
+  </ng-template>
 
 </div>

@@ -77,5 +77,16 @@
     "Maps": "Maps",
     "My Profile": "My Profile",
     "Page Header": "Page Header",
-    "Subtitle": "Subtitle"
+    "Subtitle": "Subtitle",
+    "Hi" : "Hi",
+    "Enter Value to search" : "Enter Value to search",
+    "Retrieve Information By" : "Retrieve Information By",
+    "Select One Below" : "Select One Below",
+    "Get Data" : "Get Data",
+    "Summary for": "Summary for",
+    "Reports" : "Reports",
+    "Sales" : "Sales",
+    "Inventory" : "Inventory",
+    "Distributor" : "Distributor",
+    "Opportunity" : "Opportunity"
 }

@@ -6,26 +6,26 @@
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1">
 
       <div id="main" role="main" >
-        <h1 *ngIf="me">Hi, {{ getUserName() }} !</h1>
+        <h1 *ngIf="me">{{'Hi' | i18n}}, {{ getUserName() }} !</h1>
 
-        <h1 *ngIf="isUserEmailLogin">Hi, {{ getUserName() | titlecase }} !</h1>
+        <h1 *ngIf="isUserEmailLogin">{{'Hi' | i18n}}, {{ getUserName() | titlecase }} !</h1>
         
         <form (ngSubmit)="setInputData()" [formGroup]="getDataForm">
 
           <div class="form-group">
 
-            <label for="queryValue">Enter Value to search</label>
+            <label for="queryValue">{{'Enter Value to search' | i18n}}</label>
             <input type="text" id="queryValue" formControlName="queryValue" class="form-control">
 
           </div>
 
-          <label for="input" style="font-weight: bold">Retrieve Information By</label>
+          <label for="input" style="font-weight: bold">{{'Retrieve Information By' | i18n}}</label>
           <div class="radio" *ngFor="let input of inputTypes" id="input">
             <label>
               <input type="radio" formControlName="ipType" [value]="input"> {{ input }}
             </label>
           </div> &nbsp;
-          <label for="query" style="font-weight: bold">Select One Below</label>
+          <label for="query" style="font-weight: bold">{{'Select One Below' | i18n}}</label>
           <div class="radio" *ngFor="let query of queryTypes" id="query">
             <label>
               <input type="radio" formControlName="queryType" [value]="query"> {{ query }}
@@ -35,7 +35,7 @@
           <span *ngIf="!getDataForm.valid && getDataForm.touched" class="help-block text-warning">Please enter valid data!</span>
           <br>
 
-          <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">Get Data</button> &nbsp;
+          <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">{{'Get Data' | i18n }}</button> &nbsp;
 
           <br>
           <br>
@@ -65,7 +65,7 @@
 
             <ul *ngIf="queryType == 'Summary'" class="list-group">
 
-              <h5> Summary for {{ querySelected }} </h5>
+              <h5> {{'Summary for' | i18n}} {{ querySelected }} </h5>
 
               <li class="list-group-item">
                 Total Logs : {{ data.totalLogs }}

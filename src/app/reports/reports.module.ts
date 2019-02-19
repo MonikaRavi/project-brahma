@@ -42,6 +42,10 @@ import { AvlisInvoiceHeaderComponent } from './AX365/avlis-invoice/avlis-invoice
 import { AvlisInvoiceDetailComponent } from './AX365/avlis-invoice/avlis-invoice-detail/avlis-invoice-detail.component';
 import { AvlisInvoiceHeaderService } from 'app/shared/data/AX365/Invoice/avlis-invoice-header.service';
 import { AvlisInvoiceDetailService } from 'app/shared/data/AX365/Invoice/avlis-invoice-detail.service';
+import { I18nModule } from 'app/shared/i18n/i18n.module';
+
+
+
 
 
 
@@ -51,6 +55,7 @@ import { AvlisInvoiceDetailService } from 'app/shared/data/AX365/Invoice/avlis-i
   imports: [
     CommonModule,
     SmartadminModule,
+    I18nModule,
     SmartadminDatatableModule,
     SmartadminInputModule,
     ReactiveFormsModule,

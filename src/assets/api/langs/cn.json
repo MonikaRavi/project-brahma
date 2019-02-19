@@ -85,5 +85,16 @@
     "Subtitle": "字幕",
     "Customer": "顧客",
     "Information": "信息",
-    "Enter customer ID to search": "輸入要搜索的客戶ID"
+    "Enter customer ID to search": "輸入要搜索的客戶ID",
+    "Hi" : "你好",
+    "Enter Value to search" : "輸入要搜索的值",
+    "Retrieve Information By" : "通過檢索信息",
+    "Select One Below" : "選擇下面的一個",
+    "Get Data" : "獲取數據",
+    "Summary for": "摘要",
+    "Reports" : "報告",
+    "Sales" : "銷售",
+    "Inventory" : "庫存",
+    "Distributor" : "經銷商",
+    "Opportunity" : "機會"
 }

@@ -8,7 +8,7 @@
 
       <!-- Get Customer ID -->
 
-      <label for="queryValue">{{'Recent projects' | i18n}}</label>
+      <label for="queryValue">Enter AX Customer ID to search</label>
       <input type="text" id="queryValue" formControlName="queryValue" class="form-control">
 
     </div>
@@ -16,7 +16,7 @@
     <span *ngIf="!getDataForm.valid && getDataForm.touched" class="help-block text-warning">Please enter valid data!</span>
     <br>
 
-    <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">Get Data</button> &nbsp;
+    <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">{{'Home' | i18n}}</button> &nbsp;
 
     <br>
     <br>

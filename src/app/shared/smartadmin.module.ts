@@ -34,7 +34,7 @@ import {SmartProgressbarModule} from "./ui/smart-progressbar/smart-progressbar.m
 @NgModule({
   imports: [
     CommonModule, FormsModule, RouterModule,
-
+    I18nModule,
 
 
   ],

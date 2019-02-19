@@ -30,10 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './+home/image.service';
 
 import { AuthGuard } from './auth-guard.service';
-import { I18nModule } from './shared/i18n/i18n.module';
 import { DataRetrievalService } from './shared/data/IoT/data-retrieval.service';
 import { DataSalesforceService } from './shared/data/Salesforce/data-salesforce.service';
 import { DataSosummaryService } from './shared/data/AX2009/Sales/data-sosummary.service';
+
 
 
 
@@ -73,12 +73,10 @@ type StoreType = {
     HttpClientModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-
     CoreModule,
     SmartadminLayoutModule,
     HomeModule,
-    routing,
-    I18nModule
+     routing
 
   ],
   exports: [

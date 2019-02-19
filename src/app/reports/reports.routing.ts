@@ -16,14 +16,14 @@ import { AvlisInvoiceComponent } from "./AX365/avlis-invoice/avlis-invoice.compo
 export const routes: Routes = [
 
 
-  {
-    path: '', redirectTo: 'reportDashboard', pathMatch: 'full'
-  },
-  {
-    path: 'reportDashboard',
-    component: reportDashboard
+  // {
+  //   path: '', redirectTo: 'reportDashboard', pathMatch: 'full'
+  // },
+  // {
+  //   path: 'reportDashboard',
+  //   component: reportDashboard
 
-  },
+  // },
   {
     path: 'leads',
     component: LeadsComponent

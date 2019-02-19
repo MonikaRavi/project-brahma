@@ -101,6 +101,8 @@ export class OnHandComponent implements OnInit {
 
           this.products = data;
 
+          console.log(this.products);
+
           this.isDataAvailable = true;
 
 

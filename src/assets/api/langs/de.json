@@ -77,5 +77,17 @@
     "Maps": "Karten",
     "My Profile": "Profil",
     "Page Header": "Seitenkopf",
-    "Subtitle": "Untertitel"
+    "Subtitle": "Untertitel",
+    "Hi" : "Hallo",
+    "Enter Value to search" : "Geben Sie den zu suchenden Wert ein",
+    "Retrieve Information By" : "Informationen abrufen von",
+    "Select One Below" : "Wählen Sie eine darunter aus",
+    "Get Data" : "Daten empfangen",
+    "Summary for": "Zusammenfassung für",
+    "Reports" : "Berichte",
+    "Sales" : "Der Umsatz",
+    "Inventory" : "Inventar",
+    "Distributor" : "Verteiler",
+    "Opportunity" : "Gelegenheit",
+    "Home" : "Zuhause"
 }
