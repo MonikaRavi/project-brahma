@@ -17,7 +17,6 @@ export class I18nService {
 
   constructor(private jsonApiService:JsonApiService, private ref:ApplicationRef) {
     this.state = new Subject();
-
     this.initLanguage(config.defaultLocale || 'us');
     this.fetch(this.currentLanguage.key)
   }
@@ -45,8 +44,9 @@ export class I18nService {
 
   setLanguage(language){
     this.currentLanguage = language;
-    this.fetch(language.key)
+     this.fetch(language.key)
   }
+
 
 
   subscribe(sub:any, err:any) {
@@ -54,6 +54,7 @@ export class I18nService {
   }
 
   public getTranslation(phrase:string):string {
+    //console.log(phrase ,this.currentLanguage,this.data);
     return this.data && this.data[phrase] ? this.data[phrase] : phrase
   }
 

@@ -7,9 +7,9 @@ import { OpportunityComponent } from "./opportunity/opportunity.component";
 export const routes: Routes = [
 
  
-  {
-    path: '', redirectTo: 'distributor', pathMatch: 'full'
-  },
+  // {
+  //   path: '', redirectTo: 'distributor', pathMatch: 'full'
+  // },
   {
     path: 'distributor',
     component: DistributorComponent

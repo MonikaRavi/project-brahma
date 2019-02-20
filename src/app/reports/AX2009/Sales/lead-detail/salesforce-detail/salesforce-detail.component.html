@@ -5,7 +5,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div>
-                    <span><i class="fa fa-paper-plane fa-lg fa-fw"></i><strong>Opportunity Name : </strong>{{
+                    <span><i class="fa fa-paper-plane fa-lg fa-fw"></i><strong>{{'Opportunity Name' | i18n}} : </strong>{{
                         salesforceData.name }}</span>
 
                 </div>
@@ -21,7 +21,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div>
-                    <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>Close Date : </strong>{{
+                    <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'Close Date' | i18n}} : </strong>{{
                         salesforceData.closeDate | date:'MM/dd/yyyy' }}</span>
 
                 </div>
@@ -37,7 +37,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div>
-                    <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>Quoted Amount : </strong>{{
+                    <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>{{'Quoted Amount' | i18n}} : </strong>{{
                         salesforceData.qAmount | currency }}</span>
 
                 </div>
@@ -53,7 +53,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div>
-                    <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>Opportunity State : </strong>{{
+                    <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>{{'Opportunity State' | i18n}} : </strong>{{
                         salesforceData.deliveryState }}</span>
 
                 </div>
@@ -70,7 +70,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <div>
-                    <span><i class="fa fa-paper-plane fa-lg fa-fw"></i><strong>No Opportunity in SalesForce!</strong></span>
+                    <span><i class="fa fa-paper-plane fa-lg fa-fw"></i><strong>{{'No Data For' | i18n }} SalesForce!</strong></span>
 
                 </div>
 

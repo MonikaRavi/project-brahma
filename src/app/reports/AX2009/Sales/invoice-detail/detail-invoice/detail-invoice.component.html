@@ -15,7 +15,7 @@
       -->
     <header>
       <span class="widget-icon"> <i class="fa fa-arrows-v"></i></span>
-      <h2 class="font-md"><strong>Invoice Details</strong></h2>
+      <h2 class="font-md"><strong>{{'Invoice' | i18n }} {{'Details' | i18n }}</strong></h2>
     </header>
     <!-- widget div-->
     <div>
@@ -31,16 +31,16 @@
               <div class="row">
                 <div class="col-md-5 col-sm-12 col-xs-12 ">
 
-                  <h6> <strong> Invoice : </strong> {{ invoice.INVOICEID }} </h6>
+                  <h6> <strong> {{'Invoice' | i18n }} : </strong> {{ invoice.INVOICEID }} </h6>
 
-                  <h6> <strong> Invoice Date : </strong> {{ invoice.INVOICEDATE | date:'MM/dd/yyyy' }}</h6>
+                  <h6> <strong> {{'Invoice' | i18n }} {{'Date' | i18n }} : </strong> {{ invoice.INVOICEDATE | date:'MM/dd/yyyy' }}</h6>
 
                 </div>
                 <div class="col-md-7 col-sm-12 col-xs-12">
 
                                 <div class="row" *ngFor="let rep of invoice.commission">
-                    <h6><strong>Sales Rep : </strong>{{ rep.REP }}</h6>
-                    <h6><strong>Amount Paid as commission : </strong> {{ rep. Amount | currency }}</h6>
+                    <h6><strong>{{'Sales Representative' | i18n }} : </strong>{{ rep.REP }}</h6>
+                    <h6><strong>{{'Amount Paid as commission' | i18n }} : </strong> {{ rep. Amount | currency }}</h6>
                   </div>
 
 
@@ -50,11 +50,11 @@
                   <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>Item ID</th>
+                          <th>{{'Item ID' | i18n }}</th>
                           <th>{{ 'Item Name' | i18n }}</th>
-                          <th>Qty</th>
-                          <th>Amount</th>
-                          <th>Discount %</th>
+                          <th>{{'Quantity' | i18n }}</th>
+                          <th>{{'Amount' | i18n }}</th>
+                          <th>{{'Discount' | i18n }} %</th>
                         </tr>
                       </thead>
                       <tbody>

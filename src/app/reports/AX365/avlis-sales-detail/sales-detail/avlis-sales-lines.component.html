@@ -17,7 +17,7 @@
           <div class="col-sm-12">
               <div class="form-group">
                   <div>
-                      <span><i class="fa fa-user-circle fa-lg fa-fw"></i><strong> Sales Name :  </strong>{{ salesName }}</span>
+                      <span><i class="fa fa-user-circle fa-lg fa-fw"></i><strong> {{'Sales Name' |i18n }} :  </strong>{{ salesName }}</span>
       
                   </div>
       
@@ -32,7 +32,7 @@
           <div class="col-sm-12">
               <div class="form-group">
                   <div>
-                      <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>Requested Receipt Date : </strong>{{
+                      <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'Requested Receipt Date' |i18n }} : </strong>{{
                         receiptDate | date:'MM/dd/yyyy' }}</span>
       
                   </div>
@@ -49,7 +49,7 @@
       <div class="col-sm-12">
           <div class="form-group">
               <div>
-                  <button class="btn btn-success" (click)="getInvoice()" [class.disabled]="status !== 'Invoiced'" >Invoice Detail</button>
+                  <button class="btn btn-success" (click)="getInvoice()" [class.disabled]="status !== 'Invoiced'" >{{'Invoice' |i18n }} {{'Details' |i18n }}</button>
                       
               </div>
   
@@ -64,7 +64,7 @@
           <div class="col-sm-12">
               <div class="form-group">
                   <div>
-                      <span><i class="fa fa-list-ul fa-lg fa-fw"></i><strong>Items Ordered : </strong></span>
+                      <span><i class="fa fa-list-ul fa-lg fa-fw"></i><strong>{{'Items Ordered' |i18n }} : </strong></span>
       
                   </div>
       
@@ -81,10 +81,10 @@
        <table class="table table-hover">
         <thead>
           <tr>
-            <th>Item ID</th>
-            <th>Item Name</th>
-            <th>Qty</th>
-            <th>Amount</th>
+            <th>{{'Item ID' |i18n }}</th>
+            <th>{{'Item Name'  |i18n }}</th>
+            <th>{{'Quantity' |i18n }}</th>
+            <th>{{'Amount' |i18n }}</th>
           </tr>
         </thead>
         <tbody>

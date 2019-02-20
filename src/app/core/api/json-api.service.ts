@@ -11,14 +11,15 @@ export class JsonApiService {
   constructor(private http: HttpClient) {}
 
   public fetch(url): Observable<any>{
-    return this.http.get(this.getBaseUrl() + config.API_URL + url)
+   
+        return this.http.get(this.getBaseUrl() + config.API_URL + url)
       .delay(100)
       .map((data: any)=>(data.data|| data))
       .catch(this.handleError)
   }
 
   private getBaseUrl(){
-    return location.protocol + '//' + location.hostname + (location.port ? ':'+location.port : '') + '/'
+        return location.protocol + '//' + location.hostname + (location.port ? ':'+location.port : '') + '/'
   }
 
 

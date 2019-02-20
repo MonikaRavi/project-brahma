@@ -8,11 +8,11 @@ import {I18nService} from "./i18n.service";
 export class I18nPipe implements PipeTransform {
 
   constructor(public i18nService: I18nService){
-    console.log('called');
+ 
   }
 
   transform(phrase: any, args?: any): any {
-    console.log('Transformed', phrase);
+
     return this.i18nService.getTranslation(phrase);
   }
 

@@ -4,7 +4,7 @@
     <!-- <sa-big-breadcrumbs [items]="['E-Commerce', 'Product Details']" icon="shopping-cart" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs> -->
 
     <h1> <span><i><img src="assets/img/icons/ax2009.png" alt="" style="max-width:3%"></i></span>
-      <strong>Inventory On Hand</strong>
+      <strong>{{'Inventory On Hand' | i18n }}</strong>
     </h1>
 
   </div>
@@ -22,7 +22,7 @@
 
             <fieldset>
               <legend>
-                Select Product
+                {{'Select Product'  | i18n }}
               </legend>
 
               <div class="form-group">
@@ -42,7 +42,7 @@
 
           &nbsp;
 
-          <button class="btn btn-primary" (click)="getProductInfo()">Get On Hand</button>
+          <button class="btn btn-primary" (click)="getProductInfo()">{{'Get On Hand'  | i18n }}</button>
 
         </div>
 
@@ -90,7 +90,7 @@
               </h2>
               <hr>
               <h3 class="price-container">
-                Recent Selling Price : {{product.RecentSellingPrice | currency }}
+                {{'Recent Selling Price'  | i18n }} : {{product.RecentSellingPrice | currency }}
 
               </h3>
 
@@ -100,38 +100,37 @@
             <div class="col-md-7 col-sm-12 col-xs-12">
               <div class="description description-tabs">
                 <ul id="myTab" class="nav nav-pills">
-                  <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product
-                      Description </a></li>
-                  <li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
-                  <li class=""><a href="#reviews" data-toggle="tab">Revenue</a></li>
+                  <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">{{'Product Description'  | i18n }} </a></li>
+                  <li class=""><a href="#specifications" data-toggle="tab">{{'Specifications'  | i18n }}</a></li>
+                  <li class=""><a href="#reviews" data-toggle="tab">{{'Revenue'  | i18n }}</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div class="tab-pane fade active in" id="more-information">
 
                     <br>
                     <p> <strong>{{ product.ITEMID }} </strong> </p> <br>
-                    <p> <strong>Item Group : </strong> {{ product.ItemGroup }}</p> <br>
-                    <p> <strong>Configuration : </strong> {{ product.CONFIGID }}</p> <br>
-                    <p> <strong>On Hand : </strong> {{ product["Total Available"] }} </p> <br>
-                    <p> <strong>Manufacturing Category : </strong>{{ product.MFGCATEGORY }}</p>
+                    <p> <strong>{{'Item Group'  | i18n }} : </strong> {{ product.ItemGroup }}</p> <br>
+                    <p> <strong>{{'Configuration'  | i18n }} : </strong> {{ product.CONFIGID }}</p> <br>
+                    <p> <strong>{{'On Hand'  | i18n }} : </strong> {{ product["Total Available"] }} </p> <br>
+                    <p> <strong>{{'Manufacturing Category'  | i18n }} : </strong>{{ product.MFGCATEGORY }}</p>
 
                   </div>
                   <div class="tab-pane fade" id="specifications">
                     <br>
                     <dl class="">
-                      <dt>Height</dt>
+                      <dt>{{'Height'  | i18n }}</dt>
                       <dd>{{ product.HEIGHT }} inches</dd>
                       <br>
 
-                      <dt>Width</dt>
+                      <dt>{{'Width'  | i18n }}</dt>
                       <dd>{{ product.WIDTH }} inches</dd>
                       <br>
 
-                      <dt>Depth</dt>
+                      <dt>{{'Depth'  | i18n }}</dt>
                       <dd>{{ product.DEPTH }} inches</dd>
                       <br>
 
-                      <dt>Net Weight</dt>
+                      <dt>{{'Net Weight'  | i18n }}</dt>
                       <dd>{{ product.NETWEIGHT }} pounds</dd>
 
                     </dl>
@@ -140,11 +139,11 @@
 
                     <br>
                     <dl class="">
-                      <dt><strong> Total Quantity Sold in 2019 : </strong></dt>
+                      <dt><strong> {{'Total Quantity Sold'  | i18n }} - 2019 : </strong></dt>
                       <dd>{{ product.TOTALQTY }}</dd>
                       <br>
 
-                      <dt><strong>Total Revenue in 2019 : </strong></dt>
+                      <dt><strong>{{'Total Revenue'  | i18n }} - 2019 : </strong></dt>
                       <dd>{{product.REVENUE | currency }}</dd>
                       <br>
 
@@ -204,7 +203,7 @@
             </div>
             <div class="col-md-7 col-sm-12 col-xs-12">
               <h2>
-                No On Hand Data Available in AX for <strong>STD</strong> configuration
+                {{'No Data For' | i18n  }} <strong>STD</strong> {{'Configuration'  | i18n }}
               </h2>
             </div>
           </div>

@@ -2,26 +2,26 @@
 <br>
 <div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left">
 
-  <h1><span><i><img src="assets/img/icons/ax2009.png" alt="" style="max-width:4%"></i></span> <strong>Sales
-      Orders</strong></h1>
+  <h1><span><i><img src="assets/img/icons/ax2009.png" alt="" style="max-width:4%"></i></span> 
+    <strong>{{'Sales Orders' | i18n }}</strong></h1>
 
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Sales ID</th>
-        <th>Sales Name</th>
-        <th>Booked Date</th>
-        <th>Total Amount</th>
-        <th>Status</th>
+        <th>{{'Sales ID' | i18n  }}</th>
+        <th>{{'Sales Name' | i18n  | titlecase}}</th>
+        <th>{{'Booked Date' | i18n | titlecase }}</th>
+        <th>{{'Total Amount' | i18n | titlecase }}</th>
+        <th>{{'Status' | i18n | titlecase}}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let sale of sales">
         <td><a (click)="getDetail(sale.SALESID)">{{ sale.SALESID }}</a></td>
-        <td> {{ sale.SALESNAME }} </td>
+        <td> {{ sale.SALESNAME | titlecase }} </td>
         <td>{{ sale.createdDate | date:'MM/dd/yyyy' }}</td>
         <td>{{ sale.Amount | currency}}</td>
-        <td>{{ sale.Status }} <i *ngIf="sale.SF===1" class="fa fa-lg fa-fw fa-cloud"
+        <td>{{ sale.Status | titlecase }} <i *ngIf="sale.SF===1" class="fa fa-lg fa-fw fa-cloud"
             style="color: rgb(0, 162, 255)"></i></td>
       </tr>
 

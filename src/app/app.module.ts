@@ -33,6 +33,8 @@ import { AuthGuard } from './auth-guard.service';
 import { DataRetrievalService } from './shared/data/IoT/data-retrieval.service';
 import { DataSalesforceService } from './shared/data/Salesforce/data-salesforce.service';
 import { DataSosummaryService } from './shared/data/AX2009/Sales/data-sosummary.service';
+import { I18nService } from './shared/i18n';
+
 
 
 
@@ -76,18 +78,19 @@ type StoreType = {
     CoreModule,
     SmartadminLayoutModule,
     HomeModule,
-     routing
+    routing
 
   ],
   exports: [
-    
+
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     // ENV_PROVIDERS,
     APP_PROVIDERS,
-    DataRetrievalService, DataSalesforceService,DataSosummaryService,
-    ImageService
-    
+    DataRetrievalService, DataSalesforceService, DataSosummaryService,
+    ImageService,
+    I18nService
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -2,15 +2,15 @@
 
   <div class="row">
 
-    <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i> Shipment {{ status }}</strong></h1>
+    <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i> {{'Shipment' | i18n}} {{ status | i18n}}</strong></h1>
 
-    <h1 class="text-center text-warning" *ngIf="isScheduled"><strong><i class="fa fa-calendar fa-lg"></i> Shipment {{ status }}</strong></h1>
+    <h1 class="text-center text-warning" *ngIf="isScheduled"><strong><i class="fa fa-calendar fa-lg"></i> {{'Shipment' | i18n}} {{ status | i18n}}</strong></h1>
 
     <div class="row" *ngIf="isOtherStatus">
       <h1 class="text-center text-success">
         <strong><i class="fa fa-check fa-lg" *ngIf="status == 'Delivered' else ontheway"></i>
           <ng-template #ontheway><i class="fa fa-arrow-circle-o-right fa-lg"></i></ng-template>
-          Shipment {{ status }}
+          {{'Shipment' | i18n}} {{ status | i18n}}
         </strong></h1>
 
       <!-- <h1 class="text-center">{{ latestSummary }}</h1> -->
@@ -23,9 +23,9 @@
 
   <div class="row">
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#facts">Shipment Facts</a></li>
-      <li *ngIf="isCharge"><a data-toggle="tab" href="#charge">Charges</a></li>
-      <li><a data-toggle="tab" href="#history">Travel History</a></li>
+      <li class="active"><a data-toggle="tab" href="#facts">{{'Shipment' | i18n }} {{'Facts'  | i18n }}</a></li>
+      <li *ngIf="isCharge"><a data-toggle="tab" href="#charge">{{'Charges'  | i18n }}</a></li>
+      <li><a data-toggle="tab" href="#history">{{'Travel History'  | i18n }}</a></li>
     
 
     </ul>
@@ -41,8 +41,8 @@
             <table class="table table-hover" *ngIf="isOtherStatus">
               <thead>
                 <tr>
-                  <th>Summary</th>
-                  <th>Date</th>
+                  <th>{{'Summary'  | i18n }}</th>
+                  <th>{{'Date'  | i18n }}</th>
 
                 </tr>
               </thead>
@@ -63,7 +63,7 @@
           <div class="col-sm-12">
               <div class="form-group">
                   <div>
-                    <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>No Shipment History Available</strong></span>
+                    <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'No Shipment History Available'  | i18n }}</strong></span>
           
                   </div>
           
@@ -83,7 +83,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <div>
-                <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>Carrier : </strong>{{
+                <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'Carrier'  | i18n }} : </strong>{{
                   freight.carrier }}</span>
 
               </div>
@@ -99,7 +99,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <div>
-                <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>PickUp Date : </strong>{{
+                <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'PickUp Date'  | i18n }} : </strong>{{
                   pickupDate | date:'MM/dd/yyyy' }}</span>
 
               </div>
@@ -115,7 +115,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <div>
-                <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>Destination : </strong>{{
+                <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>{{'Destination'  | i18n }} : </strong>{{
                   freight.destination }}</span>
 
               </div>
@@ -130,7 +130,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <div>
-                <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>Total Amount : </strong>{{
+                <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>{{'Total Amount' | i18n }} : </strong>{{
                   freight.total | currency }}</span>
 
               </div>
@@ -152,8 +152,8 @@
               <table class="table table-hover" *ngIf="isCharge">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
+                    <th>{{'Name'  | i18n }}</th>
+                    <th>{{'Amount'  | i18n }}</th>
   
                   </tr>
                 </thead>
@@ -183,7 +183,7 @@
     <div class="col-sm-12">
       <div class="form-group">
         <div>
-          <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>No Shipment Detail Available</strong></span>
+          <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'No Shipment Detail Available'  | i18n }}</strong></span>
 
         </div>
 
