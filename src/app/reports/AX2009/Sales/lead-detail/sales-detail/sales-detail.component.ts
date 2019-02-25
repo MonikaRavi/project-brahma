@@ -18,11 +18,13 @@ export class SalesDetailComponent implements OnInit {
 
   status ;
 
+  salesOrder;
+
   constructor(private salesDetail : DataSalesService, private salesID : SaveSalesService,private router: Router, private route:ActivatedRoute) { 
 
-    let salesOrder = this.salesID.getSalesID();
+  this.salesOrder = this.salesID.getSalesID();
 
-    this.salesDetail.getData(salesOrder).subscribe(
+    this.salesDetail.getData(this.salesOrder).subscribe(
 
       (data)=> {
 
