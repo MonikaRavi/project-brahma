@@ -1,6 +1,6 @@
 <!-- <header id="header" class="animated fadeInDown" style="z-index:inherit"></header> -->
 <br>
-<div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left">
+<div *ngIf="isDataAvailable ; else loading" id="main" role="main" class="animated fadeInDown move-left">
 
   <h1><span><i><img src="assets/img/icons/ax2009.png" alt="" style="max-width:4%"></i></span> 
     <strong>{{'Sales Orders' | i18n }}</strong></h1>
@@ -27,5 +27,20 @@
 
     </tbody>
   </table>
+
+</div>
+
+<ng-template #loading>
+
+  <div *ngIf="!isError" class="center">
+      <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin" style="color:lightslategray; font-size: 500%"></i></span>
+  </div>
+
+</ng-template>
+
+
+<div *ngIf="isError">
+
+  <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect to Source!</strong></h2>
 
 </div>

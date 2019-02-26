@@ -9,34 +9,42 @@ import { AvlisInvoiceHeaderService } from 'app/shared/data/AX365/Invoice/avlis-i
 })
 export class AvlisInvoiceHeaderComponent implements OnInit {
 
-  isDataAvailable : boolean = false;
+  isDataAvailable: boolean = false;
 
-  salesID : string;
+  salesID: string;
 
   invoiceHeader;
 
-  constructor(private salesIdService : SaveSalesService, private invoiceHeaderService : AvlisInvoiceHeaderService ) {
+  isError: boolean = false;
+
+  constructor(private salesIdService: SaveSalesService, private invoiceHeaderService: AvlisInvoiceHeaderService) {
 
     this.salesID = this.salesIdService.getSalesID();
 
-   this.invoiceHeaderService.getData(this.salesID).subscribe(
+    this.invoiceHeaderService.getData(this.salesID).subscribe(
 
-    (data)=>{
+      (data) => {
 
-      this.invoiceHeader = data[0];
-      this.isDataAvailable = true;
-      //console.log(this.invoiceHeader);
-    },
-    (err)=>{
+        this.isError = false;
 
-      console.log(err);
-      this.isDataAvailable = false;
+        this.invoiceHeader = data[0];
+        
+        this.isDataAvailable = true;
+        //console.log(this.invoiceHeader);
+      },
+      (err) => {
 
-    }
+        console.log(err);
 
-   )
+        this.isDataAvailable = false;
 
-   }
+        this.isError = true;
+
+      }
+
+    )
+
+  }
 
   ngOnInit() {
   }

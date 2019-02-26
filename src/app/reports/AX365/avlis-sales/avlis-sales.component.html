@@ -1,6 +1,8 @@
 <br>
-<div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left" style="margin-left: 2%">
-    <h1><span><i><img src="assets/img/icons/ax-365.png" alt="" style="max-width:3%"></i></span> <strong>{{'Sales Orders' | i18n }}</strong></h1>
+<div *ngIf="isDataAvailable; else loading" id="main" role="main" class="animated fadeInDown move-left"
+  style="margin-left: 2%">
+  <h1><span><i><img src="assets/img/icons/ax-365.png" alt="" style="max-width:3%"></i></span>
+    <strong>{{'Sales Orders' | i18n }}</strong></h1>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -17,10 +19,28 @@
         <td> {{ sale.Customer | titlecase }} </td>
         <td>{{ sale.createdDate | date:'MM/dd/yyyy' }}</td>
         <td>{{ sale.Amount | currency: 'R$ '}}</td>
-        <td>{{ sale.SalesStatus }} <i *ngIf="sale.SF===1" class="fa fa-lg fa-fw fa-cloud" style="color: rgb(0, 162, 255)"></i></td>
+        <td>{{ sale.SalesStatus }} <i *ngIf="sale.SF===1" class="fa fa-lg fa-fw fa-cloud"
+            style="color: rgb(0, 162, 255)"></i></td>
       </tr>
 
     </tbody>
   </table>
+
+</div>
+
+<ng-template #loading>
+
+  <div *ngIf="!isError" class="center">
+    <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+        style="color:lightslategray; font-size: 500%"></i></span>
+  </div>
+
+</ng-template>
+
+
+<div *ngIf="isError">
+
+  <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect
+      to Source!</strong></h2>
 
 </div>

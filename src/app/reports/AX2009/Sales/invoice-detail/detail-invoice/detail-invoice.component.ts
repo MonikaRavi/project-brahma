@@ -17,6 +17,8 @@ export class DetailInvoiceComponent implements OnInit {
 
   isDataAvaiable : boolean = false;
 
+  isError : boolean = false;
+
   constructor(private invoiceDetailService : InvoiceDetailService, private salesService : SaveSalesService) {
 
     this.salesID = this.salesService.getSalesID();
@@ -24,6 +26,8 @@ export class DetailInvoiceComponent implements OnInit {
    this.invoiceDetailService.getData(this.salesID).subscribe(
 
     (data)=>{
+
+      this.isError = false;
 
       if(data.length !==0) {
 
@@ -34,6 +38,7 @@ export class DetailInvoiceComponent implements OnInit {
       } else {
 
         this.isDataAvaiable = false;
+        this.isError = true;
       }
 
      

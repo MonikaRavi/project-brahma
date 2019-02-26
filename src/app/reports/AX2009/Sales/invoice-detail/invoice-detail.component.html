@@ -1,5 +1,5 @@
 <br>
-<div *ngIf="isDataAvailable" id="main" role="main" class="animated fadeInDown move-left">
+<div *ngIf="isDataAvailable ; else loading" id="main" role="main" class="animated fadeInDown move-left">
 
 
   <div sa-widget [editbutton]="false" [deletebutton]="false" color="darken">
@@ -42,3 +42,13 @@
   </div>
 
 </div>
+
+<ng-template #loading>
+
+    <div class="center">
+        <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin" style="color:lightslategray; font-size: 500%"></i></span>
+    </div>
+  
+  </ng-template>
+
+  

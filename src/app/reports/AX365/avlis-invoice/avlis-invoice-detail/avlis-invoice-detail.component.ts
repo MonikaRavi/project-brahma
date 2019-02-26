@@ -9,49 +9,56 @@ import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.servic
 })
 export class AvlisInvoiceDetailComponent implements OnInit {
 
-  invoicedetail ;
+  invoicedetail;
 
   invoices;
 
   salesID;
 
-  isDataAvaiable : boolean = false;
+  isDataAvaiable: boolean = false;
 
-  constructor(private invoiceDetailService : AvlisInvoiceDetailService, private salesService : SaveSalesService) {
+  isError: boolean = false;
+
+  constructor(private invoiceDetailService: AvlisInvoiceDetailService, private salesService: SaveSalesService) {
 
     this.salesID = this.salesService.getSalesID();
 
-   this.invoiceDetailService.getData(this.salesID).subscribe(
+    this.invoiceDetailService.getData(this.salesID).subscribe(
 
-    (data)=>{
+      (data) => {
 
-      if(data.length !==0) {
+        this.isError = false;
 
-        this.invoices = data;
+        if (data.length !== 0) {
 
-        this.isDataAvaiable = true;
-      
-      } else {
+          this.invoices = data;
+
+          this.isDataAvaiable = true;
+
+        } else {
+
+          this.isDataAvaiable = false;
+
+        }
+
+
+      },
+
+      (err) => {
+
+        console.log(err);
 
         this.isDataAvaiable = false;
+
+        this.isError = true;
       }
 
-     
-    },
 
-    (err)=>{
-
-      console.log(err);
-
-      this.isDataAvaiable = false;
-    }
+    )
 
 
-   )
 
-   
-
-   }
+  }
 
 
   ngOnInit() {

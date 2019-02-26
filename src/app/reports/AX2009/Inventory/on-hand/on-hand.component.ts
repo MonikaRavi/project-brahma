@@ -41,6 +41,8 @@ export class OnHandComponent implements OnInit {
 
   isInitial: boolean = false;
 
+  isError: boolean = false;
+
   constructor(private onHandData: DataOnhandService, private inventListService: InventoryListService,
     private cloudImageService: ProductImageService, private checkCloudService: CheckCloudinaryService) {
 
@@ -59,6 +61,8 @@ export class OnHandComponent implements OnInit {
       (err) => {
 
         this.isListAvailable = false;
+
+        this.isError = true;
       }
 
     );
@@ -88,6 +92,8 @@ export class OnHandComponent implements OnInit {
 
   getOnHand(product) {
 
+    this.isError = false;
+
     this.checkImage(product); //Get Image
 
     this.onHandData.getData(product).subscribe( // Get On Hand
@@ -96,12 +102,13 @@ export class OnHandComponent implements OnInit {
 
         //if On Hand Data is present for STD config
 
+     
         if (data.length !== 0) {
 
 
           this.products = data;
 
-          console.log(this.products);
+        //  console.log(this.products);
 
           this.isDataAvailable = true;
 
@@ -113,7 +120,7 @@ export class OnHandComponent implements OnInit {
           this.isInitial = true;
 
           this.isDataAvailable = false;
-
+          
 
         }
 
@@ -132,6 +139,8 @@ export class OnHandComponent implements OnInit {
         );
 
         console.log(err);
+
+        this.isError = true;
 
       }
 
@@ -171,6 +180,8 @@ export class OnHandComponent implements OnInit {
       (err) => {
 
         console.log(err);
+
+        this.isError = true;
       }
     )
   }
@@ -179,7 +190,7 @@ export class OnHandComponent implements OnInit {
 
     this.productImage.slides = [];
 
-    this.checkCloudService.getData(product).subscribe(  
+    this.checkCloudService.getData(product).subscribe(
 
       (data) => {
 
@@ -211,6 +222,8 @@ export class OnHandComponent implements OnInit {
 
 
         console.log(err);
+
+      
 
 
       });

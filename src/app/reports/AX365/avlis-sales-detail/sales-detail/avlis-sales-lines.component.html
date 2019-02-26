@@ -1,50 +1,51 @@
+<div class="row" *ngIf="isDataAvailable; else loading">
 
-<div class="row">
-  
-  <div class="row">
-  
-    
-      <div class="col-sm-10">
-          <alert type="info" dismissible="true">
-              <i class="fa-fw fa fa-info"></i>
-              This order is {{ status }} 
+    <div class="row">
+
+
+        <div class="col-sm-10">
+            <alert type="info" dismissible="true">
+                <i class="fa-fw fa fa-info"></i>
+                This order is {{ status }}
             </alert>
-      </div>
-    
-    
-      <div class="row">
-  
-          <div class="col-sm-12">
-              <div class="form-group">
-                  <div>
-                      <span><i class="fa fa-user-circle fa-lg fa-fw"></i><strong> {{'Sales Name' |i18n }} :  </strong>{{ salesName }}</span>
-      
-                  </div>
-      
-              </div>
-      
-          </div>
-      
-      </div>
-  
-      <div class="row">
-  
-          <div class="col-sm-12">
-              <div class="form-group">
-                  <div>
-                      <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'Requested Receipt Date' |i18n }} : </strong>{{
-                        receiptDate | date:'MM/dd/yyyy' }}</span>
-      
-                  </div>
-      
-              </div>
-      
-          </div>
-      
-      </div>
+        </div>
 
-      
-    <!-- <div class="row">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div>
+                        <span><i class="fa fa-user-circle fa-lg fa-fw"></i><strong> {{'Sales Name' |i18n }} :
+                            </strong>{{ salesName }}</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div>
+                        <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'Requested Receipt Date' |i18n }} :
+                            </strong>{{
+                        receiptDate | date:'MM/dd/yyyy' }}</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- <div class="row">
 
       <div class="col-sm-12">
           <div class="form-group">
@@ -59,39 +60,61 @@
   
   </div> -->
 
-       <!-- Invoice Detail Modal-->
+        <!-- Invoice Detail Modal-->
 
-       <div class="row">
+        <div class="row">
 
-        <div class="col-sm-12">
-            <div class="form-group">
-                <div>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#invoiceModal" [class.disabled]="status !== 'Invoiced'">
-                        Invoice Details
-                    </button>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#invoiceModal"
+                            [class.disabled]="status !== 'Invoiced'">
+                            Invoice Details
+                        </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog"
-                        aria-labelledby="invoiceModalModalLabel" aria-hidden="true" data-backdrop="false" style="height: 150%"> 
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content" >
-                                <div class="modal-header" style="padding: 1%">
-                                    <h3 class="modal-title" id="invoiceModalModalLabel"><span><i><img src="assets/img/icons/ax-365.png" alt="" style="max-width:3%"></i></span> 
-                                      <strong>{{'Invoice' | i18n }} {{'Details'| i18n }}</strong></h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                   <app-avlis-invoice></app-avlis-invoice>
-                                </div>
-                                <div class="modal-footer" style="padding: 1%">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Close</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog"
+                            aria-labelledby="invoiceModalModalLabel" aria-hidden="true" data-backdrop="false"
+                            style="height: 150%">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding: 1%">
+                                        <h3 class="modal-title" id="invoiceModalModalLabel"><span><i><img
+                                                        src="assets/img/icons/ax-365.png" alt=""
+                                                        style="max-width:3%"></i></span>
+                                            <strong>{{'Invoice' | i18n }} {{'Details'| i18n }}</strong></h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <app-avlis-invoice></app-avlis-invoice>
+                                    </div>
+                                    <div class="modal-footer" style="padding: 1%">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div>
+                        <span><i class="fa fa-list-ul fa-lg fa-fw"></i><strong>{{'Items Ordered' |i18n }} :
+                            </strong></span>
+
                     </div>
 
                 </div>
@@ -101,47 +124,44 @@
         </div>
 
     </div>
-  
-      <div class="row">
-  
-          <div class="col-sm-12">
-              <div class="form-group">
-                  <div>
-                      <span><i class="fa fa-list-ul fa-lg fa-fw"></i><strong>{{'Items Ordered' |i18n }} : </strong></span>
-      
-                  </div>
-      
-              </div>
-      
-          </div>
-      
-      </div>
-  
-    </div>
-    
+
     <div class="row fixed">
-    
-       <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>{{'Item ID' |i18n }}</th>
-            <th>{{'Item Name'  |i18n }}</th>
-            <th>{{'Quantity' |i18n }}</th>
-            <th>{{'Amount' |i18n }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of salesData">
-            <td>{{ item.ITEMID }}</td>
-            <td> {{ item.ITEMNAME }} </td>
-            <td>{{ item.QTY }}</td>
-            <td>{{ item.LINEAMOUNT | currency: 'R$ '}}</td>
-          </tr>
-    
-        </tbody>
-      </table>
-  
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>{{'Item ID' |i18n }}</th>
+                    <th>{{'Item Name'  |i18n }}</th>
+                    <th>{{'Quantity' |i18n }}</th>
+                    <th>{{'Amount' |i18n }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of salesData">
+                    <td>{{ item.ITEMID }}</td>
+                    <td> {{ item.ITEMNAME }} </td>
+                    <td>{{ item.QTY }}</td>
+                    <td>{{ item.LINEAMOUNT | currency: 'R$ '}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+
     </div>
-  
-  </div>
-  
+
+</div>
+<ng-template #loading>
+
+    <div *ngIf="!isError" class="center">
+        <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+                style="color:lightslategray; font-size: 500%"></i></span>
+    </div>
+
+</ng-template>
+
+
+<div *ngIf="isError">
+
+    <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect to Source!</strong></h2>
+
+</div>

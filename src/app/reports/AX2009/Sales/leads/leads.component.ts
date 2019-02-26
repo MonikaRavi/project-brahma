@@ -16,6 +16,8 @@ export class LeadsComponent implements OnInit {
 
   isDataAvailable : boolean = false;
 
+  isError : boolean = false;
+
   constructor(private soSummary : DataSosummaryService, private router: Router, private route:ActivatedRoute, private saveID : SaveSalesService) {
 
     this.soSummary.getData().subscribe(
@@ -23,6 +25,8 @@ export class LeadsComponent implements OnInit {
       (data)=>{
 
        // console.log(data);
+
+       this.isError = false;
 
         this.sales = data;
 
@@ -33,6 +37,8 @@ export class LeadsComponent implements OnInit {
       (err)=>{
 
         console.log(err);
+
+        this.isError = true;
 
       }
     )

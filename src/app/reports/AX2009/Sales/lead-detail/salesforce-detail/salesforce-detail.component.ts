@@ -10,14 +10,18 @@ import { SaveSalesService } from 'app/shared/data/AX2009/Sales/save-sales.servic
 })
 export class SalesforceDetailComponent implements OnInit {
 
-  salesforceData ;
+  salesforceData;
 
   isDataAvailable: boolean = false;
 
-  constructor(private sfData : DataSfDetailService, private salesID : SaveSalesService) {
+  isLinked: boolean = false;
 
-    
-   }
+  isError: boolean = false;
+
+  constructor(private sfData: DataSfDetailService, private salesID: SaveSalesService) {
+
+
+  }
 
   ngOnInit() {
 
@@ -25,19 +29,21 @@ export class SalesforceDetailComponent implements OnInit {
 
     this.sfData.getData(salesOrder).subscribe(
 
-      (data)=>{
+      (data) => {
 
-       // console.log(data);
-
-        if(data.length !== 0){
-
-          
-        this.salesforceData = data[0];
+        this.isError = false;
 
         // console.log(data);
- 
-         this.isDataAvailable = true;
- 
+
+        if (data.length !== 0) {
+
+
+          this.salesforceData = data[0];
+
+          // console.log(data);
+
+          this.isDataAvailable = true;
+
 
         } else {
 
@@ -45,7 +51,15 @@ export class SalesforceDetailComponent implements OnInit {
 
         }
 
-      }, (err)=> console.log(err)
+        this.isLinked = true;
+
+      }, (err) => {
+
+        this.isError = true;
+
+        console.log(err)
+
+      }
 
     );
 

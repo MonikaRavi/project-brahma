@@ -34,6 +34,10 @@ export class FreightDetailComponent implements OnInit {
 
   isOtherStatus: boolean = false;
 
+  isLinked: boolean = false;
+
+  isError: boolean = false;
+
   constructor(private freightData: DataFreightviewService, private salesID: SaveSalesService) { }
 
   ngOnInit() {
@@ -44,6 +48,8 @@ export class FreightDetailComponent implements OnInit {
     this.freightData.getData(salesOrder).subscribe(
 
       (data) => {
+
+        this.isError = false;
 
         if (data.length !== 0) {
 
@@ -57,22 +63,22 @@ export class FreightDetailComponent implements OnInit {
 
           /*** Tracking  ***/
 
-          if ( data.tracking) {
+          if (data.tracking) {
 
-            if(data.tracking.length !== 0){
+            if (data.tracking.length !== 0) {
 
               this.history = data.tracking;
 
               for (let index = 0; index < 1; index++) {
-  
+
                 this.latestDate = this.history[index].createdDate;
-  
+
                 this.latestSummary = this.history[index].summary;
-  
+
               }
 
             }
-           
+
           }
 
           /** Status **/
@@ -105,7 +111,7 @@ export class FreightDetailComponent implements OnInit {
 
           /** Charges  **/
 
-          
+
           if (data.charges && data.charges.length !== 0) {
 
             this.charges = data.charges;
@@ -124,8 +130,15 @@ export class FreightDetailComponent implements OnInit {
 
         }
 
+        this.isLinked = true;
 
-      }, (err) => console.log(err)
+      }, (err) => {
+
+        this.isError = true;
+
+        console.log(err)
+
+      }
     )
 
   }

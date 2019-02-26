@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
-import {FadeInTop} from "../../../shared/animations/fade-in-top.decorator";
+import { FadeInTop } from "../../../shared/animations/fade-in-top.decorator";
 
-import { trigger,
+import {
+  trigger,
   state,
   style,
   transition,
-  animate} from '@angular/animations'
+  animate
+} from '@angular/animations'
 import { AvlisCustomerSoService } from 'app/shared/data/AX365/avlis-customer-so.service';
 
 
@@ -18,7 +20,7 @@ FadeInTop()
   selector: 'app-avlis-sales-detail',
   templateUrl: './avlis-sales-detail.component.html',
   styleUrls: ['./avlis-sales-detail.component.css'],
-  animations:  [
+  animations: [
     trigger('changePane', [
       state('out', style({
         height: 0,
@@ -37,34 +39,40 @@ export class AvlisSalesDetailComponent implements OnInit {
 
   salesID;
 
-  isDataAvailable:boolean = false;
+  isDataAvailable: boolean = false;
 
-  constructor(private route:ActivatedRoute, private customer : AvlisCustomerSoService) {
+  isError: boolean = false;
+
+  constructor(private route: ActivatedRoute, private customer: AvlisCustomerSoService) {
 
     this.salesID = this.route.snapshot.paramMap.get('SalesID');
 
     this.customer.getData(this.salesID).subscribe(
 
-      (data)=>{
-        
+      (data) => {
+
+        this.isError = false;
+
         this.customerData = data;
         //console.log(data);
         this.isDataAvailable = true
 
-      }, 
+      },
 
-      (err)=> {
+      (err) => {
 
         console.log(err);
+
+        this.isError = true;
       }
     );
-    
-   }
+
+  }
 
   ngOnInit() {
   }
 
-  
+
   public steps = [
     {
       key: 'step1',

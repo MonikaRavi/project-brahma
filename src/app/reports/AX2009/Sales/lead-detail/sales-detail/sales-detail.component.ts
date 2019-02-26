@@ -10,40 +10,52 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SalesDetailComponent implements OnInit {
 
-  salesData ;
+  salesData;
 
-  salesName ;
+  salesName;
 
-  bookedDate ;
+  bookedDate;
 
-  status ;
+  status;
 
   salesOrder;
 
-  constructor(private salesDetail : DataSalesService, private salesID : SaveSalesService,private router: Router, private route:ActivatedRoute) { 
+  isDataAvailable = false;
 
-  this.salesOrder = this.salesID.getSalesID();
+  isError: boolean = false;
+
+  constructor(private salesDetail: DataSalesService, private salesID: SaveSalesService, private router: Router, private route: ActivatedRoute) {
+
+    this.salesOrder = this.salesID.getSalesID();
 
     this.salesDetail.getData(this.salesOrder).subscribe(
 
-      (data)=> {
+      (data) => {
+
+        this.isError = false;
 
         this.salesData = data;
-        
+
         for (let i = 0; i < 1; i++) {
-          
+
           this.salesName = data[i].SALESNAME;
 
-        this.bookedDate = data[i].CREATEDDATETIME;
+          this.bookedDate = data[i].CREATEDDATETIME;
 
-        this.status = data[i].SalesStatus;
+          this.status = data[i].SalesStatus;
         }
 
-        
-      
+        this.isDataAvailable = true;
+
       },
 
-      (err)=> console.log(err)
+      (err) => {
+
+        this.isError = true;
+
+        console.log(err)
+
+      }
 
     );
 
@@ -52,9 +64,9 @@ export class SalesDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  getInvoice(){
+  getInvoice() {
 
-    this.router.navigate(['../../invoiceDetail'], {relativeTo: this.route});
+    this.router.navigate(['../../invoiceDetail'], { relativeTo: this.route });
 
   }
 

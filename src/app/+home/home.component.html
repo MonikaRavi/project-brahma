@@ -40,13 +40,15 @@
           <br>
           <br>
 
-          <div style="color: red">
+          <!-- <div style="color: red">
 
             {{ errorMessage }}
 
-          </div>
+          </div> -->
 
-          <div *ngFor="let data of dataReturned">
+          <div *ngIf="isDataAvailable ; else loading">
+
+          <div  *ngFor="let data of dataReturned">
 
             <ul class="list-group" *ngIf="queryType == 'Details'">
 
@@ -76,7 +78,24 @@
               </li>
             </ul>
           </div>
+          
+        </div>
 
+          <ng-template #loading>
+
+            <div *ngIf="!isError && isClicked" class="center">
+              <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+                  style="color:lightslategray; font-size: 500%"></i></span>
+            </div>
+          
+          </ng-template>
+          
+          <div *ngIf="isError">
+          
+            <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect
+                to Source!</strong></h2>
+          
+          </div>
         
 
         </form>

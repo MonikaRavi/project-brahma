@@ -19,13 +19,19 @@ export class AvlisSalesLinesComponent implements OnInit {
 
   status;
 
-  constructor(private salesDetail: AvlisSalesDetailService, private salesID: SaveSalesService, private router: Router, private route:ActivatedRoute) {
+  isDataAvailable = false;
+
+  isError: boolean = false;
+
+  constructor(private salesDetail: AvlisSalesDetailService, private salesID: SaveSalesService, private router: Router, private route: ActivatedRoute) {
 
     let salesOrder = this.salesID.getSalesID();
 
     this.salesDetail.getData(salesOrder).subscribe(
 
       (data) => {
+
+        this.isError = false;
 
         this.salesData = data;
 
@@ -38,18 +44,25 @@ export class AvlisSalesLinesComponent implements OnInit {
           this.status = data[i].SALESSTATUS;
         }
 
-      //  console.log(this.salesData);
+        this.isDataAvailable = true;
+        //  console.log(this.salesData);
 
       },
 
-      (err) => console.log(err)
+      (err) => {
+
+        console.log(err);
+
+        this.isError = true;
+
+      }
 
     );
   }
 
-  getInvoice(){
+  getInvoice() {
 
-    this.router.navigate(['../../avlisInvoiceDetail'], {relativeTo: this.route});
+    this.router.navigate(['../../avlisInvoiceDetail'], { relativeTo: this.route });
 
   }
 

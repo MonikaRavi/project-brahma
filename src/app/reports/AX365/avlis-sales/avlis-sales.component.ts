@@ -14,11 +14,15 @@ export class AvlisSalesComponent implements OnInit {
 
   isDataAvailable: boolean = false;
 
+  isError : boolean = false;
+
   constructor(private soSummary: AvlisSalesListService, private router: Router, private route: ActivatedRoute, private saveID: SaveSalesService) {
 
     this.soSummary.getData().subscribe(
 
       (data) => {
+
+        this.isError = false;
 
         // console.log(data);
 
@@ -31,6 +35,8 @@ export class AvlisSalesComponent implements OnInit {
       (err) => {
 
         console.log(err);
+
+        this.isError = true;
 
       }
     )

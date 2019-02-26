@@ -57,6 +57,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   fbUserPhoto : string ;
 
+  isDataAvailable : boolean = false;
+
+  isClicked : boolean = false;
+
+  isError : boolean = false;
+
 
   constructor(private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService) {
 
@@ -219,6 +225,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.dataReturned = null;
 
+    this.isClicked = true;
+
+    this.isError = false;
+
     this.queryType = this.getDataForm.controls.queryType.value;
 
     this.inputSelected = this.getDataForm.controls.ipType.value;
@@ -235,7 +245,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(
         (data: any[]) => {
 
-
+          this.isDataAvailable = true;
           this.dataReturned = data;
 
          // console.log('data returned', this.dataReturned);
@@ -243,7 +253,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
         (error) => {
 
-          this.errorMessage = 'No Data Found for : ' + this.querySelected;
+          this.isError = true;
+          //this.errorMessage = 'No Data Found for : ' + this.querySelected;
 
         }
       )

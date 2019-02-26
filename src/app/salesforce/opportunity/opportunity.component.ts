@@ -31,6 +31,10 @@ export class OpportunityComponent implements OnInit {
 
   errorMessage: string;
 
+  isError = false;
+
+  isClicked = false;
+
   ngOnInit() {
 
     this.getDataForm = new FormGroup({
@@ -44,6 +48,10 @@ export class OpportunityComponent implements OnInit {
 
   getOpportunity() {
 
+    this.isClicked = true;
+
+    this.isError = false;
+
     this.queryData = this.getDataForm.controls.queryValue.value;
 
     this.salesforce.getData('Opportunities', this.queryData).subscribe(
@@ -52,6 +60,7 @@ export class OpportunityComponent implements OnInit {
 
         this.dataReturned = true;
 
+        
         var dataSet = [];
 
         /**** SALESFORCE ****/
@@ -96,6 +105,8 @@ export class OpportunityComponent implements OnInit {
       (error) => {
 
         this.dataReturned = false;
+
+        this.isError = true;
 
         console.log('Error ', error);
       }

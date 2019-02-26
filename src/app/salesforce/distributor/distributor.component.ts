@@ -39,6 +39,9 @@ export class DistributorComponent implements OnInit {
     'Plumbing'
   ];
 
+  isError = false;
+
+  isClicked = false;
 
   ngOnInit() {
 
@@ -62,6 +65,10 @@ export class DistributorComponent implements OnInit {
 
   getSalesforceData() {
 
+    this.isClicked = true;
+
+    this.isError = false;
+
     this.inputSelected = this.getDataForm.controls.distType.value;
 
     //console.log(this.inputSelected);
@@ -71,6 +78,7 @@ export class DistributorComponent implements OnInit {
 
       (data: any) => {
 
+        
         this.dataReturned = true;
  
         var dataSet = [];
@@ -117,6 +125,8 @@ export class DistributorComponent implements OnInit {
       (error) => {
 
         this.dataReturned = false;
+
+        this.isError = true;
 
         console.log('Error ', error);
       }

@@ -1,195 +1,217 @@
-<div *ngIf="isDataAvailable; else none ">
+<div *ngIf="isLinked ; else loading">
+  <div *ngIf="isDataAvailable; else none ">
 
-  <div class="row">
+    <div class="row">
 
-    <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i> {{'Shipment' | i18n}} {{ status | i18n}}</strong></h1>
+      <h1 class="text-center text-danger" *ngIf="isCanceled"><strong><i class="fa fa-ban fa-lg"></i>
+          {{'Shipment' | i18n}} {{ status | i18n}}</strong></h1>
 
-    <h1 class="text-center text-warning" *ngIf="isScheduled"><strong><i class="fa fa-calendar fa-lg"></i> {{'Shipment' | i18n}} {{ status | i18n}}</strong></h1>
+      <h1 class="text-center text-warning" *ngIf="isScheduled"><strong><i class="fa fa-calendar fa-lg"></i>
+          {{'Shipment' | i18n}} {{ status | i18n}}</strong></h1>
 
-    <div class="row" *ngIf="isOtherStatus">
-      <h1 class="text-center text-success">
-        <strong><i class="fa fa-check fa-lg" *ngIf="status == 'Delivered' else ontheway"></i>
-          <ng-template #ontheway><i class="fa fa-arrow-circle-o-right fa-lg"></i></ng-template>
-          {{'Shipment' | i18n}} {{ status | i18n}}
-        </strong></h1>
+      <div class="row" *ngIf="isOtherStatus">
+        <h1 class="text-center text-success">
+          <strong><i class="fa fa-check fa-lg" *ngIf="status == 'Delivered' else ontheway"></i>
+            <ng-template #ontheway><i class="fa fa-arrow-circle-o-right fa-lg"></i></ng-template>
+            {{'Shipment' | i18n}} {{ status | i18n}}
+          </strong></h1>
 
-      <!-- <h1 class="text-center">{{ latestSummary }}</h1> -->
+        <!-- <h1 class="text-center">{{ latestSummary }}</h1> -->
 
-      <h1 class="text-center"> {{ latestDate | date:'EEEE, MMMM d, y, h:mm a'}} </h1>
+        <h1 class="text-center"> {{ latestDate | date:'EEEE, MMMM d, y, h:mm a'}} </h1>
+
+      </div>
 
     </div>
 
-  </div>
+    <div class="row">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#facts">{{'Shipment' | i18n }} {{'Facts'  | i18n }}</a></li>
+        <li *ngIf="isCharge"><a data-toggle="tab" href="#charge">{{'Charges'  | i18n }}</a></li>
+        <li><a data-toggle="tab" href="#history">{{'Travel History'  | i18n }}</a></li>
 
-  <div class="row">
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#facts">{{'Shipment' | i18n }} {{'Facts'  | i18n }}</a></li>
-      <li *ngIf="isCharge"><a data-toggle="tab" href="#charge">{{'Charges'  | i18n }}</a></li>
-      <li><a data-toggle="tab" href="#history">{{'Travel History'  | i18n }}</a></li>
-    
 
-    </ul>
+      </ul>
 
-    <div class="tab-content">
-      <!-- HISTORY -->
-      <div id="history" class="tab-pane fade">
-        <br>
-
-        <div class="col-sm-12" *ngIf="history else noHistory">
-          <div class="form-group">
-
-            <table class="table table-hover" *ngIf="isOtherStatus">
-              <thead>
-                <tr>
-                  <th>{{'Summary'  | i18n }}</th>
-                  <th>{{'Date'  | i18n }}</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of history">
-                  <td>{{ item.summary | titlecase }}</td>
-                  <td> {{ item.eventDate | date:'MM/dd/yyyy' }} </td>
-
-                </tr>
-
-              </tbody>
-            </table>
-
-          </div>
-
-        </div>
-        <ng-template #noHistory >
-          <div class="col-sm-12">
-              <div class="form-group">
-                  <div>
-                    <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'No Shipment History Available'  | i18n }}</strong></span>
-          
-                  </div>
-          
-                </div>
-          </div>
-        </ng-template>
-      </div>
-
-      <!-- FACTS -->
-
-      <div id="facts" class="tab-pane fade in active">
-
-        <br>
-
-        <div class="row">
-
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div>
-                <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'Carrier'  | i18n }} : </strong>{{
-                  freight.carrier }}</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div>
-                <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'PickUp Date'  | i18n }} : </strong>{{
-                  pickupDate | date:'MM/dd/yyyy' }}</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div>
-                <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>{{'Destination'  | i18n }} : </strong>{{
-                  freight.destination }}</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div>
-                <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>{{'Total Amount' | i18n }} : </strong>{{
-                  freight.total | currency }}</span>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CHARGES -->
-
-      <div id="charge" class="tab-pane fade">
+      <div class="tab-content">
+        <!-- HISTORY -->
+        <div id="history" class="tab-pane fade">
           <br>
-  
+
+          <div class="col-sm-12" *ngIf="history else noHistory">
+            <div class="form-group">
+
+              <table class="table table-hover" *ngIf="isOtherStatus">
+                <thead>
+                  <tr>
+                    <th>{{'Summary'  | i18n }}</th>
+                    <th>{{'Date'  | i18n }}</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of history">
+                    <td>{{ item.summary | titlecase }}</td>
+                    <td> {{ item.eventDate | date:'MM/dd/yyyy' }} </td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+          <ng-template #noHistory>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <span><i
+                      class="fa fa-truck fa-lg fa-fw"></i><strong>{{'No Shipment History Available'  | i18n }}</strong></span>
+
+                </div>
+
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- FACTS -->
+
+        <div id="facts" class="tab-pane fade in active">
+
+          <br>
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'Carrier'  | i18n }} : </strong>{{
+                        freight.carrier }}</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <span><i class="fa fa-calendar fa-lg fa-fw"></i><strong>{{'PickUp Date'  | i18n }} : </strong>{{
+                        pickupDate | date:'MM/dd/yyyy' }}</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <span><i class="fa fa-map-marker fa-lg fa-fw"></i><strong>{{'Destination'  | i18n }} : </strong>{{
+                        freight.destination }}</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <span><i class="fa fa-usd fa-lg fa-fw"></i><strong>{{'Total Amount' | i18n }} : </strong>{{
+                        freight.total | currency }}</span>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CHARGES -->
+
+        <div id="charge" class="tab-pane fade">
+          <br>
+
           <div class="col-sm-12">
             <div class="form-group">
-  
+
               <table class="table table-hover" *ngIf="isCharge">
                 <thead>
                   <tr>
                     <th>{{'Name'  | i18n }}</th>
                     <th>{{'Amount'  | i18n }}</th>
-  
+
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of charges">
                     <td>{{ item.name | titlecase }}</td>
                     <td> {{ item.amount | currency }} </td>
-  
+
                   </tr>
-  
+
                 </tbody>
               </table>
-  
+
             </div>
-  
+
           </div>
         </div>
-  
 
+
+      </div>
     </div>
+
   </div>
+  <ng-template #none>
+    <div class="row">
 
-</div>
-<ng-template #none>
-  <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <div>
+            <span><i
+                class="fa fa-truck fa-lg fa-fw"></i><strong>{{'No Shipment Detail Available'  | i18n }}</strong></span>
 
-    <div class="col-sm-12">
-      <div class="form-group">
-        <div>
-          <span><i class="fa fa-truck fa-lg fa-fw"></i><strong>{{'No Shipment Detail Available'  | i18n }}</strong></span>
+          </div>
 
         </div>
 
       </div>
 
     </div>
+  </ng-template>
+</div>
 
+<ng-template #loading>
+
+  <div *ngIf="!isError" class="center">
+    <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+        style="color:lightslategray; font-size: 500%"></i></span>
   </div>
+
 </ng-template>
+
+<div *ngIf="isError">
+
+  <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect
+      to Source!</strong></h2>
+
+</div>

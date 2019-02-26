@@ -12,6 +12,7 @@ export class InvoiceDetailComponent implements OnInit {
   isDataAvailable : boolean = true;
 
   salesId;
+  
 
  constructor(private salesService : SaveSalesService){
   

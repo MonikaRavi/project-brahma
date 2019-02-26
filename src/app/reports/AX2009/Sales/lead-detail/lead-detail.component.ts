@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataCustomerSoService } from 'app/shared/data/AX2009/Sales/data-customer-so.service';
 
-import {FadeInTop} from "../../../../shared/animations/fade-in-top.decorator";
+import { FadeInTop } from "../../../../shared/animations/fade-in-top.decorator";
 
-import { trigger,
+import {
+  trigger,
   state,
   style,
   transition,
-  animate} from '@angular/animations'
+  animate
+} from '@angular/animations'
 
 
 FadeInTop()
@@ -36,37 +38,43 @@ export class LeadDetailComponent implements OnInit {
 
   salesID;
 
-  isDataAvailable:boolean = false;
+  isDataAvailable: boolean = false;
 
-  constructor(private route:ActivatedRoute, private customer : DataCustomerSoService) {
+  isError: boolean = false;
 
-    
-    
-   }
+  constructor(private route: ActivatedRoute, private customer: DataCustomerSoService) {
+
+
+
+  }
 
   ngOnInit() {
-    
+
     this.salesID = this.route.snapshot.paramMap.get('salesID');
 
     this.customer.getData(this.salesID).subscribe(
 
-      (data)=>{
+      (data) => {
 
-        if(data.length !==0) {
+        this.isError = false;
+
+        if (data.length !== 0) {
 
           this.customerData = data[0];
-          //console.log(data);
+
           this.isDataAvailable = true
-  
+
         } else {
 
           this.isDataAvailable = false;
         }
-        
-      
-      }, 
 
-      (err)=> {
+
+      },
+
+      (err) => {
+
+        this.isError = true;
 
         console.log(err);
       }

@@ -16,6 +16,8 @@ export class InvoiceHeaderComponent implements OnInit {
 
   invoiceHeader;
 
+  isError : boolean = false;
+
   constructor(private salesIdService : SaveSalesService, private invoiceHeaderService : InvoiceHeaderService ) {
 
     this.salesID = this.salesIdService.getSalesID();
@@ -23,6 +25,8 @@ export class InvoiceHeaderComponent implements OnInit {
    this.invoiceHeaderService.getData(this.salesID).subscribe(
 
     (data)=>{
+
+      this.isError = false;
 
       this.invoiceHeader = data[0];
       this.isDataAvailable = true;
@@ -32,6 +36,7 @@ export class InvoiceHeaderComponent implements OnInit {
 
       console.log(err);
       this.isDataAvailable = false;
+      this.isError = true;
 
     }
 
