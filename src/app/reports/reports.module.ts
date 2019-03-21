@@ -36,7 +36,6 @@ import { InvoiceHeaderService } from 'app/shared/data/AX2009/Invoice/invoice-hea
 import { InventoryListService } from 'app/shared/data/AX2009/Inventory/inventory-list.service';
 import { SmartadminInputModule } from 'app/shared/forms/input/smartadmin-input.module';
 import { ProductImageService } from 'app/shared/data/Cloudinary/product-image.service';
-import { CheckCloudinaryService } from 'app/shared/data/AX2009/Inventory/check-cloudinary.service';
 import { AvlisInvoiceComponent } from './AX365/avlis-invoice/avlis-invoice.component';
 import { AvlisInvoiceHeaderComponent } from './AX365/avlis-invoice/avlis-invoice-header/avlis-invoice-header.component';
 import { AvlisInvoiceDetailComponent } from './AX365/avlis-invoice/avlis-invoice-detail/avlis-invoice-detail.component';
@@ -95,7 +94,6 @@ import { I18nModule } from 'app/shared/i18n/i18n.module';
     InvoiceHeaderService,
     InventoryListService,
     ProductImageService,
-    CheckCloudinaryService,
     AvlisInvoiceHeaderService,
     AvlisInvoiceDetailService
   ]

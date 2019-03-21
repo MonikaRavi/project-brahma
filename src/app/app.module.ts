@@ -34,6 +34,17 @@ import { DataRetrievalService } from './shared/data/IoT/data-retrieval.service';
 import { DataSalesforceService } from './shared/data/Salesforce/data-salesforce.service';
 import { DataSosummaryService } from './shared/data/AX2009/Sales/data-sosummary.service';
 import { I18nService } from './shared/i18n';
+import { UserRoleService } from './shared/data/MySql/user-role.service';
+import { RoleService } from './+user-role/role.service';
+import { CustomerGuard } from './+user-role/guards/customer-guard.service';
+import { SalesGuard } from './+user-role/guards/sales-guard.service';
+import { OperationsGuard } from './+user-role/guards/operations-guard.service';
+import { InventoryGuard } from './+user-role/guards/inventory-guard.service';
+
+
+
+
+
 
 
 
@@ -48,7 +59,11 @@ const APP_PROVIDERS = [
   AuthService,
   HttpService,
   HomeService,
-  AuthGuard
+  AuthGuard,
+  CustomerGuard,
+  SalesGuard,
+  OperationsGuard,
+  InventoryGuard
 ];
 
 type StoreType = {
@@ -63,7 +78,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
-    AppComponent,
+    AppComponent
 
 
   ],
@@ -89,7 +104,10 @@ type StoreType = {
     APP_PROVIDERS,
     DataRetrievalService, DataSalesforceService, DataSosummaryService,
     ImageService,
-    I18nService
+    I18nService,
+    RoleService,
+    UserRoleService
+    
 
   ],
   schemas: [

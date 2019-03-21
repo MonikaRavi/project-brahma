@@ -50,11 +50,11 @@ export const routes: Routes = [
         path: 'home', component: HomeComponent, data: { pageTitle: 'Home' }
 
       },
-      {
-        path: 'miscellaneous',
-        loadChildren: 'app/+miscellaneous/miscellaneous.module#MiscellaneousModule',
-        data: { pageTitle: 'Miscellaneous' }
-      },
+      // {
+      //   path: 'miscellaneous',
+      //   loadChildren: 'app/+miscellaneous/miscellaneous.module#MiscellaneousModule',
+      //   data: { pageTitle: 'Miscellaneous' }
+      // },
 
       {
         path: 'salesforce',
@@ -69,8 +69,13 @@ export const routes: Routes = [
         loadChildren: 'app/reports/reports.module#ReportsModule',
         data: { pageTitle: 'Reports Dashboard' }
       },
-      
 
+      // {
+      //   path: 'e-commerce',
+      //   canActivate: [AuthGuard],
+      //   loadChildren: 'app/+e-commerce/e-commerce.module#ECommerceModule',
+      //   data: {pageTitle: 'E-commerce'}
+      // },
 
       // {
       //   path: 'tables',
@@ -150,10 +155,14 @@ export const routes: Routes = [
     ]
   },
 
-
+  {
+    path: 'miscellaneous',
+    loadChildren: 'app/+miscellaneous/miscellaneous.module#MiscellaneousModule',
+    data: { pageTitle: 'Miscellaneous' }
+  },
 
   { path: '**', redirectTo: 'miscellaneous/error404' }
 
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes,{useHash: true});
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

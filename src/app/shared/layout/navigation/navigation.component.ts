@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { RoleService } from 'app/+user-role/role.service';
 
 
 
@@ -10,10 +11,30 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() {
+  customerActive : boolean = false;
+
+  salesActive : boolean =  false;
+
+  inventoryActive : boolean = false;
+
+  operationsActive : boolean = false;
+
+  constructor(private userRole: RoleService) {
+
+    this.customerActive = this.userRole.getCustomerServiceStatus();
+
+    this.salesActive = this.userRole.getSalesStatus();
+
+    this.inventoryActive = this.userRole.getInventoryStatus();
+
+    this.operationsActive = this.userRole.getOperationStatus();
+
   }
 
   ngOnInit() {
   }
+
+  
+  
 
 }

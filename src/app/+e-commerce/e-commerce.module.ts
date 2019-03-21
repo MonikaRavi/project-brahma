@@ -11,6 +11,7 @@ import {SmartadminDatatableModule} from "../shared/ui/datatable/smartadmin-datat
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {CarouselModule} from "ngx-bootstrap";
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,6 +29,9 @@ import {CarouselModule} from "ngx-bootstrap";
     ShoppingCartComponent,
     OrdersComponent,
     ProductsViewComponent, ProductDetailsComponent
+  ],
+  providers: [
+   
   ]
 })
 export class ECommerceModule { }

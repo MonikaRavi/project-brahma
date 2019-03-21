@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FadeInTop } from "../../shared/animations/fade-in-top.decorator";
 
+
 //Form 
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms'
 
@@ -8,6 +9,8 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms'
 import 'datatables.net-bs4';
 import 'datatables.net-dt';
 import 'datatables.net';
+
+      import 'script-loader!smartadmin-plugins/datatables/datatables.min.js';
 
 import { DataSalesforceService } from 'app/shared/data/Salesforce/data-salesforce.service';
 
@@ -42,6 +45,8 @@ export class DistributorComponent implements OnInit {
   isError = false;
 
   isClicked = false;
+
+  dataTable ;
 
   ngOnInit() {
 
@@ -118,7 +123,34 @@ export class DistributorComponent implements OnInit {
 
           });
 
+          
+
         });
+
+        /** sa-datatable */
+
+        // let jsonData = [];
+
+        // console.log(data);
+
+        // data.forEach(element => {
+
+        //   let jsonElement = {
+
+        //     "account" : element.accountId,
+        //     "name" : element.Name,
+        //     "type" : element.Type,
+        //     "phone" : element.Phone,
+        //     "web": element.Website
+        //   }
+
+        //   jsonData.push(jsonElement);
+
+        // });
+
+        // this.dataTable = jsonData;
+
+        // console.log(this.dataTable);
 
 
       },

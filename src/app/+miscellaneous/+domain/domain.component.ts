@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FadeInTop} from "../../shared/animations/fade-in-top.decorator";
+import { AuthService } from 'app/+auth/auth.service';
 
 @FadeInTop()
 @Component({
@@ -8,9 +9,15 @@ import {FadeInTop} from "../../shared/animations/fade-in-top.decorator";
 })
 export class DomainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit() {
+  }
+
+  OnLogOut(){
+
+    this.authService.logout();
+
   }
 
 }

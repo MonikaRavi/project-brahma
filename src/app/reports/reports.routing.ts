@@ -8,6 +8,9 @@ import { AvlisSalesDetailComponent } from "./AX365/avlis-sales-detail/avlis-sale
 import { OnHandComponent } from "./AX2009/Inventory/on-hand/on-hand.component";
 import { InvoiceDetailComponent } from "./AX2009/Sales/invoice-detail/invoice-detail.component";
 import { AvlisInvoiceComponent } from "./AX365/avlis-invoice/avlis-invoice.component";
+import { SalesGuard } from "app/+user-role/guards/sales-guard.service";
+import { InventoryGuard } from "app/+user-role/guards/inventory-guard.service";
+
 
 
 
@@ -26,38 +29,49 @@ export const routes: Routes = [
   // },
   {
     path: 'leads',
-    component: LeadsComponent
+    component: LeadsComponent,
+    canActivate: [SalesGuard]
 
   },
   {
 
     path: 'leadDetail/:salesID',
-    component: LeadDetailComponent
+    component: LeadDetailComponent,
+    canActivate: [SalesGuard]
 
   },
   {
     path: 'avlisSales',
-    component: AvlisSalesComponent
+    component: AvlisSalesComponent,
+    canActivate: [SalesGuard]
+
   },
   {
     path: 'avlisSalesdetail/:SalesID',
-    component: AvlisSalesDetailComponent
+    component: AvlisSalesDetailComponent,
+    canActivate: [SalesGuard]
+
   },
 
   {
     path: 'OnHand',
-    component: OnHandComponent
+    component: OnHandComponent,
+    canActivate: [InventoryGuard]
   },
 
   {
 
     path: 'invoiceDetail',
-    component: InvoiceDetailComponent
+    component: InvoiceDetailComponent,
+    canActivate: [SalesGuard]
+
 
   },
   {
     path: 'avlisInvoiceDetail',
-    component: AvlisInvoiceComponent
+    component: AvlisInvoiceComponent,
+    canActivate: [SalesGuard]
+
   }
 ];
 

@@ -15,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpService } from '../shared/smartadmin.http.service';
 import { Router } from '@angular/router';
 import { ImageService } from './image.service';
+import { RoleService } from 'app/+user-role/role.service';
 
 
 @Injectable()
@@ -36,7 +37,7 @@ export class HomeService {
   constructor(
 
     private httpService: HttpService, private zone: NgZone,
-    private router: Router, private imageService: ImageService) {
+    private router: Router, private imageService: ImageService, private userRole: RoleService) {
   }
 
 
@@ -93,20 +94,37 @@ export class HomeService {
 
         if (email.search(domain) == -1) {
 
-          // console.log('Not Haws Login');
+          console.log('Not Haws Login');
 
-          this.router.navigate(['/home/miscellaneous/domain']);
+          this.router.navigate(['/miscellaneous/domain']);
 
         } else {
 
-          // console.log('Haws Login');
+          this.userRole.getUserRole(email).then(
 
-          this.zone.run(() => {
+            (data) => {
 
-            this.setLogIn(true);
-            this.setMicrosoftLogged(true);
-            this.router.navigate(['/home/home']);
-          });
+              // console.log('Haws Login');
+              // console.log(data);
+
+              this.zone.run(() => {
+
+                this.setLogIn(true);
+                this.setMicrosoftLogged(true);
+                this.router.navigate(['/home/home']);
+              });
+
+            },
+
+            (err) => {
+
+              console.log(err);
+
+              this.router.navigate(['/miscellaneous/domain']);
+            }
+
+          )
+
 
         }
       }
@@ -186,7 +204,7 @@ export class HomeService {
 
     }
 
-   
+
 
   }
 
@@ -210,32 +228,43 @@ export class HomeService {
 
       console.log('Not Haws Login');
 
-      this.router.navigate(['/home/miscellaneous/domain']);
+      this.router.navigate(['/miscellaneous/domain']);
 
     } else {
 
       //console.log('Haws Login');
 
-      this.zone.run(() => {
 
-        this.fbEmail = user.email;
-        this.fbName = this.fbEmail.match(/^([^@]*)@/)[1];
-        if (!user.photoURL) {
+      this.userRole.getUserRole(email).then(
 
-          this.fbPhotoUrl = 'https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png'
+        (data) => {
+          this.zone.run(() => {
 
-        } else {
+            this.fbEmail = user.email;
+            this.fbName = this.fbEmail.match(/^([^@]*)@/)[1];
+            if (!user.photoURL) {
 
-          this.fbPhotoUrl = user.photoURL;
+              this.fbPhotoUrl = 'https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png'
 
-        }
+            } else {
+
+              this.fbPhotoUrl = user.photoURL;
+
+            }
 
 
-        //console.log(this.fbName,this.fbEmail,this.fbPhotoUrl );
-        this.setLogIn(true);
-        this.setMicrosoftLogged(false);
-        this.router.navigate(['/home/home']);
-      });
+            //console.log(this.fbName,this.fbEmail,this.fbPhotoUrl );
+            this.setLogIn(true);
+            this.setMicrosoftLogged(false);
+            this.router.navigate(['/home/home']);
+          });
+        }, (err) => {
+          console.log(err);
+          this.router.navigate(['/miscellaneous/domain']);
+
+        })
+
+
 
     }
 

@@ -21,6 +21,8 @@
               <sa-datatable
                 [options]="{
                 colReorder: true,
+                buttons : 'selectCells',
+                clickEvent : 'true',
               ajax: 'assets/api/tables/datatables.standard.json',
               columns: [ {data: 'id'}, {data: 'name'}, {data: 'phone'}, {data: 'company'}, {data: 'zip'}, {data: 'city'}, {data: 'date'} ] }"
                 paginationLength="true" tableClass="table table-striped table-bordered table-hover"
