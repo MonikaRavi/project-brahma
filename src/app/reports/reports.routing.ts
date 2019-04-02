@@ -1,6 +1,5 @@
-import { ModuleWithProviders } from "@angular/core"
+
 import { Routes, RouterModule } from '@angular/router';
-import { reportDashboard } from "app/reports/dashboard/dashboard.component";
 import { LeadsComponent } from "./AX2009/Sales/leads/leads.component";
 import { LeadDetailComponent } from "./AX2009/Sales/lead-detail/lead-detail.component";
 import { AvlisSalesComponent } from "./AX365/avlis-sales/avlis-sales.component";
@@ -10,6 +9,7 @@ import { InvoiceDetailComponent } from "./AX2009/Sales/invoice-detail/invoice-de
 import { AvlisInvoiceComponent } from "./AX365/avlis-invoice/avlis-invoice.component";
 import { SalesGuard } from "app/+user-role/guards/sales-guard.service";
 import { InventoryGuard } from "app/+user-role/guards/inventory-guard.service";
+import { UploadImageComponent } from "./Cloudinary/upload-image/upload-image.component";
 
 
 
@@ -72,7 +72,12 @@ export const routes: Routes = [
     component: AvlisInvoiceComponent,
     canActivate: [SalesGuard]
 
-  }
+  },
+  {
+    path: 'cloudinary',
+    loadChildren: 'app/reports/Cloudinary/cloudinary.module#CloudinaryModule',
+    data: { pageTitle: 'Reports Dashboard' }
+  },
 ];
 
 export const routing = RouterModule.forChild(routes);

@@ -1,5 +1,7 @@
-import {Directive, Input, ElementRef} from '@angular/core';
+import { Directive, Input, ElementRef } from '@angular/core';
+import { TouchSequence } from 'selenium-webdriver';
 
+declare var $: any;
 
 declare var Dropzone: any;
 
@@ -8,13 +10,15 @@ declare var Dropzone: any;
 })
 export class DropzoneDirective {
 
-  @Input() saDropzone:any;
+  @Input() saDropzone: any;
 
-  private dropzone:any;
+  private dropzone: any;
 
-  constructor(private el:ElementRef) {
-    System.import('dropzone').then((Dropzone)=> {
+  constructor(private el: ElementRef) {
+    System.import('dropzone').then((Dropzone) => {
       this.initDropzone(Dropzone)
+      console.log(Dropzone)
+
     })
   }
 
@@ -22,7 +26,13 @@ export class DropzoneDirective {
 
   initDropzone(Dropzone) {
     Dropzone.autoDiscover = false;
+    // Create the mock file:
+
+    console.log('native element', this.el.nativeElement.form);
+    console.log('sa dropzone', this.saDropzone)
     this.dropzone = new Dropzone(this.el.nativeElement, this.saDropzone || {});
+  
+  
   }
 
 }

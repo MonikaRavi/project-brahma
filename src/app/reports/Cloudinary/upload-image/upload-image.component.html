@@ -1,0 +1,142 @@
+<br>
+
+<div id="content" data-sparkline-container="" data-easy-pie-chart-container="" class="animated fadeInDown move-right"
+  *ngIf="isListAvailable ; else loading">
+
+  <!-- HEADER -->
+
+  <div class="row" style="right : 1%">
+    <!-- <sa-big-breadcrumbs [items]="['E-Commerce', 'Product Details']" icon="shopping-cart" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs> -->
+
+    <h1> <span><i><img src="assets/img/icons/cloudinary.png" alt="" style="max-width:3%"></i></span>
+      <strong>{{'Upload Product Image' | i18n }}</strong>
+    </h1>
+
+  </div>
+
+  <!-- PRODUCT SELECTION -->
+
+  <div class="row col-xs-8 col-sm-7 col-md-7 col-lg-8 border" style="right: 1%">
+
+    <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+      <div>
+
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <form class="">
+
+            <fieldset>
+              <legend>
+                {{'Select Product'  | i18n }}
+              </legend>
+
+              <div class="form-group">
+                <select select2 style="width:100%" class="select2" id="symbolId" (click)="onChange($event)">
+                  <optgroup label="Products">
+                    <option *ngFor="let item of inventList" [value]="item.ITEMID">{{ item.ITEMID}} -
+                      {{item.ITEMNAME}}</option>
+                  </optgroup>
+
+                </select>
+
+              </div>
+
+            </fieldset>
+
+          </form>
+
+          &nbsp;
+
+
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- IMAGE INPUT SECTION -->
+
+  <div class="row col-xs-8 col-sm-7 col-md-7 col-lg-8">
+
+    <!-- IMAGE PREVIEW SECTION -->
+
+    <div class="row imagePreview" (click)="Image.click()">
+      <br>
+      <div class="container" *ngIf="imageArray!== []">
+
+        <div *ngFor="let image of imageArray ; index as i" class="inputContainer">
+
+          <div class="row centerImg">
+            <img style="width: 75px ; height: 75px" [src]="image">
+          </div>
+          <div class="row centerImg">
+            <a (click)="removeImage(i)" class="font-weight-bold">Remove</a>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <!-- IMAGE FILE INPUT -->
+
+    <input type="file" #Image accept="image/*" style="display: none" (change)="handleImageUpload($event.target.files)"
+      multiple [disabled]="disableInput">
+
+
+  </div>
+
+  <!-- <div class="row col-xs-8 col-sm-7 col-md-7 col-lg-8">
+
+    <sa-widgets-grid>
+     
+
+      <div>
+
+          
+       
+        <div class="widget-body" >
+
+          <form class="dropzone" id="dropZoneDiv" [saDropzone]="{
+        autoProcessQueue: false,
+        url: 'http://respondto.it'}">
+            <div class="dz-default dz-message dz-progress"><span><span class="text-center"><span
+                    class="font-lg visible-xs-block visible-sm-block visible-lg-block"><span class="font-lg"><i
+                        class="fa fa-caret-right text-danger"></i> Drop files <span class="font-xs">to
+                        upload</span></span><span>&nbsp;&nbsp;<h4 class="display-inline"> (Or Click)</h4>
+                    </span></span></span></span></div>
+          </form>
+
+        </div>
+       
+
+      </div>
+      
+    </sa-widgets-grid>
+
+    &nbsp;
+
+  </div> -->
+
+  <!-- EVENT HANDLERS - RESET and UPLOAD-->
+
+  <div class="row col-xs-8 col-sm-7 col-md-7 col-lg-8 rowSpace">
+
+    <div>
+      <button class="btn btn-primary" (click)="uploadImage()"
+        [disabled]="!isImageAvailable">{{'Upload Product Image'  | i18n }}</button> &nbsp;
+
+      <button class="btn btn-primary" (click)="resetUpload()">{{'Reset'  | i18n }}</button>
+    </div>
+
+
+  </div>
+
+</div>

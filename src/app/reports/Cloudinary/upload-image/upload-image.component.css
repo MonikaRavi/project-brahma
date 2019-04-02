@@ -1,0 +1,46 @@
+.move-left {
+  left: -10%
+}
+
+.move-right {
+  right: -5%
+}
+
+.dz-progress {
+  /* progress bar covers file name */
+  display: none !important;
+}
+
+.imagePreview {
+  height: 250px;
+  width: 100%;
+  /* background : linear-gradient(blue, green); */
+  /* On "top" */
+  background: linear-gradient(45deg, #e2f0ee 25%, #c5dbe8 25%, #c5dbe8 50%, #e2f0ee 50%, #e2f0ee 75%, #c5dbe8 75%, #c5dbe8 100%);
+  background-size: 28.28px 28.28px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  flex-flow: row wrap;
+  align-items: left;
+  /* justify-content: space-between; */
+}
+
+.inputContainer{
+  padding-left: 2%;
+  margin-right: 2%;
+}
+
+.centerImg{
+
+  text-align: center
+}
+
+.rowSpace {
+
+  margin-top: 1%
+
+}

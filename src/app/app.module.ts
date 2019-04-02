@@ -52,6 +52,8 @@ import { InventoryGuard } from './+user-role/guards/inventory-guard.service';
 
 
 
+
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
