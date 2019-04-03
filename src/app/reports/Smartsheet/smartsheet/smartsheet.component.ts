@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SmartsheetService } from 'app/shared/data/smartsheet/smartsheet.service';
 
 import { Chart } from 'angular-highcharts';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class SmartsheetComponent implements OnInit {
 
   dashboardTable = [];
 
+  updatedOn ;
+
   Period = ['Current Week', 'Week+1', 'Week+2', 'Week+3', 'Week+4', 'Week+5', 'Week+6', 'Week+7', 'Week+8', 'Week+9', 'Week+10', 'Week+11', 'Week+12']
   chart: Chart;
 
@@ -38,6 +41,8 @@ export class SmartsheetComponent implements OnInit {
       (data) => {
 
         this.headerArray.push("Primary");
+
+        this.updatedOn = data[0].lastUpdated;
 
         for (let index = 1; index < data.length; index++) {
 

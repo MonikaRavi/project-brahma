@@ -5,12 +5,23 @@
   <div id="content">
 
     <div class="row">
-        <h1> <span><i><img src="assets/img/icons/smartsheet.png" alt="" style="max-width:3%"></i></span>
-          <strong>{{'Resource Tracking Dashboard' | i18n }}</strong>
-        </h1>
+      <h1> <span><i><img src="assets/img/icons/smartsheet.png" alt="" style="max-width:3%"></i></span>
+        <strong>{{'Resource Tracking Dashboard' | i18n }}</strong>
+      </h1>
     </div>
     <!-- widget grid -->
     <sa-widgets-grid *ngIf="isDataAvailable">
+
+      <div class="row col-xs-10 col-sm-8 col-md-10 col-lg-10" saSparklineContainer>
+
+          <ul id="sparks" class="">
+              <li class="sparks-info">
+                <h5> Updated On <span class="txt-color-blue">{{updatedOn | date:'MM/dd/yyyy' }}</span></h5>
+              </li>
+          </ul>
+
+      </div>
+
 
       <!-- row -->
 
@@ -18,50 +29,50 @@
 
       <div class="row col-xs-10 col-sm-8 col-md-10 col-lg-10">
 
-          <table class="table table-hover table-bordered">
-            <caption>Resource Tracking Tool</caption>
-  
-            <thead>
-              <tr>
-                <th *ngFor="let columnHeading of headerArray">
-                  {{columnHeading}}
-                </th>
-              </tr>
-            </thead>
-            <tr *ngFor="let resource of dashboardTable">
-                <td>{{resource.resource}}</td>
-                <td>{{resource.current}}</td>
-                <td>{{resource.week__1}}</td>
-                <td>{{resource.week__2}}</td>
-                <td>{{resource.week__3}}</td>
-                <td>{{resource.week__4}}</td>
-                <td>{{resource.week__5}}</td>
-                <td>{{resource.week__6}}</td>
-                <td>{{resource.week__7}}</td>
-                <td>{{resource.week__8}}</td>
-                <td>{{resource.week__9}}</td>
-                <td>{{resource.week__10}}</td>
-                <td>{{resource.week__11}}</td>
-                <td>{{resource.week__12}}</td>
-              </tr>
-            <tbody>
-  
-            </tbody>
-  
-          </table>
-  
-  
-        </div>
+        <table class="table table-hover table-bordered">
+          <caption>Resource Tracking Tool</caption>
 
-        <!--Chart -->
+          <thead>
+            <tr>
+              <th *ngFor="let columnHeading of headerArray">
+                {{columnHeading}}
+              </th>
+            </tr>
+          </thead>
+          <tr *ngFor="let resource of dashboardTable">
+            <td>{{resource.resource}}</td>
+            <td>{{resource.current}}</td>
+            <td>{{resource.week__1}}</td>
+            <td>{{resource.week__2}}</td>
+            <td>{{resource.week__3}}</td>
+            <td>{{resource.week__4}}</td>
+            <td>{{resource.week__5}}</td>
+            <td>{{resource.week__6}}</td>
+            <td>{{resource.week__7}}</td>
+            <td>{{resource.week__8}}</td>
+            <td>{{resource.week__9}}</td>
+            <td>{{resource.week__10}}</td>
+            <td>{{resource.week__11}}</td>
+            <td>{{resource.week__12}}</td>
+          </tr>
+          <tbody>
 
-      <div class="row col-xs-10 col-sm-8 col-md-10 col-lg-10" >
+          </tbody>
+
+        </table>
+
+
+      </div>
+
+      <!--Chart -->
+
+      <div class="row col-xs-10 col-sm-8 col-md-10 col-lg-10">
 
         <div [chart]="chart"></div>
 
       </div>
 
-    
+
 
       <!-- end row -->
 

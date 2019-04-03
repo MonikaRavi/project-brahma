@@ -10,15 +10,18 @@ export class ProductImageUploadService {
 
   uploadImage(productID, imageArray){
 
-    const formData : FormData = new FormData();
+    
 
     const uploadData = {
       "productId": productID,
       "images" : imageArray
     }
 
-    console.log(uploadData);
-    return this.http.post('http://localhost:3000/v1/Cloudinary/image',{picBase64 :uploadData},{
+   // console.log(uploadData);
+
+   
+
+    return this.http.post('http://localhost:3000/v1/Cloudinary/images',{picBase64 :uploadData},{
       headers: new HttpHeaders().set('x-auth',config.hawsToken)
     }).pipe(
       map(
@@ -28,7 +31,7 @@ export class ProductImageUploadService {
 
             data = response;
 
-          //console.log(data);
+         // console.log(data);
             
      return data;
           

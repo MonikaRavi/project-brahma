@@ -154,6 +154,8 @@ export class UploadImageComponent implements OnInit {
 
     this.isImageAvailable = false;
 
+    this.disableInput = false;
+
   }
 
   removeImage(index) {
