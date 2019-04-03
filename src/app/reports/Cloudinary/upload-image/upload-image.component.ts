@@ -122,7 +122,7 @@ export class UploadImageComponent implements OnInit {
 
   handleImageUpload(file: FileList) {
 
-    console.log('file upload');
+   // console.log('file upload');
 
     this.isImageAvailable = true;
 
@@ -144,7 +144,7 @@ export class UploadImageComponent implements OnInit {
 
     }
 
-      console.log(this.imageArray);
+    //  console.log(this.imageArray);
 
   }
 

@@ -7,9 +7,13 @@ import { AvlisSalesDetailComponent } from "./AX365/avlis-sales-detail/avlis-sale
 import { OnHandComponent } from "./AX2009/Inventory/on-hand/on-hand.component";
 import { InvoiceDetailComponent } from "./AX2009/Sales/invoice-detail/invoice-detail.component";
 import { AvlisInvoiceComponent } from "./AX365/avlis-invoice/avlis-invoice.component";
+
 import { SalesGuard } from "app/+user-role/guards/sales-guard.service";
 import { InventoryGuard } from "app/+user-role/guards/inventory-guard.service";
-import { UploadImageComponent } from "./Cloudinary/upload-image/upload-image.component";
+import { MarketingGuard } from 'app/+user-role/guards/marketing-guard.service';
+import { ProjectGuard } from 'app/+user-role/guards/project-guard.service';
+
+
 
 
 
@@ -76,8 +80,16 @@ export const routes: Routes = [
   {
     path: 'cloudinary',
     loadChildren: 'app/reports/Cloudinary/cloudinary.module#CloudinaryModule',
-    data: { pageTitle: 'Reports Dashboard' }
+    data: { pageTitle: 'Reports Dashboard' },
+    canActivate : [MarketingGuard]
   },
+  {
+    path: 'smartsheet',
+    loadChildren: 'app/reports/Smartsheet/smartsheet.module#SmartsheetModule',
+    data: { pageTitle: 'Smartsheet Dashboard' },
+    canActivate : [ProjectGuard]
+  },
+  
 ];
 
 export const routing = RouterModule.forChild(routes);

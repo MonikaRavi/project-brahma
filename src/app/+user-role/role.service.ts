@@ -15,6 +15,10 @@ export class RoleService {
 
   isInventory: boolean = false;
 
+  isMarketing: boolean = false;
+
+  isProjectManagement: boolean = false;
+
 
   constructor(private userRole: UserRoleService) { }
 
@@ -78,6 +82,21 @@ export class RoleService {
 
               }
 
+              //Marketing
+
+              if (userRoleArray.indexOf("Marketing") !== -1) {
+
+                this.isMarketing = true;
+
+              }
+
+              //Project Management
+
+              if (userRoleArray.indexOf("PM") !== -1) {
+
+                this.isProjectManagement = true;
+
+              }
 
 
             }
@@ -137,4 +156,17 @@ export class RoleService {
     return this.isInventory || this.isAdmin;
 
   }
+
+  getMarketingStatus() {
+
+    return this.isMarketing || this.isAdmin;
+
+  }
+
+  getProjManagementStatus() {
+
+    return this.isProjectManagement || this.isAdmin;
+
+  }
+
 }

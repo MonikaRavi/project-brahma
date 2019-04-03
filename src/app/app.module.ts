@@ -40,6 +40,8 @@ import { CustomerGuard } from './+user-role/guards/customer-guard.service';
 import { SalesGuard } from './+user-role/guards/sales-guard.service';
 import { OperationsGuard } from './+user-role/guards/operations-guard.service';
 import { InventoryGuard } from './+user-role/guards/inventory-guard.service';
+import { MarketingGuard } from './+user-role/guards/marketing-guard.service';
+import { ProjectGuard } from './+user-role/guards/project-guard.service';
 
 
 
@@ -65,7 +67,9 @@ const APP_PROVIDERS = [
   CustomerGuard,
   SalesGuard,
   OperationsGuard,
-  InventoryGuard
+  InventoryGuard,
+  MarketingGuard,
+  ProjectGuard
 ];
 
 type StoreType = {

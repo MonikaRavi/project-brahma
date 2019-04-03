@@ -102,7 +102,9 @@
     "to-markdown": "3.1.0",
     "ts-helpers": "1.1.2",
     "web-animations-js": "2.3.1",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "@types/highcharts": "5.0.12",
+    "angular-highcharts": "4.0.7"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.8",

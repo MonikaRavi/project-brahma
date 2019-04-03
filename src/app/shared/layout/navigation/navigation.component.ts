@@ -19,6 +19,10 @@ export class NavigationComponent implements OnInit {
 
   operationsActive : boolean = false;
 
+  projManagementActive : boolean = false;
+
+  marketingActive : boolean = false;
+
   constructor(private userRole: RoleService) {
 
     this.customerActive = this.userRole.getCustomerServiceStatus();
@@ -28,6 +32,10 @@ export class NavigationComponent implements OnInit {
     this.inventoryActive = this.userRole.getInventoryStatus();
 
     this.operationsActive = this.userRole.getOperationStatus();
+
+    this.projManagementActive = this.userRole.getProjManagementStatus();
+
+    this.marketingActive = this.userRole.getMarketingStatus();
 
   }
 
