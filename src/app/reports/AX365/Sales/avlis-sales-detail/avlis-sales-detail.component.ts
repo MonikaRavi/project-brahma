@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { FadeInTop } from 'app/shared/animations/fade-in-top.decorator';
 
-import { FadeInTop } from "../../../shared/animations/fade-in-top.decorator";
 
 import {
   trigger,

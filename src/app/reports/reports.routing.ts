@@ -1,82 +1,26 @@
 
 import { Routes, RouterModule } from '@angular/router';
-import { LeadsComponent } from "./AX2009/Sales/leads/leads.component";
-import { LeadDetailComponent } from "./AX2009/Sales/lead-detail/lead-detail.component";
-import { AvlisSalesComponent } from "./AX365/avlis-sales/avlis-sales.component";
-import { AvlisSalesDetailComponent } from "./AX365/avlis-sales-detail/avlis-sales-detail.component";
-import { OnHandComponent } from "./AX2009/Inventory/on-hand/on-hand.component";
-import { InvoiceDetailComponent } from "./AX2009/Sales/invoice-detail/invoice-detail.component";
-import { AvlisInvoiceComponent } from "./AX365/avlis-invoice/avlis-invoice.component";
 
-import { SalesGuard } from "app/+user-role/guards/sales-guard.service";
-import { InventoryGuard } from "app/+user-role/guards/inventory-guard.service";
 import { MarketingGuard } from 'app/+user-role/guards/marketing-guard.service';
 import { ProjectGuard } from 'app/+user-role/guards/project-guard.service';
 
 
-
-
-
-
-
-
 export const routes: Routes = [
 
-
-  // {
-  //   path: '', redirectTo: 'reportDashboard', pathMatch: 'full'
-  // },
-  // {
-  //   path: 'reportDashboard',
-  //   component: reportDashboard
-
-  // },
   {
-    path: 'leads',
-    component: LeadsComponent,
-    canActivate: [SalesGuard]
-
-  },
-  {
-
-    path: 'leadDetail/:salesID',
-    component: LeadDetailComponent,
-    canActivate: [SalesGuard]
-
-  },
-  {
-    path: 'avlisSales',
-    component: AvlisSalesComponent,
-    canActivate: [SalesGuard]
-
-  },
-  {
-    path: 'avlisSalesdetail/:SalesID',
-    component: AvlisSalesDetailComponent,
-    canActivate: [SalesGuard]
+    path: 'americas',
+    loadChildren: 'app/reports/AX2009/americas.module#AmericasModule',
+    data: { pageTitle: 'North America - Reports Dashboard' }
 
   },
 
   {
-    path: 'OnHand',
-    component: OnHandComponent,
-    canActivate: [InventoryGuard]
-  },
-
-  {
-
-    path: 'invoiceDetail',
-    component: InvoiceDetailComponent,
-    canActivate: [SalesGuard]
-
+    path: 'avlis',
+    loadChildren: 'app/reports/AX365/avlis.module#AvlisModule',
+    data: { pageTitle: 'Brazil - Reports Dashboard' }
 
   },
-  {
-    path: 'avlisInvoiceDetail',
-    component: AvlisInvoiceComponent,
-    canActivate: [SalesGuard]
-
-  },
+  
   {
     path: 'cloudinary',
     loadChildren: 'app/reports/Cloudinary/cloudinary.module#CloudinaryModule',

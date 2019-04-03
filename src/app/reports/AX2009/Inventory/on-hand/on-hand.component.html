@@ -55,163 +55,179 @@
   </div>
 
   <!-- row -->
-  <sa-widgets-grid *ngIf="isDataAvailable ; else noData">
+  <sa-widgets-grid *ngIf="isOnHandPulled ; else loadingOnHand">
 
     <!-- row -->
 
+    <div *ngIf="isDataAvailable ; else noData">
+      
     <div class="row" *ngFor="let product of products">
 
-      <div class="col-sm-12 col-md-12 col-lg-12">
-        <!-- product -->
-        <div class="product-content product-wrap clearfix product-deatil">
-          <div class="row">
-            <!-- Image -->
-            <div class="col-md-5 col-sm-12 col-xs-12 ">
-              <div class="product-image">
-
-
-                <carousel [interval]="3000">
-                  <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
-                    <img class="img-responsive" [src]="slide.src" style="margin:auto;">
-                  </slide>
-                </carousel>
-
-
-              </div>
-            </div>
-            <!-- Product Summary -->
-            <div class="col-md-7 col-sm-12 col-xs-12">
-
-              <h2 class="name">
-                {{product.ITEMID}}
-                <small>{{ product.ITEMNAME }}</small>
-
-
-              </h2>
-              <hr>
-              <h3 class="price-container">
-                {{'Recent Selling Price'  | i18n }} : {{product.RecentSellingPrice | currency }}
-
-              </h3>
-
-              <hr>
-            </div>
-            <!-- Tabs -->
-            <div class="col-md-7 col-sm-12 col-xs-12">
-              <div class="description description-tabs">
-                <ul id="myTab" class="nav nav-pills">
-                  <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">{{'Product Description'  | i18n }} </a></li>
-                  <li class=""><a href="#specifications" data-toggle="tab">{{'Specifications'  | i18n }}</a></li>
-                  <li class=""><a href="#reviews" data-toggle="tab">{{'Revenue'  | i18n }}</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                  <div class="tab-pane fade active in" id="more-information">
-
-                    <br>
-                    <p> <strong>{{ product.ITEMID }} </strong> </p> <br>
-                    <p> <strong>{{'Item Group'  | i18n }} : </strong> {{ product.ItemGroup }}</p> <br>
-                    <p> <strong>{{'Configuration'  | i18n }} : </strong> {{ product.CONFIGID }}</p> <br>
-                    <p> <strong>{{'On Hand'  | i18n }} : </strong> {{ product["Total Available"] }} </p> <br>
-                    <p> <strong>{{'Manufacturing Category'  | i18n }} : </strong>{{ product.MFGCATEGORY }}</p>
-
-                  </div>
-                  <div class="tab-pane fade" id="specifications">
-                    <br>
-                    <dl class="">
-                      <dt>{{'Height'  | i18n }}</dt>
-                      <dd>{{ product.HEIGHT }} inches</dd>
-                      <br>
-
-                      <dt>{{'Width'  | i18n }}</dt>
-                      <dd>{{ product.WIDTH }} inches</dd>
-                      <br>
-
-                      <dt>{{'Depth'  | i18n }}</dt>
-                      <dd>{{ product.DEPTH }} inches</dd>
-                      <br>
-
-                      <dt>{{'Net Weight'  | i18n }}</dt>
-                      <dd>{{ product.NETWEIGHT }} pounds</dd>
-
-                    </dl>
-                  </div>
-                  <div class="tab-pane fade" id="reviews">
-
-                    <br>
-                    <dl class="">
-                      <dt><strong> {{'Total Quantity Sold'  | i18n }} - 2019 : </strong></dt>
-                      <dd>{{ product.TOTALQTY }}</dd>
-                      <br>
-
-                      <dt><strong>{{'Total Revenue'  | i18n }} - 2019 : </strong></dt>
-                      <dd>{{product.REVENUE | currency }}</dd>
-                      <br>
-
-
-                    </dl>
-
-                  </div>
-
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <!-- product -->
+          <div class="product-content product-wrap clearfix product-deatil">
+            <div class="row">
+              <!-- Image -->
+              <div class="col-md-5 col-sm-12 col-xs-12 ">
+                <div class="product-image">
+  
+  
+                  <carousel [interval]="3000">
+                    <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
+                      <img class="img-responsive" [src]="slide.src" style="margin:auto;">
+                    </slide>
+                  </carousel>
+  
+  
                 </div>
-
               </div>
-              <hr>
-
+              <!-- Product Summary -->
+              <div class="col-md-7 col-sm-12 col-xs-12">
+  
+                <h2 class="name">
+                  {{product.ITEMID}}
+                  <small>{{ product.ITEMNAME }}</small>
+  
+  
+                </h2>
+                <hr>
+                <h3 class="price-container">
+                  {{'Recent Selling Price'  | i18n }} : {{product.RecentSellingPrice | currency }}
+  
+                </h3>
+  
+                <hr>
+              </div>
+              <!-- Tabs -->
+              <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="description description-tabs">
+                  <ul id="myTab" class="nav nav-pills">
+                    <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">{{'Product Description'  | i18n }} </a></li>
+                    <li class=""><a href="#specifications" data-toggle="tab">{{'Specifications'  | i18n }}</a></li>
+                    <li class=""><a href="#reviews" data-toggle="tab">{{'Revenue'  | i18n }}</a></li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="more-information">
+  
+                      <br>
+                      <p> <strong>{{ product.ITEMID }} </strong> </p> <br>
+                      <p> <strong>{{'Item Group'  | i18n }} : </strong> {{ product.ItemGroup }}</p> <br>
+                      <p> <strong>{{'Configuration'  | i18n }} : </strong> {{ product.CONFIGID }}</p> <br>
+                      <p> <strong>{{'On Hand'  | i18n }} : </strong> {{ product["Total Available"] }} </p> <br>
+                      <p> <strong>{{'Manufacturing Category'  | i18n }} : </strong>{{ product.MFGCATEGORY }}</p>
+  
+                    </div>
+                    <div class="tab-pane fade" id="specifications">
+                      <br>
+                      <dl class="">
+                        <dt>{{'Height'  | i18n }}</dt>
+                        <dd>{{ product.HEIGHT }} inches</dd>
+                        <br>
+  
+                        <dt>{{'Width'  | i18n }}</dt>
+                        <dd>{{ product.WIDTH }} inches</dd>
+                        <br>
+  
+                        <dt>{{'Depth'  | i18n }}</dt>
+                        <dd>{{ product.DEPTH }} inches</dd>
+                        <br>
+  
+                        <dt>{{'Net Weight'  | i18n }}</dt>
+                        <dd>{{ product.NETWEIGHT }} pounds</dd>
+  
+                      </dl>
+                    </div>
+                    <div class="tab-pane fade" id="reviews">
+  
+                      <br>
+                      <dl class="">
+                        <dt><strong> {{'Total Quantity Sold'  | i18n }} - 2019 : </strong></dt>
+                        <dd>{{ product.TOTALQTY }}</dd>
+                        <br>
+  
+                        <dt><strong>{{'Total Revenue'  | i18n }} - 2019 : </strong></dt>
+                        <dd>{{product.REVENUE | currency }}</dd>
+                        <br>
+  
+  
+                      </dl>
+  
+                    </div>
+  
+                  </div>
+  
+                </div>
+                <hr>
+  
+              </div>
             </div>
           </div>
+          <!-- end product -->
         </div>
-        <!-- end product -->
+  
+  
       </div>
 
-
     </div>
+
+
+    <ng-template #noData>
+
+        <sa-widgets-grid *ngIf="isInitial">
+    
+          <!-- row -->
+    
+    
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <!-- product -->
+            <div class="product-content product-wrap clearfix product-deatil">
+              <div class="row">
+                <div class="col-md-5 col-sm-12 col-xs-12 ">
+                  <div class="product-image">
+    
+    
+                    <carousel [interval]="3000">
+                      <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
+                        <img class="img-responsive" [src]="slide.src" style="margin:auto;">
+                      </slide>
+                    </carousel>
+    
+    
+                  </div>
+                </div>
+                <div class="col-md-7 col-sm-12 col-xs-12">
+                  <h2 class="name">
+                    <strong>{{productID}}</strong>
+                    <small>{{ productName }}</small>
+                  </h2>
+                </div>
+                <div class="col-md-7 col-sm-12 col-xs-12">
+                  <h2>
+                    {{'No Data For' | i18n  }} <strong>STD</strong> {{'Configuration'  | i18n }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sa-widgets-grid>
+    
+      </ng-template>
 
     <!-- end row -->
 
   </sa-widgets-grid>
   <!-- end row -->
 
-  <ng-template #noData>
-
-    <sa-widgets-grid *ngIf="isInitial">
-
-      <!-- row -->
 
 
-      <div class="col-sm-12 col-md-12 col-lg-12">
-        <!-- product -->
-        <div class="product-content product-wrap clearfix product-deatil">
-          <div class="row">
-            <div class="col-md-5 col-sm-12 col-xs-12 ">
-              <div class="product-image">
+  <ng-template #loadingOnHand>
 
-
-                <carousel [interval]="3000">
-                  <slide *ngFor="let slide of productImage.slides" [active]="slide.active">
-                    <img class="img-responsive" [src]="slide.src" style="margin:auto;">
-                  </slide>
-                </carousel>
-
-
-              </div>
-            </div>
-            <div class="col-md-7 col-sm-12 col-xs-12">
-              <h2 class="name">
-                <strong>{{productID}}</strong>
-                <small>{{ productName }}</small>
-              </h2>
-            </div>
-            <div class="col-md-7 col-sm-12 col-xs-12">
-              <h2>
-                {{'No Data For' | i18n  }} <strong>STD</strong> {{'Configuration'  | i18n }}
-              </h2>
-            </div>
-          </div>
-        </div>
+      <div *ngIf="!isError" class="center">
+          <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin" style="color:lightslategray; font-size: 500%"></i></span>
       </div>
-    </sa-widgets-grid>
-
-  </ng-template>
+    
+    </ng-template>
+  
 
 </div>
 

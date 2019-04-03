@@ -15,7 +15,7 @@ export class AvlisInvoiceDetailComponent implements OnInit {
 
   salesID;
 
-  isDataAvaiable: boolean = false;
+  isDataAvailable: boolean = false;
 
   isError: boolean = false;
 
@@ -33,11 +33,14 @@ export class AvlisInvoiceDetailComponent implements OnInit {
 
           this.invoices = data;
 
-          this.isDataAvaiable = true;
+                   
+            this.isDataAvailable = true;
+
+         
 
         } else {
 
-          this.isDataAvaiable = false;
+          this.isDataAvailable = false;
 
         }
 
@@ -48,7 +51,7 @@ export class AvlisInvoiceDetailComponent implements OnInit {
 
         console.log(err);
 
-        this.isDataAvaiable = false;
+        this.isDataAvailable = false;
 
         this.isError = true;
       }

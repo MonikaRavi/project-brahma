@@ -43,6 +43,8 @@ export class OnHandComponent implements OnInit {
 
   isError: boolean = false;
 
+  isOnHandPulled : boolean = true;
+
   constructor(private onHandData: DataOnhandService, private inventListService: InventoryListService,
     private cloudImageService: ProductImageService) {
 
@@ -86,6 +88,8 @@ export class OnHandComponent implements OnInit {
 
     this.productImage.slides = [];
 
+    this.isOnHandPulled = false;
+
     this.getOnHand(data);
 
   }
@@ -104,10 +108,11 @@ export class OnHandComponent implements OnInit {
 
         //if On Hand Data is present for STD config
 
+        this.isOnHandPulled = true;
      
         if (data.length !== 0) {
 
-
+          
           this.products = data;
 
         //  console.log(this.products);
@@ -123,7 +128,7 @@ export class OnHandComponent implements OnInit {
 
           this.isDataAvailable = false;
           
-
+          
         }
 
 
