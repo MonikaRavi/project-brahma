@@ -112,12 +112,24 @@
             <a title="Reports"><i class="fa fa-lg fa-fw fa-clipboard" aria-hidden="true"></i> <span
                 class="menu-item-parent">{{'Project Management' | i18n}}</span></a>
             <ul>
-              <li routerLinkActive="active">
-                <a routerLink="/home/reports/smartsheet/smartsheetDashboard"><i class="fa fa-lg fa-fw fa-tachometer"></i>
-                  {{'Resource Tracking' | i18n}}</a>
-              </li>
-    
-    
+                <li>
+                    <a title="Resource"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">{{'Resource'
+                          |
+                          i18n}}</span></a>
+                    <ul>
+                        <li routerLinkActive="active">
+                            <a routerLink="/home/reports/smartsheet/smartsheetDashboard"><i class="fa fa-lg fa-fw fa-tachometer"></i>
+                              {{'Tracking' | i18n}}</a>
+                          </li>
+                
+                          <li routerLinkActive="active">
+                              <a routerLink="/home/reports/smartsheet/ganttChart"><i class="fa fa-lg fa-fw fa-eye"></i>
+                                {{'Availability' | i18n}}</a>
+                            </li>
+                      </ul>
+
+                </li>
+              
             </ul>
           </li>
     
