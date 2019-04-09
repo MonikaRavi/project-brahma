@@ -1,0 +1,83 @@
+<!-- <header id="header" class="animated fadeInDown" style="z-index:inherit"></header> -->
+<br>
+<div *ngIf="isDataAvailable ; else loading" id="main" role="main" class="animated fadeInDown move-left">
+
+  <h1><span><i><img src="assets/img/icons/google-cloud-sql.png" alt="" style="max-width:4%"></i></span>
+    <strong>{{'Quality Inspection' | i18n }}</strong></h1>
+
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <!-- row -->
+    <div class="row">
+      <!-- NEW WIDGET START -->
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget class="well">
+          <!-- widget options:
+                usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+                [colorbutton]="false"
+                [editbutton]="false"
+                [togglebutton]="false"
+                [deletebutton]="false"
+                [fullscreenbutton]="false"
+                [custombutton]="false"
+                [collapsed]="true"
+                [sortable]="false"
+            -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+
+            <h2>Quality Inspection </h2>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding" data-sparkline-container="">
+
+              <sa-datatable id="projectList" [options]="options" [detailsFormat]="detailsFormat"
+                tableClass="display projects-table table table-striped table-bordered table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>TestID</th>
+                    <th><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i>
+                      Date
+                    </th>
+                    <th>Status</th>
+                    <th>Product ID </th>
+                   </tr>
+                </thead>
+
+              </sa-datatable>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+    </div>
+    <!-- end row -->
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+
+</div>
+
+<ng-template #loading>
+
+  <div *ngIf="!isError" class="center">
+    <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+        style="color:lightslategray; font-size: 500%"></i></span>
+  </div>
+
+</ng-template>
+
+
+<div *ngIf="isError">
+
+  <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect
+      to Source!</strong></h2>
+
+</div>

@@ -70,6 +70,13 @@ export const routes: Routes = [
         data: { pageTitle: 'Reports Dashboard' }
       },
 
+      {
+        path: 'applications',
+       // canActivate: [AuthGuard],
+        loadChildren: 'app/applications/applications.module#ApplicationsModule',
+        data: { pageTitle: 'Reports Dashboard' }
+      },
+
       // {
       //   path: 'e-commerce',
       //   canActivate: [AuthGuard],

@@ -9,6 +9,7 @@ import {ChartModule} from 'angular-highcharts';
 import { GanttComponent } from './gantt/gantt.component'
 import { TaskService } from './gantt/services/task.service';
 import { LinkService } from './gantt/services/link.service';
+import { GanttChartService } from 'app/shared/data/smartsheet/gantt-chart.service';
 
 
 
@@ -25,7 +26,8 @@ import { LinkService } from './gantt/services/link.service';
   providers: [
     SmartsheetService,
     TaskService,
-    LinkService
+    LinkService,
+    GanttChartService
   ]
 })
 export class SmartsheetModule { }

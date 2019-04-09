@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@an
 
 
 import 'dhtmlx-gantt';
-import { TaskService } from './services/task.service';
-import { LinkService } from './services/link.service';
+
+import { GanttChartService } from 'app/shared/data/smartsheet/gantt-chart.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,13 +17,15 @@ export class GanttComponent implements OnInit {
 
   isDataAvailable : boolean = false;
 
-  constructor(private taskService: TaskService, private linkService: LinkService) { }
+  isError : boolean = false;
+
+  constructor(private ganttService : GanttChartService) { }
 
   ngOnInit() {
 
     gantt.config.xml_date = '%Y-%m-%d %H:%i';
     gantt.config.readonly = true;
-    console.log(gantt.config.columns);
+    //console.log(gantt.config.columns);
     gantt.config.work_time = true;
 
     gantt.templates.scale_cell_class = function (date) {
@@ -41,24 +43,30 @@ export class GanttComponent implements OnInit {
       { name: "start_date", label: "Start", align: "center" },
       { name: "end_date", label: "End", width: 100, align: "center" }];
 
-    // gantt.attachEvent("onBeforeTaskDisplay", function(id, task){
-    // 	if (task.priority !== "low"){
-    // 		return true;
-    // 	}
-    // 	return false;
-    // });
 
     gantt.init(this.ganttContainer.nativeElement);
 
-    Promise.all([this.taskService.get()])
-			.then(([data]) => {
-        console.log('Data ', data);
+    this.ganttService.getChartData().subscribe(
+
+
+      (data)=>{
+
+       // console.log('Data ', data);
+
+       this.isDataAvailable = true;
       		
         gantt.parse({ data });
-        
-        
+      },
 
-			});
+      (err)=>{
+
+        this.isError = true;
+
+        console.log(err);
+      }
+    )
+
+ 
 
   }
 

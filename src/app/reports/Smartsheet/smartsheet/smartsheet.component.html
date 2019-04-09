@@ -1,4 +1,3 @@
-
 <div id="content" data-sparkline-container="" data-easy-pie-chart-container="" class="animated fadeInDown move-right">
 
   <div id="content">
@@ -9,15 +8,15 @@
       </h1>
     </div>
     <!-- widget grid -->
-    <sa-widgets-grid *ngIf="isDataAvailable">
+    <sa-widgets-grid *ngIf="isDataAvailable ; else loading">
 
       <div class="row col-xs-10 col-sm-8 col-md-10 col-lg-10" saSparklineContainer>
 
-          <ul id="sparks" class="">
-              <li class="sparks-info">
-                <h5> Updated On <span class="txt-color-blue">{{updatedOn | date:'MM/dd/yyyy' }}</span></h5>
-              </li>
-          </ul>
+        <ul id="sparks" class="">
+          <li class="sparks-info">
+            <h5> Updated On <span class="txt-color-blue">{{updatedOn | date:'MM/dd/yyyy' }}</span></h5>
+          </li>
+        </ul>
 
       </div>
 
@@ -60,7 +59,7 @@
 
         </table>
 
-        
+
 
       </div>
 
@@ -78,6 +77,21 @@
 
     </sa-widgets-grid>
 
+    <ng-template #loading>
+
+      <div *ngIf="!Error && isClicked" class="center">
+        <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+            style="color:lightslategray; font-size: 500%"></i></span>
+      </div>
+
+    </ng-template>
+
+    <div *ngIf="isError">
+
+      <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to
+          connect to Source!</strong></h2>
+
+    </div>
 
   </div>
 

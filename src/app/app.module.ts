@@ -1,4 +1,4 @@
-import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA, ApplicationModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
@@ -42,6 +42,8 @@ import { OperationsGuard } from './+user-role/guards/operations-guard.service';
 import { InventoryGuard } from './+user-role/guards/inventory-guard.service';
 import { MarketingGuard } from './+user-role/guards/marketing-guard.service';
 import { ProjectGuard } from './+user-role/guards/project-guard.service';
+import { ApplicationsModule } from './applications/applications.module';
+
 
 
 

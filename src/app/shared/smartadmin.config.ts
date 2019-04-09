@@ -23,10 +23,11 @@ export const config: any = {
 
   hawsToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQW5ndWxhckJyYWhtYSIsImFjY2VzcyI6ImF1dGgiLCJpYXQiOjE1NDk0MDY3MzF9.WtnYDIE-0Kwtl9v4GGUKrVGZZXOV8m1asLrC6gk0ThU',
 
-  // WebSubscription Token
+   
+  //QAA Token
 
-  webSubToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoid2ViQXBwU3Vic2NyaXB0aW9uIiwiYWNjZXNzIjoiYXV0aCIsImlhdCI6MTU1MTI5MDgzOH0.AbrOsbY8uNgDKw8ri8aG19gEkOTKZtSiiS4ajn-bod8',
-  
+  qaaToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiUUFBIiwiYWNjZXNzIjoiYXV0aCIsImlhdCI6MTU1MTMxMTU2Mn0.sz6d8i8ptNCLPmWu4nxXzVuf5V4yiQROt0ouW72AoHI',
+
   //Firebase Config Ends
 
   defaultLocale: "us",

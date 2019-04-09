@@ -21,9 +21,9 @@ export class SparklineContainer implements OnInit {
 
   barChart($el:any) {
     let barColor = $el.data('sparkline-bar-color') || $el.css('color') || '#0000f0';
-    let sparklineHeight = $el.data('sparkline-height') || '26px';
+    let sparklineHeight = $el.data('sparkline-height') || '100px';
     let sparklineBarWidth = $el.data('sparkline-barwidth') || 5;
-    let sparklineBarSpacing = $el.data('sparkline-barspacing') || 2;
+    let sparklineBarSpacing = $el.data('sparkline-barspacing') || 1;
     let sparklineNegBarColor = $el.data('sparkline-negbar-color') || '#A90329';
     let sparklineStackedColor = $el.data('sparkline-barstacked-color') || ["#A90329", "#0099c6", "#98AA56", "#da532c", "#4490B1", "#6E9461", "#990099", "#B4CAD3"];
 
@@ -35,7 +35,7 @@ export class SparklineContainer implements OnInit {
       barSpacing: sparklineBarSpacing,
       stackedBarColor: sparklineStackedColor,
       negBarColor: sparklineNegBarColor,
-      zeroAxis: 'false',
+      zeroAxis: 'true',
       tooltipContainer: this.container
     });
   }
