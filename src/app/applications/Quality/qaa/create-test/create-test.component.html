@@ -1,0 +1,78 @@
+<br>
+
+
+
+  <form *ngIf="isDataAvailable ; else loading" id="createTestForm" (ngSubmit)="onSubmit()"
+  novalidate="novalidate" [saBootstrapValidator]="validatorOptions" class="form-horizontal">
+
+  <fieldset>
+  <legend>
+  Create Test Case!
+  </legend>
+  <div class="form-group">
+  <label class="col-xs-2 col-lg-3 control-label">Inspected By</label>
+  <div class="col-xs-9 col-lg-6 selectContainer">
+      <select class="form-control" name="user">
+        <option value="" hidden >User</option>
+        <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+      </select>
+    </div>
+  </div>
+  </fieldset>
+  
+  <fieldset>
+  <div class="form-group">
+  <label class="col-xs-2 col-lg-3 control-label">Location</label>
+  <div class="col-xs-9 col-lg-6 selectContainer">
+      <select class="form-control" name="location">
+        <option value="" hidden >Select Location</option>
+        <option *ngFor="let loc of location" [value]="loc.locationID" selected>{{loc.locationName}}</option>
+
+      </select>
+    </div>
+  </div>
+  </fieldset>
+  
+  <fieldset>
+  <div class="form-group">
+  <label class="col-xs-2 col-lg-3 control-label">Model</label>
+  <div class="col-xs-9 col-lg-6 selectContainer">
+    <select class="form-control" name="model">
+      <option value="">Inspected Model</option>
+      <option *ngFor="let model of models" [value]="model.modelID">{{model.modelID}} - {{model.modelName}}</option>
+       </select>
+  </div>
+  </div>
+  </fieldset>
+  
+  <fieldset>
+  <div class="form-group">
+  <label class="col-xs-2 col-lg-3 control-label">Inspected Quantity</label>
+  <div class="col-xs-9 col-lg-6 inputGroupContainer">
+      <div class="input-group">
+        <input type="text" class="form-control" name="qty"/>
+        <span class="input-group-addon"></span>
+      </div>
+    </div>
+  </div>
+  </fieldset>
+  
+  <div class="form-actions">
+  <div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-default" type="submit">
+      <i class="fa fa-eye"></i>
+      Create
+    </button>
+  </div>
+  </div>
+  </div>
+  </form>
+
+  <ng-template #loading>
+
+      <div class="center">
+          <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin" style="color:lightslategray; font-size: 500%"></i></span>
+      </div>
+    
+    </ng-template>

@@ -43,6 +43,7 @@ import { InventoryGuard } from './+user-role/guards/inventory-guard.service';
 import { MarketingGuard } from './+user-role/guards/marketing-guard.service';
 import { ProjectGuard } from './+user-role/guards/project-guard.service';
 import { ApplicationsModule } from './applications/applications.module';
+import { CheckFormValidService } from './applications/Quality/qaa/create-test/check-form-valid.service';
 
 
 
@@ -115,7 +116,6 @@ type StoreType = {
     I18nService,
     RoleService,
     UserRoleService
-    
 
   ],
   schemas: [

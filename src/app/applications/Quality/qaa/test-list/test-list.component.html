@@ -5,6 +5,47 @@
   <h1><span><i><img src="assets/img/icons/google-cloud-sql.png" alt="" style="max-width:4%"></i></span>
     <strong>{{'Quality Inspection' | i18n }}</strong></h1>
 
+    <!------------------------------------------------------------------------------------------------------------------------>
+
+    <!--- CREATE NEW TEST-->
+
+    <div class="row"style="display: flex; justify-content: flex-end">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newTestModal">
+      New
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="newTestModal" tabindex="-1" role="dialog"
+      aria-labelledby="newTestModalModalLabel" aria-hidden="true" data-backdrop="false"
+      style="height: 110%">
+      <div class="modal-dialog modal-lg" role="document" style="height: 85%">
+          <div class="modal-content" style="height: 100%">
+              <div class="modal-header" style="padding: 1%" style="height: 14%">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h3 class="modal-title" id="newTestModalModalLabel"><span><i><img
+                                  src="assets/img/icons/new.png" alt=""
+                                  style="max-width:5%"></i></span>
+                      <strong>{{'New' | i18n }} !</strong></h3>
+                  
+              </div>
+              <div class="modal-body" >
+                  <app-create-test></app-create-test>
+                  
+              </div>
+              <!-- <div class="modal-footer" style="padding: 1%">
+                  <button type="button" class="btn btn-secondary"
+                      data-dismiss="modal">Close</button>
+              </div> -->
+          </div>
+      </div>
+  </div>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------------------>
+
   <!-- widget grid -->
   <sa-widgets-grid>
     <!-- row -->

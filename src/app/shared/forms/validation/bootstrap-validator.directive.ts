@@ -1,4 +1,5 @@
-import {Directive, Input, ElementRef, OnInit, HostBinding, HostListener} from '@angular/core';
+import { Directive, Input, ElementRef, OnInit, HostBinding, HostListener } from '@angular/core';
+import { CheckFormValidService } from 'app/applications/Quality/qaa/create-test/check-form-valid.service';
 
 declare var $: any;
 
@@ -7,23 +8,31 @@ declare var $: any;
 })
 export class BootstrapValidatorDirective implements OnInit {
 
-  @Input() saBootstrapValidator:any;
+  @Input() saBootstrapValidator: any;
 
 
-  @HostListener('submit')  s = ()=>{
+  @HostListener('submit') s = () => {
     const bootstrapValidator = this.$form.data('bootstrapValidator');
     bootstrapValidator.validate();
-    if(bootstrapValidator.isValid())
+    if (bootstrapValidator.isValid()) {
+      let formName = this.$form.attr("id"); //Identify Form
+      let formData = $('form').serializeArray(); //Get Form Data
+      this.formVaildator.setFormData(formName, formData); // Call data processing service
       this.$form.submit();
-    else return;
+
+    }
+    else {
+     
+      return
+    };
   }
 
-  constructor(private el:ElementRef) {
+  constructor(private el: ElementRef, private formVaildator: CheckFormValidService) {
 
   }
 
-  ngOnInit(){
-    System.import('script-loader!smartadmin-plugins/bower_components/bootstrapvalidator/dist/js/bootstrapValidator.min.js').then(()=> {
+  ngOnInit() {
+    System.import('script-loader!smartadmin-plugins/bower_components/bootstrapvalidator/dist/js/bootstrapValidator.min.js').then(() => {
       this.attach()
     })
   }
@@ -36,7 +45,7 @@ export class BootstrapValidatorDirective implements OnInit {
     this.$form = $(this.el.nativeElement)
     this.$form.bootstrapValidator(this.saBootstrapValidator || {})
 
-    this.$form.submit(function(ev){ev.preventDefault();});
+    this.$form.submit(function (ev) { ev.preventDefault(); });
 
   }
 

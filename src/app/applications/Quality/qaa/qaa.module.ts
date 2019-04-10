@@ -13,6 +13,14 @@ import { SmartadminDatatableModule } from 'app/shared/ui/datatable/smartadmin-da
 import { SmartadminWidgetsModule } from 'app/shared/widgets/smartadmin-widgets.module';
 import { StatsModule } from 'app/shared/stats/stats.module';
 import { SmartadminLayoutModule } from 'app/shared/layout';
+import { CreateTestComponent } from './create-test/create-test.component';
+import { SmartadminModule } from 'app/shared/smartadmin.module';
+import { SmartadminValidationModule } from 'app/shared/forms/validation/smartadmin-validation.module';
+import { BootstrapValidationModule } from 'app/+forms/+bootstrap-validation/bootstrap-validation.module';
+import { GetLocationQaaService } from 'app/shared/data/MySql/QAA/get-location-qaa.service';
+import { GetModelQaaService } from 'app/shared/data/MySql/QAA/get-model-qaa.service';
+import { GetUsersQaaService } from 'app/shared/data/MySql/QAA/get-users-qaa.service';
+import { CreateTestlineComponent } from './create-testline/create-testline.component';
 
 @NgModule({
   imports: [
@@ -23,13 +31,19 @@ import { SmartadminLayoutModule } from 'app/shared/layout';
     SmartadminWidgetsModule,
     StatsModule,
     SmartadminLayoutModule,
+    SmartadminModule,
+    SmartadminValidationModule,
+    BootstrapValidationModule,
     QaaRouting
   ],
-  declarations: [QaaComponent, TestListComponent, TestDetailComponent],
+  declarations: [QaaComponent, TestListComponent, TestDetailComponent, CreateTestComponent, CreateTestlineComponent],
   providers:[
     TestListService,
     TestIdService,
-    TestDetailService
+    TestDetailService,
+    GetLocationQaaService,
+    GetModelQaaService,
+    GetUsersQaaService
   ]
 })
 export class QaaModule { }

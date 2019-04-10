@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {UiValidateDirective} from "./ui-validate.directive";
 import {BootstrapValidatorDirective} from "./bootstrap-validator.directive";
 
+
 @NgModule({
   imports: [
     CommonModule
@@ -14,6 +15,8 @@ import {BootstrapValidatorDirective} from "./bootstrap-validator.directive";
   exports: [
     UiValidateDirective,
     BootstrapValidatorDirective
-  ]
+  ],
+
+ 
 })
 export class SmartadminValidationModule { }

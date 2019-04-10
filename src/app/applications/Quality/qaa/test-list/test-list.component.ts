@@ -146,6 +146,10 @@ let Action = '<button class="btn-primary"> View Lines </button>'
         </table>`
   }
 
+  createTest(){
 
+    
+
+  }
 
 }
