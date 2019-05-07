@@ -21,6 +21,7 @@ import { GetLocationQaaService } from 'app/shared/data/MySql/QAA/get-location-qa
 import { GetModelQaaService } from 'app/shared/data/MySql/QAA/get-model-qaa.service';
 import { GetUsersQaaService } from 'app/shared/data/MySql/QAA/get-users-qaa.service';
 import { CreateTestlineComponent } from './create-testline/create-testline.component';
+import { PostTestLineService } from 'app/shared/data/MySql/QAA/post-test-line.service';
 
 @NgModule({
   imports: [
@@ -36,14 +37,15 @@ import { CreateTestlineComponent } from './create-testline/create-testline.compo
     BootstrapValidationModule,
     QaaRouting
   ],
-  declarations: [QaaComponent, TestListComponent, TestDetailComponent, CreateTestComponent, CreateTestlineComponent],
+  declarations: [TestListComponent, TestDetailComponent, CreateTestComponent, CreateTestlineComponent],
   providers:[
     TestListService,
     TestIdService,
     TestDetailService,
     GetLocationQaaService,
     GetModelQaaService,
-    GetUsersQaaService
+    GetUsersQaaService,
+    PostTestLineService
   ]
 })
 export class QaaModule { }

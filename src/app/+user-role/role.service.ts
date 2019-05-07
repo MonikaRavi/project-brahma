@@ -20,7 +20,11 @@ export class RoleService {
   isProjectManagement: boolean = false;
 
 
-  constructor(private userRole: UserRoleService) { }
+  constructor(private userRole: UserRoleService) {
+
+    this.isAdmin = true;
+
+   }
 
 
   getUserRole(userEmail) {

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GetLocationQaaService } from 'app/shared/data/MySql/QAA/get-location-qaa.service';
 import { GetModelQaaService } from 'app/shared/data/MySql/QAA/get-model-qaa.service';
 import { GetUsersQaaService } from 'app/shared/data/MySql/QAA/get-users-qaa.service';
+
 
 
 
@@ -68,41 +69,17 @@ export class CreateTestComponent implements OnInit {
 
 
   constructor(private qaaLocationService : GetLocationQaaService, private qaaModelService : GetModelQaaService, private qaaUserService : GetUsersQaaService ) {
-    
-    this.users = [
+ 
 
-      {
-        "id" : "0001",
-        "name" : "Pan Pan"
-      },
-      {
-        "id" : "0002",
-        "name" : "Tian Tian"
-      },
-      {
-        "id" : "0003",
-        "name" : "Mei Xiang"
-      },
-      {
-        "id" : "0004",
-        "name" : "Tai Shan"
-      },
-      {
-        "id" : "0005",
-        "name" : "Bao Bao"
-      }
+    Observable.combineLatest(this.qaaLocationService.getData(), this.qaaModelService.getData(), this.qaaUserService.getData()).subscribe(
 
-    ];
-    
-
-
-    Observable.combineLatest(this.qaaLocationService.getData(), this.qaaModelService.getData()).subscribe(
-
-      ([locationData, modelData])=>{
+      ([locationData, modelData, usersData])=>{
 
         this.location = locationData;
 
         this.models = modelData;
+
+        this.users = usersData;
 
         this.isDataAvailable = true;
 
@@ -130,7 +107,9 @@ export class CreateTestComponent implements OnInit {
 
   onSubmit() {
     
-    console.log('From Submitetd')
+   //form data is sent / retrieved from CheckFormValidService class which is called by bootstrapValidator
+
+     // console.log('Form submitted');
 
 
   }

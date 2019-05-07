@@ -6,19 +6,14 @@ import { request } from 'http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
-export class PostTestDataService {
+export class PostTestLineService {
 
   
   constructor(private http: HttpClient) { }
 
-  createTestCase(formData){
+  createTestLine(formData){
 
-
-  // console.log(formData);
-
-   
-
-    return this.http.post('http://localhost:3060/v1/QAA/testData',{testData : formData},{
+    return this.http.post('http://localhost:3060/v1/QAA/testLine',formData,{
       headers: new HttpHeaders().set('x-auth',config.qaaToken)
     }).pipe(
       map(

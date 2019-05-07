@@ -6,12 +6,23 @@
         <h1><span><i><img src="assets/img/icons/google-cloud-sql.png" alt="" style="max-width:4%"></i></span>
           
           <strong>{{'Inspection Case Detail' | i18n }}</strong></h1>
-      
-      </div>
 
+          <button type="button" class="btn btn-success pull-right" aria-label="Left Align" (click)="downloadPDF()">
+            <span class="fa fa-download fa-lg" aria-hidden="true"></span>
+            Export to PDF</button>
+     
+      </div>
+      <br>
        <!-- row -->
-  <div class="row">
+  <div class="row" id="TestDetail">
+      <div class="col-sm-10">
+          <alert type="info" dismissible="true">
+              <i class="fa-fw fa fa-info"></i>
+              This Inspection is {{ overallTestStatus }}
+          </alert>
+      </div>
       <div class="col-sm-12">
+          
         <div class="well">
           <!-- Test Line Summary-->
           <table class="table table-striped table-forum">
@@ -53,7 +64,7 @@
                 </h4>
               </td>
 
-              <td class="text-right" style="width: 5%;"><i class="fa fa-wordpress fa-2x text-muted"></i></td>
+              <td class="text-right" style="width: 5%;"><i class="fa fa-building fa-2x text-muted"></i></td>
                 <td style="width: 30%;">
                   <h4>
                     WorkCell : {{workCell}}
@@ -70,7 +81,7 @@
           <table class="table table-striped table-forum">
             <thead>
             <tr>
-              <th colspan="2" style="width: 35%;">Test Criteria</th>
+              <th colspan="2" style="width: 35%;">Test Criteria <i class="fa fa-pencil" aria-hidden="true" style="color:blue" (click)="editLines()" title="Edit"></i></th>
               <th class="text-center hidden-xs hidden-sm" style="width: 15%;">Range Low</th>
               <th class="text-center hidden-xs hidden-sm" style="width: 15%;">Range High</th>
               <th class="text-center hidden-xs hidden-sm" style="width: 15%;">Ideal</th>
@@ -85,22 +96,22 @@
               <td class="text-center" style="width: 5%;" *ngIf="line.Status === 'Failed'"><i class="fa fa-times fa-2x text-muted" style="color : red"></i></td>
               <td style="width: 30%;">
                 <h4>
-                  {{line.Criteria}}
+                  {{line.criteriaName}}
                 
                   <small>Criteria</small>
                 </h4>
               </td>
               <td class="text-center hidden-xs hidden-sm"  style="width: 5%;">
-                <a href="">{{line.rLow}}</a>
+                <a href="">{{line.rangeLow}} {{line.Unit}} </a>
               </td>
               <td class="text-center hidden-xs hidden-sm" style="width: 5%;">
-                <a href="">{{line.rHigh}}</a>
+                <a href="">{{line.rangeHigh}} {{line.Unit}}</a>
               </td>
               <td class="text-center hidden-xs hidden-sm" style="width: 5%;">
-                  <a href="">{{line.Ideal}}</a>
+                  <a href="">{{line.rangeIdeal}} {{line.Unit}}</a>
                 </td>
               <td class="text-center hidden-xs hidden-sm" style="width: 5%;">
-                <a href="">{{line.Actual}}</a>
+                <a href="">{{line.testData}} {{line.Unit}}</a>
                 <br>
                 <small><i>{{line.Status}}</i></small>
               </td>

@@ -123,8 +123,19 @@ export class DatatableComponent implements OnInit {
           row.child(format(row.data())).show();
           tr.addClass('shown');
           element.on('click', 'button', function () {
-         
-            router.navigate(['../qaaDetail',row.data().testID,row.data().Product,row.data().StatusOriginal,row.data().InspectionDate ], { relativeTo: route });
+
+            let lineData = {
+              "testID" : row.data().testID,
+              "Status" : row.data().StatusOriginal,
+              "Date" : row.data().InspectionDate,
+              "Product" : row.data().Product
+            }
+
+                    
+          //  router.navigate(['../qaaDetail',row.data().testID,row.data().Product,row.data().StatusOriginal,row.data().InspectionDate,route ], { relativeTo: route, skipLocationChange: true  });
+
+          router.navigate(['../qaaDetail',JSON.stringify(lineData)], { relativeTo: route, skipLocationChange: true  });
+
           });
         }
       })

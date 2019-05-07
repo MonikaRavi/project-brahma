@@ -1,3 +1,136 @@
-<p>
-  create-testline works!
-</p>
+<br>
+
+<div class="fade animated fadeInDown" id="newTestModal" aria-labelledby="newTestModalLabel" aria-hidden="true"
+  data-backdrop="false" style="height: 110%">
+  <div class="modal-dialog modal-lg" role="document" style="height: 85%">
+    <div class="modal-content" style="height: 100%">
+      <div class="modal-header" style="padding: 1%" style="height: 14%">
+        <div class="row">
+          <h3 class="modal-title" id="newTestModalLabel"><span><i><img src="assets/img/icons/edit.png" alt=""
+                  style="max-width:5%"></i></span>
+            <strong>Edit Test Lines </strong></h3>
+          <!-- <button type="button" class="btn btn-danger btn-default pull-right" (click)="goToList()"><span
+              class="fa fa-times fa-lg"></span> Cancel </button> -->
+
+        </div>
+
+      </div>
+      <div class="modal-body">
+
+        <!-- row -->
+        <div class="row">
+          <form class="smart-form form-inline" (ngSubmit)="onSubmit()" #f="ngForm">
+            <header>Test ID {{testID}}  - Model {{model}}</header>
+
+            <div>
+
+              <fieldset *ngFor="let line of lineSource; let i = index">
+
+                <section>
+                  <label class="label"><strong>Criteria</strong></label>
+                  <h4>
+                    {{line.criteriaName}}
+
+                  </h4>
+
+                </section>
+
+                <section>
+                  <div>
+
+                    <div class="col-xs-4 col-md-2 col-md-offset-2" style="position: relative;">
+                      <label class="label"><strong>Range Low</strong></label>
+                      <a href="">{{line.rangeLow}} {{line.Unit}}</a>
+                    </div>
+
+                    <div class="col-xs-4 col-md-2 col-md-offset-2">
+                      <label class="label"><strong>Range High</strong></label>
+                      <a href="">{{line.rangeHigh}} {{line.Unit}}</a>
+                    </div>
+
+                    <div class="col-xs-4 col-md-4 col-md-offset-2">
+                      <div class="form-group col-xs-2 col-md-2" style="display: inline-block;">
+                        <label class="col-xs-8 col-lg-8 control-label"><strong>Actual {{line.Unit}}</strong></label>
+                      </div>
+                      <div class="input-group">
+                        <input type="text" name="actual{{i}}" id="actual" class="form-control col-xs-4 col-lg-4" tabindex="0"
+                          [ngClass]="line.testData == 0 ? 'error':'entered'" style="text-indent:5px"  [(ngModel)]="line.testData" (change)="updateStatus(i)"
+                         required #actual="ngModel">
+                        <!-- <span class="help-block text-warning" *ngIf="!actual.valid && actual.touched">Please enter a valid Value!</span> -->
+
+                      </div>
+                    </div>
+
+                    <div class="col-xs-4 col-md-4 col-md-offset-2">
+
+                        <i class="fa fa-check fa-2x text-muted" style="color : green" *ngIf="line.testStatus == 1"></i>
+                        <i class="fa fa-times fa-2x text-muted" style="color : red" *ngIf="line.testStatus == 0"></i>
+
+                      <!-- <div class="form-group col-xs-2 col-lg-2" style="display: inline-block;">
+                        <label class="control-label"><strong>Status</strong></label>
+                      </div>
+                      <div class="col-xs-6 col-lg-6 selectContainer input-group">
+                        <select class="form-control" name="status" id="status" [(ngModel)]="line.testStatus" required
+                          #status="ngModel">
+                          <option value="" selected disabled hidden></option>
+                          <option *ngFor="let status of statusInput" [ngValue]="status.id">{{status.name}}
+                          </option>
+                          <span class="help-block text-warning" *ngIf="status.touched">Please enter a valid Value!</span> 
+                        </select>
+                      </div> -->
+                    </div>
+
+
+                  </div>
+
+                </section>
+
+              </fieldset>
+
+
+            </div>
+
+
+            <div class="form-actions col-xs-10 col-md-10 col-lg-10" style="left:10%">
+
+              <div class="row col-xs-8 col-md-8 col-lg-8 ">
+
+                <div class="form-group col-xs-4 col-md-4 col-lg-4" style="display: inline-block;left:-5% ">
+                  <label class="control-label"><strong>Over All Test Status</strong></label>
+                </div>
+                <div class="col-xs-4 col-lg-4 col-md-4 selectContainer input-group" style="left: -50%">
+                  <select class="form-control" name="status" id="status" [(ngModel)]="testStatus" required
+                    #status="ngModel">
+                    <option value="" selected disabled hidden></option>
+                    <option *ngFor="let status of statusInput" [ngValue]="status.id">{{status.name}}
+                    </option>
+                    <!-- <span class="help-block text-warning" *ngIf="status.touched">Please enter a valid Value!</span> -->
+                  </select>
+                </div>
+
+              </div>
+              <button type="submit" class="btn btn-success btn-lg"><span class="fa fa-cog fa-lg"></span> Update Test
+                Details </button>
+            </div>
+
+          </form>
+
+
+        </div>
+
+        <ng-template #loading>
+
+          <div class="center">
+            <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
+                style="color:lightslategray; font-size: 500%"></i></span>
+          </div>
+
+        </ng-template>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ export class GetUsersQaaService {
 
   getData(){
     
-    return this.http.get<any>(`http://localhost:3060/v1/QAA/Models`,{
+    return this.http.get<any>(`http://localhost:3060/v1/QAA/Users`,{
       headers: new HttpHeaders().set('x-auth',config.qaaToken)
     })
 

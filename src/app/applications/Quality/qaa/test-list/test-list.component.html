@@ -9,15 +9,21 @@
 
     <!--- CREATE NEW TEST-->
 
-    <div class="row"style="display: flex; justify-content: flex-end">
-      <!-- Button trigger modal -->
+    <div class="row">
+
+      <button type="button" class="btn btn-success pull-right" (click)="CreateTestCase()"> Create New Test Case </button>
+
+    </div>
+
+    <!-- <div class="row"style="display: flex; justify-content: flex-end">
+       Button trigger modal 
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newTestModal">
-      New
+      Create New Test Case
   </button>
 
-  <!-- Modal -->
+   Modal 
   <div class="modal fade" id="newTestModal" tabindex="-1" role="dialog"
-      aria-labelledby="newTestModalModalLabel" aria-hidden="true" data-backdrop="false"
+      aria-labelledby="newTestModalLabel" aria-hidden="true" data-backdrop="false"
       style="height: 110%">
       <div class="modal-dialog modal-lg" role="document" style="height: 85%">
           <div class="modal-content" style="height: 100%">
@@ -25,7 +31,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
-                  <h3 class="modal-title" id="newTestModalModalLabel"><span><i><img
+                  <h3 class="modal-title" id="newTestModalLabel"><span><i><img
                                   src="assets/img/icons/new.png" alt=""
                                   style="max-width:5%"></i></span>
                       <strong>{{'New' | i18n }} !</strong></h3>
@@ -35,16 +41,18 @@
                   <app-create-test></app-create-test>
                   
               </div>
-              <!-- <div class="modal-footer" style="padding: 1%">
+               <div class="modal-footer" style="padding: 1%">
                   <button type="button" class="btn btn-secondary"
                       data-dismiss="modal">Close</button>
-              </div> -->
+              </div> 
           </div>
       </div>
   </div>
-    </div>
+    </div> -->
 
     <!------------------------------------------------------------------------------------------------------------------------>
+
+    <br>
 
   <!-- widget grid -->
   <sa-widgets-grid>

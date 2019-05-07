@@ -100,30 +100,37 @@ export class HomeService {
 
         } else {
 
-          this.userRole.getUserRole(email).then(
+          this.zone.run(() => {
 
-            (data) => {
+            this.setLogIn(true);
+            this.setMicrosoftLogged(true);
+            this.router.navigate(['/home/home']);
+          });
 
-              // console.log('Haws Login');
-              // console.log(data);
+        //  this.userRole.getUserRole(email).then(
 
-              this.zone.run(() => {
+          //   (data) => {
 
-                this.setLogIn(true);
-                this.setMicrosoftLogged(true);
-                this.router.navigate(['/home/home']);
-              });
+          //     // console.log('Haws Login');
+          //     // console.log(data);
 
-            },
+          //     this.zone.run(() => {
 
-            (err) => {
+          //       this.setLogIn(true);
+          //       this.setMicrosoftLogged(true);
+          //       this.router.navigate(['/home/home']);
+          //     });
 
-              console.log(err);
+          //   },
 
-              this.router.navigate(['/miscellaneous/domain']);
-            }
+          //   (err) => {
 
-          )
+          //     console.log(err);
+
+          //     this.router.navigate(['/miscellaneous/domain']);
+          //   }
+
+          // )
 
 
         }

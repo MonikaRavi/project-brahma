@@ -64,7 +64,7 @@
 
       <!-- MARKETING -->
 
-      <li *ngIf = "marketingActive">
+      <li *ngIf="marketingActive">
         <a title="Reports"><i class="fa fa-lg fa-fw fa-bullhorn" aria-hidden="true"></i> <span
             class="menu-item-parent">{{'Marketing' | i18n}}</span></a>
         <ul>
@@ -81,58 +81,46 @@
       <!-- OPERATIONS -->
 
       <li *ngIf="operationsActive">
-        <a title="Reports"><i class="fa fa-lg fa-fw fa-cogs" aria-hidden="true"></i> <span class="menu-item-parent">
-            {{'Operations' | i18n}}</span></a>
+        <a title="Quality"><i class="fa fa-lg fa-fw fa-thumbs-up"></i> <span class="menu-item-parent">
+            {{'Quality' | i18n}}</span></a>
         <ul>
           <li>
-            <a title="Sparks"><i class="fa fa-lg fa-fw fa-university"></i> <span class="menu-item-parent">{{'Sparks'
-                  |
-                  i18n}}</span></a>
-            <ul>
+            <a routerLink="/home/applications/Qaa/qaaMain"><i class="fa fa-lg fa-fw fa-check-circle"></i>
+              {{'QAA' | i18n}}</a>
 
-              <li routerLinkActive="active">
-                <a title="Quality"><i class="fa fa-lg fa-fw fa-thumbs-up"></i> <span class="menu-item-parent">
-                    {{'Quality' | i18n}}</span></a>
-                <ul>
-                  <li>
-                    <a routerLink="/home/applications/Qaa/qaaMain"><i class="fa fa-lg fa-fw fa-check-circle"></i>
-                      {{'QAA' | i18n}}</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
           </li>
 
         </ul>
       </li>
 
-         <!-- PROJECT MANAGEMENT -->
+      <!-- PROJECT MANAGEMENT -->
 
-         <li *ngIf="projManagementActive">
-            <a title="Reports"><i class="fa fa-lg fa-fw fa-clipboard" aria-hidden="true"></i> <span
-                class="menu-item-parent">{{'Project Management' | i18n}}</span></a>
-            <ul>
-                <li>
-                    <a title="Resource"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">{{'Resource'
+      <li *ngIf="projManagementActive">
+        <a title="Reports"><i class="fa fa-lg fa-fw fa-clipboard" aria-hidden="true"></i> <span
+            class="menu-item-parent">{{'Project Management' | i18n}}</span></a>
+        <ul>
+          <li>
+            <a title="Resource"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">{{'Resource'
                           |
                           i18n}}</span></a>
-                    <ul>
-                        <li routerLinkActive="active">
-                            <a routerLink="/home/reports/smartsheet/smartsheetDashboard"><i class="fa fa-lg fa-fw fa-tachometer"></i>
-                              {{'Tracking' | i18n}}</a>
-                          </li>
-                
-                          <li routerLinkActive="active">
-                              <a routerLink="/home/reports/smartsheet/ganttChart"><i class="fa fa-lg fa-fw fa-eye"></i>
-                                {{'Availability' | i18n}}</a>
-                            </li>
-                      </ul>
+            <ul>
+              <li routerLinkActive="active">
+                <a routerLink="/home/reports/smartsheet/smartsheetDashboard"><i
+                    class="fa fa-lg fa-fw fa-tachometer"></i>
+                  {{'Tracking' | i18n}}</a>
+              </li>
 
-                </li>
-              
+              <li routerLinkActive="active">
+                <a routerLink="/home/reports/smartsheet/ganttChart"><i class="fa fa-lg fa-fw fa-eye"></i>
+                  {{'Availability' | i18n}}</a>
+              </li>
             </ul>
+
           </li>
-    
+
+        </ul>
+      </li>
+
 
       <!-- SALES -->
 
@@ -146,7 +134,8 @@
                 i18n}}</span></a>
             <ul>
               <li routerLinkActive="active">
-                <a routerLink="/home/reports/americas/sales/leads"><i class="fa fa-lg fa-fw fa-line-chart" aria-hidden="true"></i>
+                <a routerLink="/home/reports/americas/sales/leads"><i class="fa fa-lg fa-fw fa-line-chart"
+                    aria-hidden="true"></i>
                   {{'Sales Orders' | i18n}}</a>
               </li>
 
@@ -159,7 +148,8 @@
                 i18n}}</span></a>
             <ul>
               <li routerLinkActive="active">
-                <a routerLink="/home/reports/avlis/sales/avlisSales"><i class="fa fa-lg fa-fw fa-line-chart" aria-hidden="true"></i>
+                <a routerLink="/home/reports/avlis/sales/avlisSales"><i class="fa fa-lg fa-fw fa-line-chart"
+                    aria-hidden="true"></i>
                   {{'Sales Orders' | i18n}}</a>
               </li>
             </ul>

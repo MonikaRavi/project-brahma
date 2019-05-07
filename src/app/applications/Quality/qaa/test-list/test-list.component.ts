@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestListService } from 'app/shared/data/MySql/QAA/test-list.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -26,7 +27,7 @@ export class TestListComponent implements OnInit {
 
 
 
-  constructor(private testListService: TestListService) {
+  constructor(private testListService: TestListService,private router: Router, private route: ActivatedRoute) {
 
     this.testListService.getData().subscribe(
 
@@ -53,6 +54,8 @@ export class TestListComponent implements OnInit {
 
           }
 
+          // Test line detail will be called from DatatableComponent -> using the action (shared -> ui -> datatable)
+ 
 let Action = '<button class="btn-primary"> View Lines </button>'
 
           this.inspectionList.push({
@@ -146,9 +149,11 @@ let Action = '<button class="btn-primary"> View Lines </button>'
         </table>`
   }
 
-  createTest(){
+  CreateTestCase(){
 
-    
+    //console.log(this.route.url);
+
+    this.router.navigate(['../createTest'], { relativeTo: this.route });
 
   }
 

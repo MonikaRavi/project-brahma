@@ -1,5 +1,6 @@
 import { Directive, Input, ElementRef, OnInit, HostBinding, HostListener } from '@angular/core';
 import { CheckFormValidService } from 'app/applications/Quality/qaa/create-test/check-form-valid.service';
+import { ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 
@@ -17,7 +18,7 @@ export class BootstrapValidatorDirective implements OnInit {
     if (bootstrapValidator.isValid()) {
       let formName = this.$form.attr("id"); //Identify Form
       let formData = $('form').serializeArray(); //Get Form Data
-      this.formVaildator.setFormData(formName, formData); // Call data processing service
+      this.formVaildator.setFormData(formName, formData, this.route); // Call data processing service
       this.$form.submit();
 
     }
@@ -27,7 +28,7 @@ export class BootstrapValidatorDirective implements OnInit {
     };
   }
 
-  constructor(private el: ElementRef, private formVaildator: CheckFormValidService) {
+  constructor(private el: ElementRef, private formVaildator: CheckFormValidService, private route: ActivatedRoute) {
 
   }
 
