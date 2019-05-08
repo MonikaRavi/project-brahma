@@ -100,37 +100,37 @@ export class HomeService {
 
         } else {
 
-          this.zone.run(() => {
+          // this.zone.run(() => {
 
-            this.setLogIn(true);
-            this.setMicrosoftLogged(true);
-            this.router.navigate(['/home/home']);
-          });
+          //   this.setLogIn(true);
+          //   this.setMicrosoftLogged(true);
+          //   this.router.navigate(['/home/home']);
+          // });
 
-        //  this.userRole.getUserRole(email).then(
+         this.userRole.getUserRole(email).then(
 
-          //   (data) => {
+            (data) => {
 
-          //     // console.log('Haws Login');
-          //     // console.log(data);
+              // console.log('Haws Login');
+              // console.log(data);
 
-          //     this.zone.run(() => {
+              this.zone.run(() => {
 
-          //       this.setLogIn(true);
-          //       this.setMicrosoftLogged(true);
-          //       this.router.navigate(['/home/home']);
-          //     });
+                this.setLogIn(true);
+                this.setMicrosoftLogged(true);
+                this.router.navigate(['/home/home']);
+              });
 
-          //   },
+            },
 
-          //   (err) => {
+            (err) => {
 
-          //     console.log(err);
+              console.log(err);
 
-          //     this.router.navigate(['/miscellaneous/domain']);
-          //   }
+              this.router.navigate(['/miscellaneous/domain']);
+            }
 
-          // )
+          )
 
 
         }

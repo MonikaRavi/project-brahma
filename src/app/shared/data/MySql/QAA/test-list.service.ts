@@ -11,7 +11,7 @@ export class TestListService {
 
   getData(){
     
-    return this.http.get<any>(`http://localhost:3060/v1/QAA/testData`,{
+    return this.http.get<any>(`https://sql-test-server.appspot.com/v1/QAA/testData`,{
       headers: new HttpHeaders().set('x-auth',config.qaaToken)
     })
 

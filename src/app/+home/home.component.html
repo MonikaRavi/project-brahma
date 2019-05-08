@@ -1,15 +1,17 @@
 <!-- <header id="header" class="animated fadeInDown" style="z-index:inherit">Haws Internet Of Things</header> -->
 
-<div class="container align-content-start animated fadeInDown">
+<!-- Admin -->
+
+<div class="container align-content-start animated fadeInDown" *ngIf="isAdmin">
 
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1">
 
-      <div id="main" role="main" >
+      <div id="main" role="main">
         <h1 *ngIf="me">{{'Hi' | i18n}}, {{ getUserName() }} !</h1>
 
         <h1 *ngIf="isUserEmailLogin">{{'Hi' | i18n}}, {{ getUserName() | titlecase }} !</h1>
-        
+
         <form (ngSubmit)="setInputData()" [formGroup]="getDataForm">
 
           <div class="form-group">
@@ -32,54 +34,51 @@
             </label>
           </div>
 
-          <span *ngIf="!getDataForm.valid && getDataForm.touched" class="help-block text-warning">Please enter valid data!</span>
+          <span *ngIf="!getDataForm.valid && getDataForm.touched" class="help-block text-warning">Please enter valid
+            data!</span>
           <br>
 
-          <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">{{'Get Data' | i18n }}</button> &nbsp;
+          <button class="btn btn-primary" type="submit" [disabled]="!getDataForm.valid">{{'Get Data' | i18n }}</button>
+          &nbsp;
 
           <br>
           <br>
 
-          <!-- <div style="color: red">
-
-            {{ errorMessage }}
-
-          </div> -->
 
           <div *ngIf="isDataAvailable ; else loading">
 
-          <div  *ngFor="let data of dataReturned">
+            <div *ngFor="let data of dataReturned">
 
-            <ul class="list-group" *ngIf="queryType == 'Details'">
+              <ul class="list-group" *ngIf="queryType == 'Details'">
 
-              <p> Details For {{ querySelected }}</p>
+                <p> Details For {{ querySelected }}</p>
 
-              <li class="list-group-item">
+                <li class="list-group-item">
 
-                Flow : {{ data.flow }}
-                <br> RFID : {{ data.rfid }}
-                <br> Temperature : {{ data.temp }}
-                <br> Date : {{ data.timestamp | date:'medium' }}
+                  Flow : {{ data.flow }}
+                  <br> RFID : {{ data.rfid }}
+                  <br> Temperature : {{ data.temp }}
+                  <br> Date : {{ data.timestamp | date:'medium' }}
 
-              </li>
+                </li>
 
-            </ul>
+              </ul>
 
-            <ul *ngIf="queryType == 'Summary'" class="list-group">
+              <ul *ngIf="queryType == 'Summary'" class="list-group">
 
-              <h5> {{'Summary for' | i18n}} {{ querySelected }} </h5>
+                <h5> {{'Summary for' | i18n}} {{ querySelected }} </h5>
 
-              <li class="list-group-item">
-                Total Logs : {{ data.totalLogs }}
-                <br> Consumption : {{ data.totalConsumption }}
-                <br> Days Since First Use : {{ data.totalDaysSinceFirstDispense }}
-                <br> Days used : {{ data.uniqueDays }}
+                <li class="list-group-item">
+                  Total Logs : {{ data.totalLogs }}
+                  <br> Consumption : {{ data.totalConsumption }}
+                  <br> Days Since First Use : {{ data.totalDaysSinceFirstDispense }}
+                  <br> Days used : {{ data.uniqueDays }}
 
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
           </div>
-          
-        </div>
 
           <ng-template #loading>
 
@@ -87,16 +86,17 @@
               <span id="demo-setting"><i class="fa fa-circle-o-notch fa-spin"
                   style="color:lightslategray; font-size: 500%"></i></span>
             </div>
-          
+
           </ng-template>
-          
+
           <div *ngIf="isError">
-          
-            <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable to connect
+
+            <h2 class="center text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><strong>Unable
+                to connect
                 to Source!</strong></h2>
-          
+
           </div>
-        
+
 
         </form>
 
@@ -106,4 +106,42 @@
     </div>
 
   </div>
+
+
+
 </div>
+
+<!-- QAA -->
+
+  <div id="main" role="main" class="animated fadeInDown move-left" *ngIf="isOperations ; else contactIT">
+    <h1 *ngIf="me">{{'Hi' | i18n}}, {{ getUserName() }} !</h1>
+
+    <h1 *ngIf="isUserEmailLogin">{{'Hi' | i18n}}, {{ getUserName() | titlecase }} !</h1>
+
+    <br>
+    <br>
+
+    <h5>Your Places...</h5>
+
+    <h3> <a routerLink="/home/applications/Qaa/qaaMain">QAA</a></h3>
+  </div>
+
+  <!-- No access to any department -->
+
+<ng-template #contactIT>
+  <div id="main" role="main" class="animated fadeInDown move-left">
+    <h1 *ngIf="me">{{'Hi' | i18n}}, {{ getUserName() }} !</h1>
+
+    <h1 *ngIf="isUserEmailLogin">{{'Hi' | i18n}}, {{ getUserName() | titlecase }} !</h1>
+
+    <br>
+    <br>
+
+    <h1 class="text-danger">Please contact below IT team member for access to this portal!</h1>
+
+    <li>Monika Ravi</li>
+    <li>Biplav Timalsina</li>
+
+  </div>
+
+</ng-template>

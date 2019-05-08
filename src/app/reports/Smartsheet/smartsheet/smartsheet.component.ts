@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SmartsheetService } from 'app/shared/data/smartsheet/smartsheet.service';
 
 import { Chart } from 'angular-highcharts';
-import { TouchSequence } from 'selenium-webdriver';
+
 
 
 @Component({

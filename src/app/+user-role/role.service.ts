@@ -22,7 +22,7 @@ export class RoleService {
 
   constructor(private userRole: UserRoleService) {
 
-    this.isAdmin = true;
+   // this.isAdmin = true;
 
    }
 
@@ -43,7 +43,7 @@ export class RoleService {
 
             userRoleArray = userData;
 
-            //console.log(userRoleArray);
+           // console.log(userRoleArray);
 
             //Admin
 

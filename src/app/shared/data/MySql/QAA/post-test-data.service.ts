@@ -18,7 +18,7 @@ export class PostTestDataService {
 
    
 
-    return this.http.post('http://localhost:3060/v1/QAA/testData',{testData : formData},{
+    return this.http.post('https://sql-test-server.appspot.com/v1/QAA/testData',{testData : formData},{
       headers: new HttpHeaders().set('x-auth',config.qaaToken)
     }).pipe(
       map(

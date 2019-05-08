@@ -12,6 +12,7 @@ import { AuthService } from '../+auth/auth.service';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms'
 import { map } from 'rxjs/operators';
 import { DataRetrievalService } from 'app/shared/data/IoT/data-retrieval.service';
+import { RoleService } from 'app/+user-role/role.service';
 
 
 @Component({
@@ -63,9 +64,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   isError : boolean = false;
 
+  isAdmin : boolean = false;
 
-  constructor(private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService) {
+  isOperations : boolean = false;
 
+  constructor(private homeService: HomeService, private authService: AuthService, private dataService: DataRetrievalService, private roleService : RoleService) {
+
+    if(this.roleService.getAdminStatus()){
+
+      this.isAdmin = true;
+
+    } else if(this.roleService.getOperationStatus()){
+
+      this.isOperations = true;
+    }
 
 
   }

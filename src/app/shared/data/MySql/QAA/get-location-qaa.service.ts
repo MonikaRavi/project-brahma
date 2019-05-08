@@ -11,7 +11,7 @@ export class GetLocationQaaService {
 
   getData(){
     
-    return this.http.get<any>(`http://localhost:3060/v1/QAA/Location`,{
+    return this.http.get<any>(`https://sql-test-server.appspot.com/v1/QAA/Location`,{
       headers: new HttpHeaders().set('x-auth',config.qaaToken)
     })
 
