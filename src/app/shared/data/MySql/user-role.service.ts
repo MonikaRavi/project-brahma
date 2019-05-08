@@ -19,7 +19,7 @@ export class UserRoleService {
   getData(userEmail) {
 
 
-    return this.http.get<any>(`http://localhost:3000/v1/WA/rolesByEmail/${userEmail}`,
+    return this.http.get<any>(`https://sql-test-server.appspot.com/v1/WA/rolesByEmail/${userEmail}`,
       {
         headers: new HttpHeaders().set('x-auth', config.hawsToken)
       }
