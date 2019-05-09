@@ -1,14 +1,6 @@
 # Project Brahma
 
-[live](https://smartadmin-angular.firebaseapp.com) demo
-
-## AOT Note
-Starting from version 0.4.5 we are supporting AOT builds.  
- 
-use `npm run build:aot` to run AOT build
- 
-if you'll get `FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory` use `npm run build:aot2` or increase node memory heep size even more (check `package.json` `scripts` section for details) 
-
+[live](https://haws-corporation.herokuapp.com) 
 
 ## Prerequisites
 
@@ -38,74 +30,12 @@ For Windows users [git-bash](https://git-scm.com/downloads) is perfect **termina
 
 Copy the code from [jquery](https://github.com/jquery/jquery-color/blob/master/jquery.color.js) into \node_modules\jquery-color\  as jquery.color.js
 
-
-
-quick way to speed up builds when testing 
-* exclude whole template parts from compilation by commenting them in `src/app/app.routing.ts` 
-
-
  
 ## NPM scripts
 Checkout `scripts` section in `package.json` for tools launching shortcuts
 
  
-## App structure
 
-```
-|-- e2e         # end-to-end tests directory 
-...
-|
-|-- src
-|   |-- app
-|   |   |-- +feature-module-1        # by convension async modules are prefixed with + sign            
-|   |       |-- feature-module-1.component.html
-|   |       |-- feature-module-1.component.ts
-|   |       |-- feature-module-1.module.ts
-|   |       |-- feature-module-1-routing.module.ts
-|   |   |-- +feature-module-2
-|   |   ...
-|   |   |-- core                      # core module for app wide injectable service instancess 
-|   |       |-- api                   
-|   |       |-- guards                # prevent core module of being loaded twice
-|   |       |-- core.module.ts        
-|   |
-|   |   |-- shared                    # dir with common directives, components, services, pipes 
-|   |       |-- chat
-|   |       |-- forms
-|   |       |-- graphs
-|   |       ...
-|   |       |-- smartadmin.config.ts  # smartadmin setup file
-|   |       |-- smartadmin.module.ts  # shared module useful for reexport common functionality
-|   |   ...    
-|   |   |-- app.module.ts       # app root module
-|   |   |-- app.resolver.ts     # here you can async fetch data for app before init  
-|   |   |-- app.routing.ts      # top routes definition
-|   |   |-- app.service.ts      # global app state service
-|   |       
-|   |-- assets           # static resources folder
-|   |   |-- css   
-|   |   |-- fonts   
-|   |   ...   
-|   |-- environment      # env specific variables
-|   |   |-- environment.prod.ts   
-|   |   |-- environment.ts        
-|   |-- custom-typings.d.ts      # typescript definitions tweaks 
-|   |-- index.html              
-|   |-- main.ts          # app entry point 
-|   |-- polyfills.ts     # polyfills for browsers
-|   |-- style.css        # project specific styles
-|   |-- test.ts          # unit tests entry point
-|   |-- tsconfig.json    # typescript config
-|   |-- vendor.ts        # common vendor chunk
-|   
-...
-|-- .angular-cli.json           # cli project config
-|-- karma.conf.js              # unit tests config
-|-- package.json
-|-- protractor.conf.js         # e2e tests config
-...
-
-```
 
 ## Build
 * Run `npm run build` to build the project. 
@@ -121,68 +51,7 @@ Checkout `scripts` section in `package.json` for tools launching shortcuts
 #### tip 
 write shell scripts for build/deploy/whatever routines automation
 
-
-## Smartadmin Angular 5 templates
-
-Smartadmin will be supplied with 3 templates: 
-* *full* - full demo application
-* *blank* - app with simple Home page. All demo pages are also there  but they are excluded from build by default
-* *lite* - good starting point for creating smartadmin app with no extra dependencies (like jquery) 
-
-
-## Some useful code stuff
-
-* Switching app root-layouts according to route (e.g. different layout for login/register pages) 
-* Lazy loading everywhere - routing and plugins 
-* Animating routes with Decorators
-* hot module replacement
-* Google Map - async map initializer 
-* Image editor - Angular 2 application with Redux data flow 
-* CK Editor - loading scripts from cdn
-* and much more 
-
-
-## Testing
-Testing is important for big projects. So we have good old js combo!
-
-App is configured for running end-to-end (via [Protractor](http://www.protractortest.org/)) and unit (via [Karma](https://karma-runner.github.io)) tests
-
-`npm run e2e` shortcut for executing end-to-end tests. 
-`npm run test` for unit tests.
-
-
-## cookbook
- 
-*  download, unpack, rename template into your new project dir
-*  init git repo in your project  
-*  exclude all unwanted routes in `app/app.routing.ts`
-    * try to remove maximum stuff on this point. This will speed up builds a lot. 
-    * Template has lot of splitting points allowing you to exclude plugin dependencies not just from build but even from webpack compilation.     
-*  pick some route that is matching your idea. Or use `app/+misc/blank`, or generate new module with **angular-cli**
-* now decide and chose what features are desired in your new project 
-* perhaps maps, modals, some graphs, maybe voice-control and knobs...?
-* include chosen modules from `app/shared/` subs into  your app's first 
-* adjust navigation `app/shared/layout/navigation/navigation.component.html` 
-   * (soon navigation will be configurable via json or `smartadmin.config.js`)
-* run `npm run server:dev:hmr` to start dev server
-* now it's time to get some data, to use in  your project. Or even Big Data? Collect from web API's, social networks, libraries; 
-* explore, transform, display, analyze, edit. Angular 2 is really good for joining pieces together.
-* until you have no backend with powerful db, use `localstorage` to gather results, persist data and even sync browser tabs 
-* cleanup by deleting demo pages that are not matching your idea.  
-
-### some tips 
-* use angular-cli for code generating 
-* choose and know your IDE, or try [vscode](https://code.visualstudio.com/) - it has good typescript support and brilliant resources usage. 
-* use logs: if you cannot build, compile, deploy something, first place to locate error causers are log outputs
-* create shortcuts for frequent git operations and commit your progress more often
-* always automate DB backups.
-
-
-
 ## resources
-- [live project demo](https://smartadmin-angular.firebaseapp.com)
+- [live project demo](https://haws-corporation.herokuapp.com)
 - [angular-cli docs](https://github.com/angular/angular-cli)
 
-
-## remarks
-[1] If you, on some edging cases, can't build or run angular 2 projects, consider to try any virtual environment (i.e custom vagrant with some lightweight linux and nodejs@6.*.*)
