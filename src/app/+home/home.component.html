@@ -129,7 +129,7 @@
   <!-- No access to any department -->
 
 <ng-template #contactIT>
-  <div id="main" role="main" class="animated fadeInDown move-left">
+  <div id="main" role="main" class="animated fadeInDown move-left" *ngIf="!isAdmin">
     <h1 *ngIf="me">{{'Hi' | i18n}}, {{ getUserName() }} !</h1>
 
     <h1 *ngIf="isUserEmailLogin">{{'Hi' | i18n}}, {{ getUserName() | titlecase }} !</h1>
