@@ -8,7 +8,7 @@
     "build:prod": "./node_modules/.bin/ng build --prod --aot=false",
     "build:aot": "./node_modules/.bin/ng build --prod --aot",
     "build:aot2": "node --max_old_space_size=4096 ./node_modules/.bin/ng build --prod --aot",
-    "build": "npm run build:dev",
+    "build": "npm run build:dev && rm build/**/*.map",
     "clean:dist": "npm run rimraf -- dist",
     "clean:install": "npm set progress=false && npm install",
     "clean:start": "npm start",
